@@ -7,9 +7,9 @@
 {{ $gradientOrange := resources.Get "img/general/gradient-orange.png" }}
 {{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
 {{ $nestorV2 := resources.Get "img/nestor/nestor-v2.svg" }}
-{{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.svg" }}
-{{ $lfLogo := resources.Get "img/community/lf-member-level-silver.svg" }}
-{{ $sylvaLogo := resources.Get "img/community/sylva-logo.svg" }}
+{{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.png" }}
+{{ $lfLogo := resources.Get "img/community/lf-member-level-silver.png" }}
+{{ $sylvaLogo := resources.Get "img/community/sylva-logo.png" }}
 
 <section class="section-light-2 grid-background pt-24 relative overflow-hidden">
   <div class="px-4 pt-16 pb-20 max-w-350 mx-auto relative z-10">
@@ -498,14 +498,14 @@
         <h3 class="text-xl font-extrabold tracking-tight text-neutral-50 mb-2">Storage provider agnostic</h3>
         <p class="text-sm text-neutral-400 mb-5 leading-relaxed">Snapshots land on storage you own, always with zero plaintext: any S3-compatible backend, local disk, or filesystem. On S3-compatible backends, object-lock immutability and append-only keep them tamper-proof.</p>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/amazon-s3.svg").RelPermalink }}" alt="" class="w-4 h-4">AWS S3</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/amazon-s3.png").RelPermalink }}" alt="" class="w-4 h-4">AWS S3</span>
           <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Azure Blob</span>
           <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Google Cloud</span>
           <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/minio.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">MinIO</span>
           <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/backblaze.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Backblaze B2</span>
           <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/cloudflare.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Cloudflare R2</span>
           <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/netapp.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">NetApp</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/filesystem.svg").RelPermalink }}" alt="" class="w-4 h-4">Local disk</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/filesystem.png").RelPermalink }}" alt="" class="w-4 h-4">Local disk</span>
           <span class="inline-flex items-center text-[12.5px] font-medium text-neutral-400 bg-neutral-900 border border-dashed border-neutral-600 rounded-lg px-3 py-1.5">and more…</span>
         </div>
       </div>
@@ -567,7 +567,7 @@
       <!-- Featured: S3 -->
       <a href="/integrations/" class="bg-primary-50 border border-primary-500 rounded-xl p-5 flex flex-col gap-2.5 hover:bg-primary-100 transition-colors">
         <div class="flex flex-wrap gap-1.5 mb-1">
-          <img src="{{ (resources.Get "img/providers/amazon-s3.svg").RelPermalink }}" alt="AWS S3" class="w-5 h-5">
+          <img src="{{ (resources.Get "img/providers/amazon-s3.png").RelPermalink }}" alt="AWS S3" class="w-5 h-5">
           <img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="Azure Blob" class="w-5 h-5 rounded-sm">
           <img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="Google Cloud" class="w-5 h-5 rounded-sm">
           <img src="{{ (resources.Get "img/providers/minio.png").RelPermalink }}" alt="MinIO" class="w-5 h-5 rounded-sm">
@@ -593,7 +593,7 @@
       </a>
       <!-- PostgreSQL -->
       <a href="/integrations/postgres/" class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2 hover:border-primary-500 transition-colors">
-        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/postgresql.svg").RelPermalink }}" alt="" class="w-5 h-5"></span>
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/postgresql.png").RelPermalink }}" alt="" class="w-5 h-5"></span>
         <h4 class="text-[14.5px] font-bold text-neutral-900">PostgreSQL</h4>
         <span class="text-[12.5px] text-neutral-600">Consistent full-database snapshots &amp; dumps</span>
         <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
@@ -888,13 +888,13 @@
     </div>
     <div class="flex items-center justify-center gap-5 flex-wrap">
       <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
-        <img src="{{ $cncfLogo.RelPermalink }}" alt="CNCF Silver Member" class="h-12 w-auto">
+        {{ partial "components/image.html" (dict "resource" $cncfLogo "alt" "CNCF Silver Member" "class" "h-12 w-auto" "widths" (slice 400)) }}
       </div>
       <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
-        <img src="{{ $lfLogo.RelPermalink }}" alt="Linux Foundation Silver Member" class="h-12 w-auto">
+        {{ partial "components/image.html" (dict "resource" $lfLogo "alt" "Linux Foundation Silver Member" "class" "h-12 w-auto" "widths" (slice 160)) }}
       </div>
       <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
-        <img src="{{ $sylvaLogo.RelPermalink }}" alt="Sylva project member" class="h-12 w-auto">
+        {{ partial "components/image.html" (dict "resource" $sylvaLogo "alt" "Sylva project member" "class" "h-12 w-auto" "widths" (slice 160)) }}
       </div>
     </div>
   </div>
