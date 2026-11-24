@@ -41,7 +41,7 @@
         "label" "Join Plakar Community on Discord"
         "href" site.Params.socials.discord
         "target" "_blank"
-        "icon" "discord"
+        "icon" "ri/discord-fill"
       ) }}
     </div>
 
@@ -334,13 +334,13 @@
         "label" "Join us on Discord"
         "href" site.Params.socials.discord
         "target" "_blank"
-        "icon" "discord"
+        "icon" "ri/discord-fill"
       ) }}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Join us on Reddit"
         "href" site.Params.socials.reddit
         "target" "_blank"
-        "icon" "ri/reddit-line"
+        "icon" "ri/reddit-fill"
       ) }}
     </div>
 
@@ -348,16 +348,16 @@
       <div class="flex flex-wrap justify-center gap-4">
         <span class="text-lg lg:text-xl font-medium text-secondary-500">Follow us on:</span>
         <a href="{{ .Site.Params.socials.x | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
-          {{ partial "icon.html" "ri/twitter-x-line" }}
+          {{ partial "icon.html" "ri/twitter-x-fill" }}
         </a>
         <a href="{{ .Site.Params.socials.bluesky | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
-          {{ partial "icon.html" "bluesky" }}
+          {{ partial "icon.html" "ri/bluesky-fill" }}
         </a>
         <a href="{{ .Site.Params.socials.linkedin | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
           {{ partial "icon.html" "ri/linkedin-box-fill" }}
         </a>
-        <a href="{{ .Site.Params.github.organization | default "#" }}" target="_blank" class="w-6 h-6 text-neutral-900">
-          {{ partial "icon.html" "github" }}
+        <a href="{{ .Site.Params.github.organization | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
+          {{ partial "icon.html" "ri/github-fill" }}
         </a>
       </div>
     </div>

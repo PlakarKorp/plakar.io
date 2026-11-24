@@ -15,16 +15,16 @@
     <span class="text-base">Share it</span>
     <div class="flex items-center gap-3">
       <a href="https://bsky.app/intent/compose?text={{ .Title | urlize }}%20{{ .Permalink }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "bluesky" }}
+        {{ partial "icon.html" "ri/bluesky-fill" }}
       </a>
       <a href="https://reddit.com/submit?url={{ .Permalink }}&title={{ .Title | urlize }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/reddit-line" }}
+        {{ partial "icon.html" "ri/reddit-fill" }}
       </a>
       <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink }}" target="_blank" class="w-6 h-6 text-neutral-50">
         {{ partial "icon.html" "ri/linkedin-box-fill" }}
       </a>
       <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title | urlize }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/twitter-x-line" }}
+        {{ partial "icon.html" "ri/twitter-x-fill" }}
       </a>
     </div>
   </div>
@@ -33,11 +33,11 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Join us</span>
     <div class="flex items-center gap-3">
-      <a href="{{ .Site.Params.socials.discord }}" target="_blank" class="w-6 h-6 translate-y-1 text-neutral-50">
-        {{ partial "icon.html" "discord" }}
+      <a href="{{ .Site.Params.socials.discord }}" target="_blank" class="w-6 h-6 text-neutral-50">
+        {{ partial "icon.html" "ri/discord-fill" }}
       </a>
       <a href="{{ .Site.Params.socials.reddit }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/reddit-line" }}
+        {{ partial "icon.html" "ri/reddit-fill" }}
       </a>
     </div>
   </div>
@@ -46,8 +46,8 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Help us</span>
     <div class="flex items-center gap-3">
-      <a href="{{ .Site.Params.github.plakar }}" target="_blank" class="w-5.5 h-5.5 text-neutral-50">
-        {{ partial "icon.html" "github" }}
+      <a href="{{ .Site.Params.github.plakar }}" target="_blank" class="w-6 h-6 text-neutral-50">
+        {{ partial "icon.html" "ri/github-fill" }}
       </a>
     </div>
   </div>

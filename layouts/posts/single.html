@@ -123,16 +123,16 @@
         <div class="flex flex-wrap items-center gap-3 mb-3">
           <span class="text-base text-neutral-900">Share good vibes:</span>
           <a href="https://bsky.app/intent/compose?text={{ .Title | urlize }}%20{{ .Permalink }}" target="_blank" class="w-7 h-7 text-primary-500">
-            {{ partial "icon.html" "bluesky" }}
+            {{ partial "icon.html" "ri/bluesky-fill" }}
           </a>
           <a href="https://reddit.com/submit?url={{ .Permalink }}&title={{ .Title | urlize }}" target="_blank" class="w-7 h-7 text-primary-500">
-            {{ partial "icon.html" "ri/reddit-line" }}
+            {{ partial "icon.html" "ri/reddit-fill" }}
           </a>
           <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink }}" target="_blank" class="w-7 h-7 text-primary-500">
             {{ partial "icon.html" "ri/linkedin-box-fill" }}
           </a>
           <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title | urlize }}" target="_blank" class="w-7 h-7 text-primary-500">
-            {{ partial "icon.html" "ri/twitter-x-line" }}
+            {{ partial "icon.html" "ri/twitter-x-fill" }}
           </a>
         </div>
 
@@ -143,19 +143,19 @@
             "label" "Star us on GitHub"
             "href" .Site.Params.github.plakar
             "target" "_blank"
-            "icon" "github"
+            "icon" "ri/github-fill"
           ) }}
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Join Discord"
             "href" .Site.Params.socials.discord
             "target" "_blank"
-            "icon" "discord"
+            "icon" "ri/discord-fill"
           ) }}
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Join Reddit"
             "href" .Site.Params.socials.reddit
             "target" "_blank"
-            "icon" "ri/reddit-line"
+            "icon" "ri/reddit-fill"
           ) }}
         </div>
       </div>

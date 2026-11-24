@@ -156,7 +156,7 @@
       <div class="bg-white max-w-xl rounded-lg shadow-md overflow-hidden border border-neutral-200">
         <div class="bg-neutral-900 py-6 px-8">
           <h3 class="text-xl font-semibold text-neutral-50 flex items-center gap-3">
-            <span class="w-6 h-6">{{ partial "icon.html" "github" }}</span>
+            <span class="w-6 h-6">{{ partial "icon.html" "ri/github-fill" }}</span>
             Bug Reports on GitHub
           </h3>
           <p class="text-neutral-300 mt-2">Found a bug? Help us improve Plakar by submitting an issue on GitHub.</p>
@@ -190,7 +190,7 @@
           </div>
 
           <a href="{{ site.Params.github.plakar }}/issues/new" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 px-4 bg-neutral-800 hover:bg-black text-white rounded-lg font-medium transition">
-            <span class="w-5 h-5">{{ partial "icon.html" "github" }}</span>
+            <span class="w-5 h-5">{{ partial "icon.html" "ri/github-fill" }}</span>
             Submit an issue on GitHub
           </a>
         </div>
@@ -300,7 +300,7 @@
           <div class="md:w-1/2 flex flex-col gap-6">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 bg-primary-500 text-neutral-50 rounded-xl flex items-center justify-center shrink-0">
-                <span class="w-7 h-7 mt-1">{{ partial "icon.html" "discord" }}</span>
+                <span class="w-7 h-7">{{ partial "icon.html" "ri/discord-fill" }}</span>
               </div>
               <h2 class="text-2xl font-bold">Join our Discord community</h2>
             </div>
@@ -340,7 +340,7 @@
               <div class="flex flex-col items-end justify-end pb-4">
                 {{ partial "components/buttons/base-button.html" (dict
                   "label" "Join Discord"
-                  "icon" "discord"
+                  "icon" "ri/discord-fill"
                   "href" site.Params.socials.discord
                   "target" "_blank"
                 ) }}

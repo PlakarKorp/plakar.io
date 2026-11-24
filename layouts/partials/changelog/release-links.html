@@ -4,7 +4,7 @@
 <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
   {{ with .releaseURL }}
     <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="{{ $link }}">
-      <span class="{{ $icon }}">{{ partial "icon.html" "github" }}</span>
+      <span class="{{ $icon }}">{{ partial "icon.html" "ri/github-fill" }}</span>
       Release
     </a>
   {{ end }}
@@ -18,7 +18,7 @@
 
   {{ with .downloadURL }}
     <a href="{{ . }}" class="{{ $link }}">
-      <span class="{{ $icon }}">{{ partial "icon.html" "download" }}</span>
+      <span class="{{ $icon }}">{{ partial "icon.html" "ri/download-line" }}</span>
       Download
     </a>
   {{ end }}

@@ -30,7 +30,7 @@
     <button class="section-switcher-btn w-full flex items-center justify-between px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
       <span class="truncate text-sm font-medium">{{ if $isControlPlane }}Control Plane{{ else }}Community{{ end }}</span>
       <span class="w-4 h-4 shrink-0 flex items-center justify-center">
-        {{ partial "icon.html" "chevron-down" }}
+        {{ partial "icon.html" "ri/arrow-down-s-line" }}
       </span>
     </button>
     <div class="section-switcher-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden">
@@ -53,7 +53,7 @@
       <button class="version-selector-btn w-full flex items-center justify-between px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
         <span class="truncate text-sm">{{ $currentVersion.Title }}</span>
         <span class="w-4 h-4 shrink-0 flex items-center justify-center">
-          {{ partial "icon.html" "chevron-down" }}
+          {{ partial "icon.html" "ri/arrow-down-s-line" }}
         </span>
       </button>
       <div class="version-selector-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden">
@@ -118,7 +118,7 @@
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 {{ if $isActive }}rotate-180{{ end }}">
-                {{ partial "icon.html" "chevron-down" }}
+                {{ partial "icon.html" "ri/arrow-down-s-line" }}
               </span>
             </button>
           </div>
