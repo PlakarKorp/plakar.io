@@ -14,18 +14,7 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Share it</span>
     <div class="flex items-center gap-3">
-      <a href="https://bsky.app/intent/compose?text={{ .Title | urlize }}%20{{ .Permalink }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/bluesky-fill" }}
-      </a>
-      <a href="https://reddit.com/submit?url={{ .Permalink }}&title={{ .Title | urlize }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/reddit-fill" }}
-      </a>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/linkedin-box-fill" }}
-      </a>
-      <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title | urlize }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/twitter-x-fill" }}
-      </a>
+      {{ partial "components/social/share.html" (dict "page" . "class" "w-6 h-6 text-neutral-50") }}
     </div>
   </div>
 
@@ -33,12 +22,7 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Join us</span>
     <div class="flex items-center gap-3">
-      <a href="{{ .Site.Params.socials.discord }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/discord-fill" }}
-      </a>
-      <a href="{{ .Site.Params.socials.reddit }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/reddit-fill" }}
-      </a>
+      {{ partial "components/social/links.html" (dict "networks" (slice "discord" "reddit") "class" "w-6 h-6 text-neutral-50") }}
     </div>
   </div>
 
@@ -46,9 +30,7 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Help us</span>
     <div class="flex items-center gap-3">
-      <a href="{{ .Site.Params.github.plakar }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/github-fill" }}
-      </a>
+      {{ partial "components/social/links.html" (dict "networks" (slice "github") "class" "w-6 h-6 text-neutral-50") }}
     </div>
   </div>
 </div>

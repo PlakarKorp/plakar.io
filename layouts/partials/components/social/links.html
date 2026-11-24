@@ -1,0 +1,20 @@
+{{- $s := site.Params.socials -}}
+{{- $all := dict
+  "github" (dict "label" "GitHub" "icon" "ri/github-fill" "url" site.Params.github.plakar)
+  "github-org" (dict "label" "GitHub" "icon" "ri/github-fill" "url" site.Params.github.organization)
+  "linkedin" (dict "label" "LinkedIn" "icon" "ri/linkedin-box-fill" "url" $s.linkedin)
+  "bluesky" (dict "label" "Bluesky" "icon" "ri/bluesky-fill" "url" $s.bluesky)
+  "reddit" (dict "label" "Reddit" "icon" "ri/reddit-fill" "url" $s.reddit)
+  "x" (dict "label" "X" "icon" "ri/twitter-x-fill" "url" $s.x)
+  "discord" (dict "label" "Discord" "icon" "ri/discord-fill" "url" $s.discord)
+  "youtube" (dict "label" "YouTube" "icon" "ri/youtube-fill" "url" $s.youtube)
+-}}
+{{- range .networks -}}
+  {{- $n := index $all . -}}
+  {{- if not $n -}}
+    {{- errorf "unknown social network %q" . -}}
+  {{- end -}}
+  <a href="{{ $n.url }}" target="_blank" rel="noopener" aria-label="{{ $n.label }}" class="{{ $.class }}">
+    {{- partial "icon.html" $n.icon -}}
+  </a>
+{{- end -}}

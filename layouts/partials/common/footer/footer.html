@@ -71,27 +71,7 @@
             </button>
           </form>
         <div class="flex flex-row gap-3 pt-2">
-          <a href="{{ .Site.Params.github.plakar }}" target="_blank" class="w-7 h-7 text-neutral-50">
-            {{ partial "icon.html" "ri/github-fill" }}
-          </a>
-          <a href="{{ .Site.Params.socials.linkedin | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
-            {{ partial "icon.html" "ri/linkedin-box-fill" }}
-          </a>
-          <a href="{{ .Site.Params.socials.bluesky | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
-            {{ partial "icon.html" "ri/bluesky-fill" }}
-          </a>
-          <a href="{{ .Site.Params.socials.reddit | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
-            {{ partial "icon.html" "ri/reddit-fill" }}
-          </a>
-          <a href="{{ .Site.Params.socials.x | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
-            {{ partial "icon.html" "ri/twitter-x-fill" }}
-          </a>
-          <a href="{{ .Site.Params.socials.discord | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
-            {{ partial "icon.html" "ri/discord-fill" }}
-          </a>
-          <a href="{{ .Site.Params.socials.youtube | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
-            {{ partial "icon.html" "ri/youtube-fill" }}
-          </a>
+          {{ partial "components/social/links.html" (dict "networks" (slice "github" "linkedin" "bluesky" "reddit" "x" "discord" "youtube") "class" "w-7 h-7 text-neutral-50") }}
         </div>
       </div>
 

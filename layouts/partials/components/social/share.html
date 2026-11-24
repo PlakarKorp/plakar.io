@@ -1,0 +1,13 @@
+{{- $url := .page.Permalink -}}
+{{- $title := .page.Title | urlize -}}
+{{- $all := slice
+  (dict "label" "Share on Bluesky" "icon" "ri/bluesky-fill" "url" (printf "https://bsky.app/intent/compose?text=%s%%20%s" $title $url))
+  (dict "label" "Share on Reddit" "icon" "ri/reddit-fill" "url" (printf "https://reddit.com/submit?url=%s&title=%s" $url $title))
+  (dict "label" "Share on LinkedIn" "icon" "ri/linkedin-box-fill" "url" (printf "https://www.linkedin.com/sharing/share-offsite/?url=%s" $url))
+  (dict "label" "Share on X" "icon" "ri/twitter-x-fill" "url" (printf "https://twitter.com/intent/tweet?url=%s&text=%s" $url $title))
+-}}
+{{- range $all -}}
+  <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="{{ .label }}" class="{{ $.class }}">
+    {{- partial "icon.html" .icon -}}
+  </a>
+{{- end -}}
