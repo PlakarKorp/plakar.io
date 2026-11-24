@@ -17,7 +17,7 @@
   {{ $cats = $cats | append $c }}
 {{ end }}
 
-<a href="{{ $p.RelPermalink }}" data-categories="{{ delimit $cats " " }}" class="group/card flex flex-col rounded-lg border border-neutral-200 bg-neutral-50 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-shadow duration-300 no-underline overflow-hidden">
+<a href="{{ $p.RelPermalink }}" data-categories="{{ delimit $cats " " }}" class="group/card flex flex-col rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 shadow-xl outline-8 outline-ui-neutral-400/20 hover:shadow-none transition-shadow duration-300 no-underline overflow-hidden">
   {{ if $image }}
   <div class="w-full p-4 aspect-video overflow-hidden">
     {{ partial "components/image.html" (dict
@@ -32,26 +32,26 @@
     {{ if $cats }}
       <div class="flex flex-wrap items-center gap-2">
         {{ range $i, $c := $cats }}
-          {{ if $i }}<span class="text-sm text-primary-500 font-medium" aria-hidden="true">/</span>{{ end }}
-          <span class="text-sm text-primary-500 font-medium capitalize">{{ replace $c "-" " " }}</span>
+          {{ if $i }}<span class="text-sm text-ui-primary-500 font-medium" aria-hidden="true">/</span>{{ end }}
+          <span class="text-sm text-ui-primary-500 font-medium capitalize">{{ replace $c "-" " " }}</span>
         {{ end }}
       </div>
     {{ end }}
 
-    <h3 class="text-lg md:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors line-clamp-2 leading-snug">
+    <h3 class="text-lg md:text-2xl font-semibold text-ui-neutral-900 group-hover/card:text-ui-primary-500 transition-colors line-clamp-2 leading-snug">
       {{ $p.Title | emojify }}
     </h3>
 
     {{ with $p.Summary }}
-      <p class="text-sm md:text-base text-neutral-600 leading-snug line-clamp-4">{{ . | plainify }}</p>
+      <p class="text-sm md:text-base text-ui-neutral-600 leading-snug line-clamp-4">{{ . | plainify }}</p>
     {{ end }}
 
-    <div class="flex flex-wrap items-center gap-2 text-xs text-neutral-400 mt-auto pt-2">
+    <div class="flex flex-wrap items-center gap-2 text-xs text-ui-neutral-400 mt-auto pt-2">
       {{ range $p.GetTerms "authors" }}
         {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
         {{ $authorData := index hugo.Data.authors $authorKey }}
         {{ with $authorData }}
-          <span class="text-neutral-700 font-medium">{{ .name }}</span>
+          <span class="text-ui-neutral-700 font-medium">{{ .name }}</span>
           <span>·</span>
         {{ end }}
       {{ end }}
@@ -61,7 +61,7 @@
         <span>{{ $p.ReadingTime }} min read</span>
       {{ end }}
     </div>
-    <div class="flex items-center gap-1 mt-1 group-hover/card:text-primary-500">
+    <div class="flex items-center gap-1 mt-1 group-hover/card:text-ui-primary-500">
       <div class="w-5 h-5">{{ partial "icon.html" "ri/corner-down-right-line" }}</div>
       <p class="text-sm font-semibold">Read more</p>
     </div>
