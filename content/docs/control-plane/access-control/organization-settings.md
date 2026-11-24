@@ -96,7 +96,7 @@ domains, not the admins of the organization. See
 
 The system settings connect the organization to the infrastructure around Plakar
 Control Plane. They define the mail server used for its email, and an external
-Vector instance that receives a copy of its logs.
+Vector instance that receives a copy of the logs of Plakar Control Plane.
 
 ### SMTP
 
@@ -107,11 +107,18 @@ details.
 
 ### Vector
 
-Forward Plakar Control Plane logs to a Vector instance you manage. Plakar
-Control Plane runs its own internal Vector instance for local log processing.
-This setting adds the instance you provide as an additional
-[Vector sink](https://vector.dev/docs/reference/configuration/sinks/vector/), so
-a copy of the logs is forwarded there rather than replacing local processing.
+Plakar Control Plane processes its logs with its own Vector instance. This
+setting forwards a copy of them to a Vector instance you manage, which PCP adds
+as a
+[Vector sink](https://vector.dev/docs/reference/configuration/sinks/vector/).
+
+PCP uses only the address set in the root organization, and forwards the logs of
+the whole deployment there. An address with no scheme connects over HTTPS, so
+use `http://host:port` for a Vector instance that listens over plain HTTP.
+
+PCP reads the level of each log line before forwarding it, so your Vector
+instance receives `level`, `msg` and `attrs` fields alongside the original
+`message`.
 
 ## Notifications
 
