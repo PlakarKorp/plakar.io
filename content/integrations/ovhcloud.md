@@ -46,7 +46,7 @@ seo_tags:
 
 links:
   - type: control-plane
-    url: /docs/control-plane/resources/compute/ovhcloud/
+    url: /docs/control-plane/resources/compute/openstack/
   - type: custom
     label: OVHcloud inventory
     url: /docs/control-plane/inventories/managed/ovhcloud/
@@ -440,7 +440,7 @@ edges on instances of the same region, so backups also reach resources behind a
 private network.
 
 [See how Plakar Control Plane works](/solutions/control-plane/), read the
-[Control Plane OVHcloud documentation](/docs/control-plane/resources/compute/ovhcloud/),
+[Control Plane OVHcloud documentation](/docs/control-plane/inventories/managed/ovhcloud/),
 or [contact us](/contact/) to plan a deployment.
 
 {{< /column >}}
