@@ -347,18 +347,7 @@
     <div class="bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm px-6 py-5 flex flex-col items-center gap-4">
       <div class="flex flex-wrap justify-center gap-4">
         <span class="text-lg lg:text-xl font-medium text-secondary-500">Follow us on:</span>
-        <a href="{{ .Site.Params.socials.x | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
-          {{ partial "icon.html" "ri/twitter-x-fill" }}
-        </a>
-        <a href="{{ .Site.Params.socials.bluesky | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
-          {{ partial "icon.html" "ri/bluesky-fill" }}
-        </a>
-        <a href="{{ .Site.Params.socials.linkedin | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
-          {{ partial "icon.html" "ri/linkedin-box-fill" }}
-        </a>
-        <a href="{{ .Site.Params.github.organization | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
-          {{ partial "icon.html" "ri/github-fill" }}
-        </a>
+        {{ partial "components/social/links.html" (dict "networks" (slice "x" "bluesky" "linkedin" "github-org") "class" "w-7 h-7 text-neutral-900") }}
       </div>
     </div>
 
