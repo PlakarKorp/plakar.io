@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-08T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-24T12:18:23+01:00">
+    <meta property="article:modified_time" content="2026-11-24T12:24:18+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-09-08T00:00:00\u002b00:00",
     "datePublished": "2026-09-08T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-24T12:18:23\u002b01:00",
+    "dateModified": "2026-11-24T12:24:18\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/access-control/organization-settings/",
-    "wordCount":  843 
+    "wordCount":  1001 
   }]
   </script>
 
@@ -10571,9 +10571,9 @@
 </h1>
 <p>Organization settings apply to one organization only. Every organization on the
 instance carries its own settings, so changing them affects that organization
-and the resources that belong to it, and nothing else.</p>
-<p>Settings that apply to the appliance as a whole, and so to every organization it
-hosts, are <a href="../../operations/control-plane-settings" >Control Plane settings</a>.</p>
+and the resources that belong to it, and nothing else. Settings that apply to
+the appliance as a whole, and so to every organization it hosts, are
+<a href="../../operations/control-plane-settings" >Control Plane settings</a>.</p>
 
 
 <h2 id="handing-settings-down" class="group pr-8">Handing settings down
@@ -10742,6 +10742,73 @@ at the first sign-in. Only the Superuser and Platform Admins can change the
 domains, not the admins of the organization. See
 <a href="../sso#who-manages-single-sign-on" >who manages single sign-on</a>. See
 <a href="../sso" >Single Sign-On</a> for how providers are added.</p>
+
+
+<h2 id="sign-in-and-ai-agents" class="group pr-8">Sign-in and AI agents
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="sign-in-and-ai-agents"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The address members use to reach this organization, and whether they can sign in
+with an identity provider.</p>
+
+
+<h3 id="public-url" class="group pr-8">Public URL
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="public-url"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The address that members and identity providers reach this organization at, such
+as <code>https://pcp.example.com</code>. Single sign-on needs it, because Plakar Control
+Plane does not know its own address. Organizations below always inherit it, and
+can set their own. Only the <a href="../permissions/superuser" >Superuser</a> and
+<a href="../permissions/platform-admin" >Platform Admins</a> can set it. See
+<a href="../sso#setting-the-public-url" >setting the public URL</a>.</p>
+
+
+<h3 id="single-sign-on-1" class="group pr-8">Single sign-on
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="single-sign-on-1"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Lets members of this organization sign in with an identity provider. Turning it
+off only pauses single sign-on. PCP revokes nothing, and keeps the providers and
+email domains. Organizations below inherit it by default. You can also keep it
+to this organization or lock it, as described in
+<a href="/docs/control-plane/access-control/organization-settings/#handing-settings-down" >handing settings down</a>. An organization that uses the
+public URL of an organization above it cannot set its own switch. It follows the
+switch of that organization. See
+<a href="../sso#turning-single-sign-on-on" >turning single sign-on on</a>.</p>
 
 
 <h2 id="system" class="group pr-8">System
@@ -10928,7 +10995,7 @@ external endpoint as HTTP requests. Webhook delivery is disabled by default. See
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#handing-settings-down">Handing settings down</a><ul><li><a href="#how-an-organization-resolves-a-setting">How an organization resolves a setting</a></li></ul></li><li><a href="#authentication">Authentication</a><ul><li><a href="#token-lifetimes">Token lifetimes</a></li><li><a href="#two-factor-authentication">Two-factor authentication</a></li><li><a href="#single-sign-on">Single sign-on</a></li></ul></li><li><a href="#system">System</a><ul><li><a href="#smtp">SMTP</a></li><li><a href="#vector">Vector</a></li></ul></li><li><a href="#notifications">Notifications</a><ul><li><a href="#webhook">Webhook</a></li></ul></li></ul>
+      <ul><li><a href="#handing-settings-down">Handing settings down</a><ul><li><a href="#how-an-organization-resolves-a-setting">How an organization resolves a setting</a></li></ul></li><li><a href="#authentication">Authentication</a><ul><li><a href="#token-lifetimes">Token lifetimes</a></li><li><a href="#two-factor-authentication">Two-factor authentication</a></li><li><a href="#single-sign-on">Single sign-on</a></li></ul></li><li><a href="#sign-in-and-ai-agents">Sign-in and AI agents</a><ul><li><a href="#public-url">Public URL</a></li><li><a href="#single-sign-on-1">Single sign-on</a></li></ul></li><li><a href="#system">System</a><ul><li><a href="#smtp">SMTP</a></li><li><a href="#vector">Vector</a></li></ul></li><li><a href="#notifications">Notifications</a><ul><li><a href="#webhook">Webhook</a></li></ul></li></ul>
     </div>
 
     

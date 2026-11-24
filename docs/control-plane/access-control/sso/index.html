@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-11-05T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-24T12:18:23+01:00">
+    <meta property="article:modified_time" content="2026-11-24T12:24:18+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-11-05T00:00:00\u002b00:00",
     "datePublished": "2026-11-05T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-24T12:18:23\u002b01:00",
+    "dateModified": "2026-11-24T12:24:18\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/access-control/sso/",
-    "wordCount":  1011 
+    "wordCount":  1392 
   }]
   </script>
 
@@ -10569,19 +10569,22 @@
     </button>
   
 </h1>
-<p>Single sign-on lets people sign in to Plakar Control Plane with an account they
-already hold at an identity provider. Any provider that supports OpenID Connect
-can be used, such as Google, Okta, Entra ID, Keycloak or Auth0.</p>
-<p>It is configured at two levels:</p>
-<ul>
-<li><a href="../../operations/control-plane-settings#single-sign-on" >Control Plane settings</a>
-hold the providers, which are available to the whole instance.</li>
-<li><a href="../organization-settings#single-sign-on" >Organization settings</a> tie email
-domains to a provider, which decides who signs in with it and which
-organization they join.</li>
-</ul>
-<p>A provider that is added or changed is used from the next sign-in, with no
-restart.</p>
+<p>Single sign-on lets members sign in to Plakar Control Plane with an account they
+already have at an identity provider. PCP works with any provider that supports
+OpenID Connect, such as Google, Okta, Entra ID, Keycloak or Auth0.</p>
+<p>To set it up:</p>
+<ol>
+<li><a href="/docs/control-plane/access-control/sso/#setting-the-public-url" >Set the public URL</a> of the root organization, so
+identity providers can reach PCP.</li>
+<li><a href="/docs/control-plane/access-control/sso/#adding-a-provider" >Add a provider</a> in the
+<a href="../../operations/control-plane-settings#single-sign-on" >Control Plane settings</a>,
+under <strong>System</strong>.</li>
+<li><a href="/docs/control-plane/access-control/sso/#turning-single-sign-on-on" >Turn single sign-on on</a> in the
+<a href="../organization-settings#sign-in-and-ai-agents" >organization settings</a>.</li>
+<li><a href="/docs/control-plane/access-control/sso/#assigning-email-domains" >Assign email domains</a> to the provider. They decide
+who signs in with it and which organization they join.</li>
+</ol>
+<p>PCP uses a new or changed provider from the next sign-in, with no restart.</p>
 
 
 <h2 id="who-manages-single-sign-on" class="group pr-8">Who manages single sign-on
@@ -10599,17 +10602,71 @@ restart.</p>
     </button>
   
 </h2>
-<p>A provider decides who can sign in to the instance, so managing single sign-on
-is reserved to the people who maintain the deployment. These are the members of
-the root organization who can change the
-<a href="../../operations/control-plane-settings" >Control Plane settings</a>, such as the
-<a href="../permissions/superuser" >Superuser</a> and
+<p>A provider decides who can sign in to the instance. Only the members of the root
+organization who can change the
+<a href="../../operations/control-plane-settings" >Control Plane settings</a> manage single
+sign-on, such as the <a href="../permissions/superuser" >Superuser</a> and
 <a href="../permissions/platform-admin" >Platform Admins</a>.</p>
-<p>The same rule applies to the email domains of every organization. Only the
-Superuser and Platform Admins can assign domains. An organization admin cannot
-set up the domains of their own organization. Other members cannot view or
-change the providers. Those who can view the organization settings see its
-domains, but cannot change them.</p>
+<p>The same rule covers the public URL and the email domains of every organization,
+and the single sign-on switch of the root organization. An organization admin
+cannot assign email domains in their own organization. Other members cannot see
+the providers. Members who can view the organization settings see its domains,
+but cannot change them.</p>
+
+
+<h2 id="setting-the-public-url" class="group pr-8">Setting the public URL
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="setting-the-public-url"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Plakar Control Plane does not know the address members reach it at, so you set
+it as the public URL, such as <code>https://pcp.example.com</code>. Set it under <strong>Sign-in
+and AI agents</strong> in the
+<a href="../organization-settings#sign-in-and-ai-agents" >organization settings</a> of the
+root organization. Every organization below inherits it. Single sign-on does not
+work until you set it.</p>
+<p>Members sign in at that address, and PCP builds the redirect URIs of the
+providers from it. PCP does not offer single sign-on at any other address, such
+as its IP address.</p>
+
+
+<h3 id="separate-addresses-for-organizations" class="group pr-8">Separate addresses for organizations
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="separate-addresses-for-organizations"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>An organization below the root can set its own public URL, such as
+<code>https://aws.pcp.example.com</code> for an AWS organization. Each address belongs to
+one organization only. A sign-in at an address only considers that organization
+and the organizations below it. You can therefore assign the same email domain
+in organizations that use different addresses.</p>
+<p>Each provider lists a redirect URI for every address. Register all of them at
+the provider.</p>
+<p>PCP tells the addresses apart by the host name of each request, and serves plain
+HTTP. Route every address through the load balancer or reverse proxy in front of
+the instance. It terminates TLS with a certificate that covers every address,
+and passes the original host name on. For an example on Scaleway, see
+<a href="../../guides/scaleway/https-access-to-a-private-network" >setting up HTTPS access on a Scaleway Private Network</a>.</p>
 
 
 <h2 id="adding-a-provider" class="group pr-8">Adding a provider
@@ -10627,11 +10684,12 @@ domains, but cannot change them.</p>
     </button>
   
 </h2>
-<p>Plakar Control Plane is registered at the provider as an OpenID Connect client,
-with the redirect URI <code>https://&lt;instance&gt;/auth/sso/&lt;id&gt;/callback</code>, where <code>&lt;id&gt;</code>
-is the id chosen for the provider. The <code>client id</code> and <code>secret</code> the provider
-issues are then entered in Plakar Control Plane, along with the issuer URL of
-the provider, such as <code>https://accounts.google.com</code>.</p>
+<p>Register Plakar Control Plane at the provider as an OpenID Connect client, with
+the redirect URI <code>&lt;public URL&gt;/auth/sso/&lt;id&gt;/callback</code>. The <code>&lt;id&gt;</code> is the id you
+choose for the provider in PCP, and you cannot change it later.</p>
+<p>Then enter the client id and client secret that the provider issues, and the
+issuer URL of the provider, such as <code>https://accounts.google.com</code>. The sign-in
+button shows the name of the provider, which defaults to its id.</p>
 <figure><img class="my-0 rounded-md mx-auto max-w-130" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1360" height="1021" src="/docs/control-plane/access-control/images/add-sso-provider_hu_89109708ee2917c6.webp" srcset="/docs/control-plane/access-control/images/add-sso-provider_hu_89109708ee2917c6.webp 400w, /docs/control-plane/access-control/images/add-sso-provider_hu_a5ef52a1286f7e0c.webp 800w, /docs/control-plane/access-control/images/add-sso-provider_hu_c7a6780644dcc87f.webp 1200w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/access-control/images/add-sso-provider_hu_c7a6780644dcc87f.webp" /></figure>
 
 
@@ -10650,9 +10708,34 @@ the provider, such as <code>https://accounts.google.com</code>.</p>
     </button>
   
 </h3>
-<p>Plakar Control Plane finds the endpoints of a provider through OpenID Connect
-discovery, from the issuer URL. Discovery can be run against the issuer before
-the provider is saved, and reports why it failed when it does.</p>
+<p>PCP finds the endpoints of a provider from its issuer URL, through OpenID
+Connect discovery. You can run discovery before you save the provider. It
+reports the reason when it fails.</p>
+
+
+<h2 id="turning-single-sign-on-on" class="group pr-8">Turning single sign-on on
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="turning-single-sign-on-on"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Single sign-on stays off until you turn it on under <strong>Sign-in and AI agents</strong> in
+the <a href="../organization-settings#sign-in-and-ai-agents" >organization settings</a>.
+While it is off, nobody can sign in with a provider, but you can still add and
+prepare providers. Turning it off only pauses single sign-on. PCP revokes
+nothing, and keeps the providers and email domains.</p>
+<p>Organizations below inherit the switch by default. An organization that uses the
+public URL of an organization above it cannot set its own switch. It follows the
+switch of that organization.</p>
 
 
 <h2 id="changing-a-provider" class="group pr-8">Changing a provider
@@ -10670,12 +10753,11 @@ the provider is saved, and reports why it failed when it does.</p>
     </button>
   
 </h2>
-<p>Every setting except the id can be changed, and the change applies from the next
-sign-in.</p>
-<p>The identity of a person who signed in with a provider is tied to its issuer.
-Changing the issuer therefore stops the sign-ins of everyone who already signed
-in with that provider. Change it only to move to a new provider, not to correct
-how the same provider is written.</p>
+<p>You can edit a provider at any time. The change applies from the next sign-in.</p>
+<p>PCP ties the identity of everyone who signs in with a provider to its issuer.
+Changing the issuer therefore stops the sign-ins of everyone who already used
+that provider. Change it only to move to a new provider, not to rewrite the
+issuer of the same one.</p>
 
 
 <h2 id="disabling-or-deleting-a-provider" class="group pr-8">Disabling or deleting a provider
@@ -10693,13 +10775,13 @@ how the same provider is written.</p>
     </button>
   
 </h2>
-<p>Disabling a provider stops the sign-ins with it at once, and it is no longer
-offered at sign-in. It keeps every setting, including the client secret, so it
-can be enabled again later.</p>
-<p>Deleting a provider removes it with its secret. Adding it again needs a client
-secret from the provider. A provider cannot be deleted while an organization
-still assigns it email domains. Disable the provider instead, or remove it from
-the single sign-on settings of those organizations first.</p>
+<p>Disabling a provider stops sign-ins with it at once, and removes it from the
+sign-in page. PCP keeps every setting, including the client secret, so you can
+enable it again later.</p>
+<p>Deleting a provider removes it along with its secret. To add it again, you need
+a client secret from the provider. You cannot delete a provider while an
+organization still assigns it email domains. Disable it instead, or first remove
+it from the single sign-on settings of those organizations.</p>
 
 
 <h2 id="assigning-email-domains" class="group pr-8">Assigning email domains
@@ -10717,17 +10799,21 @@ the single sign-on settings of those organizations first.</p>
     </button>
   
 </h2>
-<p>A provider is put to use by assigning it email domains in the
-<a href="../organization-settings#single-sign-on" >organization settings</a> of an
-organization, under <strong>Settings &gt; Authentication</strong>. A person whose email address
-is in one of those domains signs in with that provider, and joins the
-organization at the first sign-in. Only the Superuser and Platform Admins can
-assign them, as described in
+<p>Nobody signs in with a provider until you assign it email domains, under
+<strong>Settings &gt; Authentication</strong> in the
+<a href="../organization-settings#single-sign-on" >organization settings</a>. Members whose
+email address is in one of those domains sign in with that provider, and join
+the organization at their first sign-in. Only the Superuser and Platform Admins
+can assign domains, as described in
 <a href="/docs/control-plane/access-control/sso/#who-manages-single-sign-on" >who manages single sign-on</a>.</p>
-<p>An organization can use several providers, each with its own list of domains. A
-domain is matched exactly against the part of the email address after the <code>@</code>,
-in lowercase. Assigning <code>example.com</code> does not cover <code>eu.example.com</code>, which
-must be assigned on its own. Domains are not inherited by sub-organizations.</p>
+<p>An organization can use several providers, each with its own domains. PCP
+matches a domain exactly against the part of the email address after the <code>@</code>, in
+lowercase. Assigning <code>example.com</code> does not cover <code>eu.example.com</code>, so assign it
+separately. Sub-organizations do not inherit domains.</p>
+<p>When you sign in, PCP looks for the organization that assigns your email domain
+to the provider. It searches the organization of the address you sign in at, and
+the organizations below it. PCP refuses the sign-in if no organization assigns
+the domain, or if several do.</p>
 <figure><img class="my-0 rounded-md mx-auto max-w-130" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1194" height="531" src="/docs/control-plane/access-control/images/sso-email-domain_hu_88f9cdbff61f9b2b.webp" srcset="/docs/control-plane/access-control/images/sso-email-domain_hu_88f9cdbff61f9b2b.webp 400w, /docs/control-plane/access-control/images/sso-email-domain_hu_7f6c014ad66578a0.webp 800w, /docs/control-plane/access-control/images/sso-email-domain_hu_87adde9694990048.webp 1194w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/access-control/images/sso-email-domain_hu_87adde9694990048.webp" /></figure>
 
 
@@ -10746,15 +10832,18 @@ must be assigned on its own. Domains are not inherited by sub-organizations.</p>
     </button>
   
 </h2>
-<p>Every enabled provider is offered on the sign-in page, alongside sign-in with an
-account and password. See <a href="../../intro/signing-in" >Signing In</a>.</p>
-<p>A sign-in is accepted only when the provider vouches that the email address is
-verified. Providers that do not report this are refused. The provider setup
-below notes where a provider needs extra configuration for it.</p>
-<p>The first sign-in with a provider creates the account. A sign-in with an email
-address that already belongs to an account is refused, so a provider cannot take
-over an existing account. The person links the provider to their account
-instead.</p>
+<p>The sign-in page offers every enabled provider, next to sign-in with an email
+address and password. See <a href="../../intro/signing-in" >Signing In</a>.</p>
+<p>PCP accepts a sign-in only when the provider confirms that the email address is
+verified, and refuses providers that do not report it. The
+<a href="/docs/control-plane/access-control/sso/#provider-setup" >provider setup</a> below notes where a provider needs extra
+configuration for this.</p>
+<p>If you have no account, your first sign-in with a provider creates one, with the
+provider already linked.</p>
+<p>If you already have an account with an email address and password,
+<a href="/docs/control-plane/access-control/sso/#linking-a-provider-to-an-account" >link the provider</a> to it first. Until then,
+PCP refuses your sign-ins with the provider, so a provider cannot take over an
+existing account.</p>
 
 
 <h2 id="linking-a-provider-to-an-account" class="group pr-8">Linking a provider to an account
@@ -10772,13 +10861,11 @@ instead.</p>
     </button>
   
 </h2>
-<p>A person who already has an account links a provider to it from their
-<strong>Account</strong> page. From then on, they can sign in with that provider as well as
-with their existing methods.</p>
-<p>A link is accepted only when the account at the provider has the same email
-address, and the person is a member of the organization that assigns that email
-domain to the provider. An identity at a provider can be linked to one account
-only.</p>
+<p>Link a provider to your account from your <strong>Account</strong> page. You can then sign in
+with that provider as well as with your existing methods.</p>
+<p>PCP accepts the link only when your account at the provider has the same email
+address, and you are a member of the organization that assigns that email domain
+to the provider. You can link an identity at a provider to one account only.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -10808,8 +10895,8 @@ only.</p>
     </button>
   
 </h2>
-<p>Each provider registers Plakar Control Plane as a client, with the redirect URI
-of the provider, and issues a client id and a client secret.</p>
+<p>At each provider, register Plakar Control Plane as a client with the redirect
+URI of every address. The provider then issues a client id and a client secret.</p>
 
 
 <h3 id="google" class="group pr-8">Google
@@ -10871,11 +10958,11 @@ the URL of the Okta organization, such as <code>https://example.okta.com</code>.
 redirect URI, and create a client secret for it. The client id is the
 application id.</p>
 <p>Use the issuer of the tenant,
-<code>https://login.microsoftonline.com/&lt;tenant id&gt;/v2.0</code>. The <code>common</code> endpoint is
-not supported.</p>
-<p>Entra ID does not report whether an email address is verified by default. In
+<code>https://login.microsoftonline.com/&lt;tenant id&gt;/v2.0</code>. PCP does not support the
+<code>common</code> endpoint.</p>
+<p>By default, Entra ID does not report whether an email address is verified. In
 <strong>Token configuration</strong>, add the optional claim <code>xms_edov</code> to the ID token.
-Without it, every sign-in with Entra ID is refused.</p>
+Without it, PCP refuses every sign-in with Entra ID.</p>
 
 
 <h3 id="keycloak" class="group pr-8">Keycloak
@@ -10893,11 +10980,12 @@ Without it, every sign-in with Entra ID is refused.</p>
     </button>
   
 </h3>
-<p>In the realm, create an OpenID Connect client with <strong>Client authentication</strong> on.
-The client secret is in its <strong>Credentials</strong> tab. The issuer is the URL of the
-realm, such as <code>https://keycloak.example.com/realms/example</code>.</p>
+<p>In the realm, create an OpenID Connect client with <strong>Client authentication</strong> on,
+and add the redirect URI to its <strong>Valid redirect URIs</strong>. The client secret is in
+its <strong>Credentials</strong> tab. The issuer is the URL of the realm, such as
+<code>https://keycloak.example.com/realms/example</code>.</p>
 <p>Keycloak reports for each user whether the email address is verified. Users
-whose email is not marked as verified cannot sign in.</p>
+whose email address is not marked as verified cannot sign in.</p>
 
 
 <h3 id="auth0" class="group pr-8">Auth0
@@ -10997,7 +11085,7 @@ is the domain of the tenant with a trailing slash, such as
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#who-manages-single-sign-on">Who manages single sign-on</a></li><li><a href="#adding-a-provider">Adding a provider</a><ul><li><a href="#checking-the-issuer">Checking the issuer</a></li></ul></li><li><a href="#changing-a-provider">Changing a provider</a></li><li><a href="#disabling-or-deleting-a-provider">Disabling or deleting a provider</a></li><li><a href="#assigning-email-domains">Assigning email domains</a></li><li><a href="#signing-in">Signing in</a></li><li><a href="#linking-a-provider-to-an-account">Linking a provider to an account</a></li><li><a href="#provider-setup">Provider setup</a><ul><li><a href="#google">Google</a></li><li><a href="#okta">Okta</a></li><li><a href="#entra-id">Entra ID</a></li><li><a href="#keycloak">Keycloak</a></li><li><a href="#auth0">Auth0</a></li></ul></li></ul>
+      <ul><li><a href="#who-manages-single-sign-on">Who manages single sign-on</a></li><li><a href="#setting-the-public-url">Setting the public URL</a><ul><li><a href="#separate-addresses-for-organizations">Separate addresses for organizations</a></li></ul></li><li><a href="#adding-a-provider">Adding a provider</a><ul><li><a href="#checking-the-issuer">Checking the issuer</a></li></ul></li><li><a href="#turning-single-sign-on-on">Turning single sign-on on</a></li><li><a href="#changing-a-provider">Changing a provider</a></li><li><a href="#disabling-or-deleting-a-provider">Disabling or deleting a provider</a></li><li><a href="#assigning-email-domains">Assigning email domains</a></li><li><a href="#signing-in">Signing in</a></li><li><a href="#linking-a-provider-to-an-account">Linking a provider to an account</a></li><li><a href="#provider-setup">Provider setup</a><ul><li><a href="#google">Google</a></li><li><a href="#okta">Okta</a></li><li><a href="#entra-id">Entra ID</a></li><li><a href="#keycloak">Keycloak</a></li><li><a href="#auth0">Auth0</a></li></ul></li></ul>
     </div>
 
     
