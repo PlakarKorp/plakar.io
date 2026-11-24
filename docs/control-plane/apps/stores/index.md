@@ -226,8 +226,25 @@ failed.
 The **Browse** tab lists the restore points held in the store. A restore point
 can be opened to view its files and download individual files without a full
 restore. It can also be downloaded whole,
-[checked](../../scheduling/tasks/#check-task), or placed under a
-[legal hold](../compliance/legal-hold).
+[checked](../../scheduling/tasks/#check-task), placed under a
+[legal hold](../compliance/legal-hold), or [pruned](#pruning-restore-points).
 
 ![](../images/browse-store.png)
+
+## Pruning restore points
+
+Pruning deletes restore points from a store. To prune, select the restore points
+to delete from the **Browse** tab of a store, or from the
+[**Restore points**](../sources#restore-points) tab of the source they were
+backed up from, then click **Delete**. A restore point can be held by several
+stores, for example after a sync, and you choose which of them to prune it from.
+PCP keeps any copy under a [legal hold](../compliance/legal-hold).
+
+Pruning requires at least **Configure** access to
+[restore point data](../../access-control/permissions), as held by the
+[Owner](../../access-control/permissions/owner),
+[Administrator](../../access-control/permissions/administrator) and
+[Operator](../../access-control/permissions/operator). Roles with less, such as
+[Backup Operator](../../access-control/permissions/backup-operator), cannot
+prune.
 

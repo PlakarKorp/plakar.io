@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-23T10:26:16+01:00">
+    <meta property="article:modified_time" content="2026-11-24T12:08:33+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-05-11T00:00:00\u002b00:00",
     "datePublished": "2026-05-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-23T10:26:16\u002b01:00",
+    "dateModified": "2026-11-24T12:08:33\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/apps/stores/",
-    "wordCount":  1555 
+    "wordCount":  1657 
   }]
   </script>
 
@@ -11028,20 +11028,50 @@ failed.</p>
 <p>The <strong>Browse</strong> tab lists the restore points held in the store. A restore point
 can be opened to view its files and download individual files without a full
 restore. It can also be downloaded whole,
-<a href="../../scheduling/tasks/#check-task" >checked</a>, or placed under a
-<a href="/docs/control-plane/compliance/legal-hold/" >legal hold</a>.</p>
+<a href="../../scheduling/tasks/#check-task" >checked</a>, placed under a
+<a href="/docs/control-plane/compliance/legal-hold/" >legal hold</a>, or <a href="/docs/control-plane/apps/stores/#pruning-restore-points" >pruned</a>.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2783"
-    height="1344"
-    src="/docs/control-plane/apps/images/browse-store_hu_651c897f72021749.webp"
-    srcset="/docs/control-plane/apps/images/browse-store_hu_651c897f72021749.webp 400w, /docs/control-plane/apps/images/browse-store_hu_b5f2e6f35da2a704.webp 800w, /docs/control-plane/apps/images/browse-store_hu_d60e017bd35315df.webp 1200w"
+    width="2787"
+    height="1115"
+    src="/docs/control-plane/apps/images/browse-store_hu_5b2697bb015129aa.webp"
+    srcset="/docs/control-plane/apps/images/browse-store_hu_5b2697bb015129aa.webp 400w, /docs/control-plane/apps/images/browse-store_hu_88bdd9a48908b79.webp 800w, /docs/control-plane/apps/images/browse-store_hu_6ebb3b1b8be5d64a.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/apps/images/browse-store_hu_a8e7c25cc906f40c.webp"></figure>
+    data-zoom-src="/docs/control-plane/apps/images/browse-store_hu_9f9b8b4aa821559c.webp"></figure>
+
+
+<h2 id="pruning-restore-points" class="group pr-8">Pruning restore points
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="pruning-restore-points"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Pruning deletes restore points from a store. To prune, select the restore points
+to delete from the <strong>Browse</strong> tab of a store, or from the
+<a href="../sources#restore-points" ><strong>Restore points</strong></a> tab of the source they were
+backed up from, then click <strong>Delete</strong>. A restore point can be held by several
+stores, for example after a sync, and you choose which of them to prune it from.
+PCP keeps any copy under a <a href="/docs/control-plane/compliance/legal-hold/" >legal hold</a>.</p>
+<p>Pruning requires at least <strong>Configure</strong> access to
+<a href="../../access-control/permissions" >restore point data</a>, as held by the
+<a href="../../access-control/permissions/owner" >Owner</a>,
+<a href="../../access-control/permissions/administrator" >Administrator</a> and
+<a href="../../access-control/permissions/operator" >Operator</a>. Roles with less, such as
+<a href="../../access-control/permissions/backup-operator" >Backup Operator</a>, cannot
+prune.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -11085,7 +11115,7 @@ restore. It can also be downloaded whole,
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 23, 2026</span>
+      <span>Last updated: November 24, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -11105,7 +11135,7 @@ restore. It can also be downloaded whole,
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#creating-a-store-app">Creating a store app</a><ul><li><a href="#general">General</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#review">Review</a></li><li><a href="#changing-the-resource">Changing the resource</a></li></ul></li><li><a href="#testing-and-initializing">Testing and initializing</a></li><li><a href="#integrity-checks">Integrity checks</a><ul><li><a href="#when-to-use-integrity-checks-and-check-tasks">When to use integrity checks and check tasks</a></li><li><a href="#configuring-integrity-checks">Configuring integrity checks</a></li><li><a href="#choosing-how-much-to-check">Choosing how much to check</a></li><li><a href="#monitoring-integrity-checks">Monitoring integrity checks</a></li></ul></li><li><a href="#store-structure">Store structure</a></li><li><a href="#browsing-restore-points">Browsing restore points</a></li></ul>
+      <ul><li><a href="#creating-a-store-app">Creating a store app</a><ul><li><a href="#general">General</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#review">Review</a></li><li><a href="#changing-the-resource">Changing the resource</a></li></ul></li><li><a href="#testing-and-initializing">Testing and initializing</a></li><li><a href="#integrity-checks">Integrity checks</a><ul><li><a href="#when-to-use-integrity-checks-and-check-tasks">When to use integrity checks and check tasks</a></li><li><a href="#configuring-integrity-checks">Configuring integrity checks</a></li><li><a href="#choosing-how-much-to-check">Choosing how much to check</a></li><li><a href="#monitoring-integrity-checks">Monitoring integrity checks</a></li></ul></li><li><a href="#store-structure">Store structure</a></li><li><a href="#browsing-restore-points">Browsing restore points</a></li><li><a href="#pruning-restore-points">Pruning restore points</a></li></ul>
     </div>
 
     
