@@ -191,40 +191,55 @@ Plakar will use to authenticate. See the documentation on
 for instructions on how to set up the permissions and generate an access key and
 secret access key.
 
-| Permission                   | Description                                 |
-| ---------------------------- | ------------------------------------------- |
-| `s3:ListBucket`              | List objects in a bucket                    |
-| `s3:GetObject`               | Read object content                         |
-| `s3:GetObjectVersion`        | Read a specific version of an object        |
-| `s3:GetObjectTagging`        | Read object tags                            |
-| `s3:GetObjectVersionTagging` | Read tags on a specific object version      |
-| `s3:GetBucketLocation`       | Know which region the bucket is in          |
-| `s3:GetBucketVersioning`     | Know if versioning is enabled               |
-| `s3:PutObject`               | Write backup data or restored objects       |
-| `s3:PutObjectTagging`        | Write tags on objects (metadata, retention) |
-| `s3:DeleteObject`            | Prune old backups or clean before restore   |
-| `s3:PutBucketVersioning`     | Restore versioning config to match original |
+| Permission                            | Description                                                              |
+| ------------------------------------- | ------------------------------------------------------------------------ |
+| `s3:ListBucket`                       | List objects in a bucket                                                 |
+| `s3:GetObject`                        | Read object content                                                      |
+| `s3:GetObjectVersion`                 | Read a specific version of an object                                     |
+| `s3:GetObjectTagging`                 | Read object tags                                                         |
+| `s3:GetObjectVersionTagging`          | Read tags on a specific object version                                   |
+| `s3:GetBucketLocation`                | Know which region the bucket is in                                       |
+| `s3:GetBucketVersioning`              | Know if versioning is enabled                                            |
+| `s3:GetBucketObjectLockConfiguration` | Know if Object Lock is enabled when creating a store                     |
+| `s3:ListBucketVersions`               | List the versions of the store configuration when Object Lock is enabled |
+| `s3:PutObject`                        | Write backup data or restored objects                                    |
+| `s3:PutObjectTagging`                 | Write tags on objects (metadata, retention)                              |
+| `s3:DeleteObject`                     | Prune old backups or clean before restore                                |
+| `s3:PutBucketVersioning`              | Restore versioning config to match original                              |
+
+Bucket permissions apply to the bucket, and object permissions to the objects in
+it, so the policy grants them in two statements:
 
 ```json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "BucketAccess",
       "Effect": "Allow",
       "Action": [
         "s3:ListBucket",
+        "s3:ListBucketVersions",
+        "s3:GetBucketLocation",
+        "s3:GetBucketObjectLockConfiguration",
+        "s3:GetBucketVersioning",
+        "s3:PutBucketVersioning"
+      ],
+      "Resource": "arn:aws:s3:::your-bucket"
+    },
+    {
+      "Sid": "ObjectAccess",
+      "Effect": "Allow",
+      "Action": [
         "s3:GetObject",
         "s3:GetObjectVersion",
         "s3:GetObjectTagging",
         "s3:GetObjectVersionTagging",
-        "s3:GetBucketLocation",
-        "s3:GetBucketVersioning",
         "s3:PutObject",
         "s3:PutObjectTagging",
-        "s3:DeleteObject",
-        "s3:PutBucketVersioning"
+        "s3:DeleteObject"
       ],
-      "Resource": ["arn:aws:s3:::your-bucket", "arn:aws:s3:::your-bucket/*"]
+      "Resource": "arn:aws:s3:::your-bucket/*"
     }
   ]
 }

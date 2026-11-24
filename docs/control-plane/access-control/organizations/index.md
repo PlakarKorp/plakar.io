@@ -151,20 +151,22 @@ on their own pages.
 
 ### Members
 
-The **Members** tab lists all users who have access to the organization. From
-here you add users to the organization and remove them again.
+The **Members** tab lists the users of the organization, both people and
+applications, with the roles each one holds. You add users to the organization
+and remove them from there, and you can filter the list by role to see who holds
+it.
 
-A user is added by name and email address. If no user with that email address
-exists yet, they are created, and if one does exist they are simply added as a
-member. See [Managing Users](../users) for how user identities work and what
-happens when a user is removed.
+You can add a user by providing a name and email address. If no user with that
+email address exists yet, Plakar Control Plane creates one. Otherwise it adds
+the existing user as a member. See [Managing Users](../users) for how user
+identities work and what happens when a user is removed.
 
-### Permissions
-
-The **Permissions** tab is where roles are granted in the organization. A role
-is chosen from the available roles and the access it comes to is shown before it
-is granted. See [permissions](../permissions) documentation for what permissions
-each role grants.
+You can also grant and revoke roles from the page of each member. A member can
+hold several roles, and each one applies to the whole organization. PCP refuses
+a role that conflicts with one the member already holds, such as
+[Restore Operator](../permissions/restore-operator) and
+[Restore Approver](../permissions/restore-approver). Revoke the held role first.
+See [permissions](../permissions) for what each role grants.
 
 ### Quota
 

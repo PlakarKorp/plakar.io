@@ -28,5 +28,5 @@ password.
 
 A newly created member user has no permissions in the organization. They can
 sign in, but they cannot access any resources or perform any operations until
-[permissions](../../permissions) are granted to them.
+you [grant them a role](../../organizations#members).
 

@@ -133,6 +133,7 @@
 
 ## [S3](https://www.plakar.io/changelog/s3/index.md)
 
+- [S3 v1.1.11](index.md): Retries requests that the server is slow to answer, which speeds up backups on providers with slow responses.
 - [S3 v1.1.9](index.md): Limits the size of the store configuration read from a bucket and supports creating stores on Garage.
 - [S3 v1.1.8](index.md): Adds ambient credentials, protects buckets with Object Lock from store re-creation, and makes <code>root</code> a prefix in every addressing mode.
 - [S3 v1.1.7](index.md): Increases connection pool size and fixes prefix handling in virtual-host mode.

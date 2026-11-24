@@ -92,6 +92,16 @@ Because the edge initiates communication with PCP, you do not need to expose an
 edge to inbound connections from the Control Plane. This also makes it suitable
 for environments where inbound connectivity is restricted.
 
+## Processes
+
+Alongside its main process, an edge runs `plakar-edge cached`, which keeps its
+local copy of the state of each store up to date. The edge starts it and
+restarts it if it stops.
+
+Backups and syncs build their packfiles on disk, in the directory set by
+[`-packfiles-build-dir`](../installation/binary#configuring-the-edge), and
+remove them when the task ends.
+
 ## Secrets
 
 Secrets required by a task remain managed by the Control Plane.
