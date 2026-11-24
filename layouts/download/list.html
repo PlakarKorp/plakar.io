@@ -24,18 +24,18 @@
 <section class="section-light-1 py-12">
   <div class="max-w-350 mx-auto px-4">
     <div class="flex flex-col gap-2">
-      <h1 class="text-4xl font-medium text-neutral-900">Downloads</h1>
-      <p class="text-lg text-neutral-600">Open source and Control Plane enterprise versions</p>
+      <h1 class="text-4xl font-medium text-ui-neutral-900">Downloads</h1>
+      <p class="text-lg text-ui-neutral-600">Open source and Control Plane enterprise versions</p>
     </div>
   </div>
 </section>
 
 <!-- CONTROL PLANE SECTION -->
-<section class="section-light-2 py-12 border-t border-neutral-200">
+<section class="section-light-2 py-12 border-t border-ui-neutral-200">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
     <div class="flex flex-col gap-2">
-      <h2 class="text-3xl font-medium text-neutral-900">Plakar Control Plane</h2>
-      <p class="text-neutral-600 max-w-2xl">
+      <h2 class="text-3xl font-medium text-ui-neutral-900">Plakar Control Plane</h2>
+      <p class="text-ui-neutral-600 max-w-2xl">
         Plakar Control Plane is the enterprise version of Plakar. It is delivered as a virtual appliance and provides a web-based management interface for centralized backup management for your infrastructure.
       </p>
     </div>
@@ -44,7 +44,7 @@
       {{ if .Params.images }}
         <div class="overflow-x-auto rounded-lg">
           <table class="w-full min-w-max">
-            <thead class="border-b">
+            <thead class="border-b border-ui-neutral-200">
               <tr>
                 <th class="text-left px-4 py-3 font-bold">Provider</th>
                 <th class="text-left px-4 py-3 font-bold">Format</th>
@@ -53,36 +53,36 @@
                 <th class="text-left px-4 py-3 font-bold">Docs</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-neutral-200">
+            <tbody class="divide-y divide-ui-neutral-200">
               {{ range .Params.images }}
                 <tr>
-                  <td class="px-4 py-3 text-neutral-700">{{ .provider }}</td>
-                  <td class="px-4 py-3 text-neutral-600 text-sm">{{ .format }}</td>
+                  <td class="px-4 py-3 text-ui-neutral-700">{{ .provider }}</td>
+                  <td class="px-4 py-3 text-ui-neutral-600 text-sm">{{ .format }}</td>
                   <td class="px-4 py-3">
                     {{ if .sha256 }}
                       <span class="inline-flex items-center gap-2">
-                        <code class="text-xs text-neutral-800">{{ substr .sha256 0 12 }}…</code>
-                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="{{ .sha256 }}">
+                        <code class="text-xs text-ui-neutral-800">{{ substr .sha256 0 12 }}…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-ui-neutral-300 rounded hover:bg-ui-neutral-100 transition-colors" data-sha="{{ .sha256 }}">
                           Copy
                         </button>
                       </span>
                     {{ else }}
-                      <span class="text-neutral-400">—</span>
+                      <span class="text-ui-neutral-400">—</span>
                     {{ end }}
                   </td>
                   <td class="px-4 py-3">
                     {{ if .marketplace_url }}
-                      <a href="{{ .marketplace_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary-500 hover:underline">
+                      <a href="{{ .marketplace_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-ui-primary-500 hover:underline">
                         View on Marketplace
                         <span class="w-3 h-3">{{ partial "icon.html" "ri/external-link-line" }}</span>
                       </a>
                     {{ else if .download_url }}
-                      <a href="{{ .download_url }}" class="text-primary-500 hover:underline">download</a>
+                      <a href="{{ .download_url }}" class="text-ui-primary-500 hover:underline">download</a>
                     {{ end }}
                   </td>
                   <td class="px-4 py-3">
                     {{ with .docs_url }}
-                      <a href="{{ . }}" class="text-primary-500 hover:underline">Installation guide</a>
+                      <a href="{{ . }}" class="text-ui-primary-500 hover:underline">Installation guide</a>
                     {{ end }}
                   </td>
                 </tr>
@@ -96,49 +96,49 @@
 </section>
 
 <!-- PLAKAR OSS SECTION -->
-<section class="section-light-1 py-12 border-t border-neutral-200">
+<section class="section-light-1 py-12 border-t border-ui-neutral-200">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
     <div class="flex flex-col gap-2">
-      <h2 class="text-3xl font-medium text-neutral-900">Plakar</h2>
-      <p class="text-neutral-600 max-w-2xl">
-        Plakar is the open source backup tool. It supports multiple <a href="/integrations" class="text-primary-500 hover:underline">integrations</a>, end-to-end encryption, deduplication, and is available as pre-built binaries for all major platforms.
+      <h2 class="text-3xl font-medium text-ui-neutral-900">Plakar</h2>
+      <p class="text-ui-neutral-600 max-w-2xl">
+        Plakar is the open source backup tool. It supports multiple <a href="/integrations" class="text-ui-primary-500 hover:underline">integrations</a>, end-to-end encryption, deduplication, and is available as pre-built binaries for all major platforms.
       </p>
     </div>
 
     <!-- Version Selector -->
-    <div class="flex flex-col gap-4 p-6 bg-neutral-50 rounded-xl border border-neutral-200">
+    <div class="flex flex-col gap-4 p-6 bg-ui-neutral-50 rounded-xl border border-ui-neutral-200">
       <div class="flex items-center justify-between flex-wrap gap-4">
-        <h3 class="text-lg font-medium text-neutral-900">
-          Current version: <span id="current-version-display" class="text-primary-500">{{ $latest }}</span>
+        <h3 class="text-lg font-medium text-ui-neutral-900">
+          Current version: <span id="current-version-display" class="text-ui-primary-500">{{ $latest }}</span>
         </h3>
 
         <div class="flex flex-row gap-3 items-center flex-wrap">
           {{ with $latestPage.Params.release_notes_url }}
-            <a id="release-notes-link" href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
+            <a id="release-notes-link" href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-ui-neutral-100 hover:bg-ui-neutral-200 text-ui-neutral-900 rounded-lg transition-colors">
               <span>Release Notes</span>
               <span class="w-4 h-4">{{ partial "icon.html" "ri/external-link-line" }}</span>
             </a>
           {{ end }}
 
           {{ with $latestPage.Params.tests_status_url }}
-            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-ui-neutral-100 hover:bg-ui-neutral-200 text-ui-neutral-900 rounded-lg transition-colors">
               <span>Tests Status</span>
               <span class="w-4 h-4">{{ partial "icon.html" "ri/external-link-line" }}</span>
             </a>
           {{ end }}
 
           <div class="relative">
-            <button id="version-dropdown-btn" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 hover:bg-primary-200 text-primary-900 rounded-lg transition-colors">
+            <button id="version-dropdown-btn" class="inline-flex items-center gap-2 px-4 py-2 bg-ui-primary-100 hover:bg-ui-primary-200 text-ui-primary-900 rounded-lg transition-colors">
               <span class="hidden md:block">Change version</span>
               <span class="block md:hidden">Version</span>
               <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-down-s-line" }}</span>
             </button>
-            <div id="version-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-neutral-50 border border-neutral-200 z-10 max-h-96 overflow-y-auto">
+            <div id="version-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-ui-neutral-50 border border-ui-neutral-200 z-10 max-h-96 overflow-y-auto">
               {{ range $versions }}
-                <button class="version-option w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 text-left" data-version="{{ .Params.version }}" data-release-notes-url="{{ .Params.release_notes_url }}">
+                <button class="version-option w-full flex items-center justify-between px-4 py-2 text-sm text-ui-neutral-700 hover:bg-ui-neutral-100 text-left" data-version="{{ .Params.version }}" data-release-notes-url="{{ .Params.release_notes_url }}">
                   {{ .Params.version }}
                   {{ if eq .Params.version $latest }}
-                    <span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-medium">Latest</span>
+                    <span class="text-xs bg-ui-green-50 text-ui-green-800 px-2 py-0.5 rounded-full font-medium">Latest</span>
                   {{ end }}
                 </button>
               {{ end }}
@@ -152,12 +152,12 @@
         {{ $version := .Params.version }}
         <div class="version-badge" data-version="{{ $version }}" style="display:none;">
           {{ if eq $version $latest }}
-            <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-green-800 flex items-center gap-2">
+            <div class="bg-ui-green-50 border border-ui-green-600/30 rounded-lg p-4 text-ui-green-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0">{{ partial "icon.html" "ri/check-line" }}</span>
               <span class="font-medium">Latest stable version of Plakar.</span>
             </div>
           {{ else }}
-            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
+            <div class="bg-ui-amber-50 border border-ui-amber-800/30 rounded-lg p-4 text-ui-amber-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0">{{ partial "icon.html" "ri/alert-line" }}</span>
               <span>You are viewing an older version of Plakar. The latest version is <strong>{{ $latest }}</strong>.</span>
             </div>
@@ -173,12 +173,12 @@
       {{ $installPage := site.GetPage (printf "/docs/community/%s/quickstart/installation" $docsVersion) }}
       <div class="version-panel" data-version="{{ $version }}" style="display:none;">
         {{ with $installPage }}
-          <div class="flex items-center justify-between gap-4 flex-wrap p-4 mb-6 bg-primary-50 border border-primary-200 rounded-lg">
+          <div class="flex items-center justify-between gap-4 flex-wrap p-4 mb-6 bg-ui-primary-50 border border-ui-primary-200 rounded-lg">
             <div class="flex items-center gap-3">
-              <span class="w-5 h-5 shrink-0 text-primary-600">{{ partial "icon.html" "ri/terminal-box-line" }}</span>
-              <span class="text-neutral-800">Prefer package managers such as apt, dnf, or Homebrew, or an OS-specific setup? See the full installation guide.</span>
+              <span class="w-5 h-5 shrink-0 text-ui-primary-600">{{ partial "icon.html" "ri/terminal-box-line" }}</span>
+              <span class="text-ui-neutral-800">Prefer package managers such as apt, dnf, or Homebrew, or an OS-specific setup? See the full installation guide.</span>
             </div>
-            <a href="{{ .RelPermalink }}" class="shrink-0 text-primary-600 font-medium hover:underline">
+            <a href="{{ .RelPermalink }}" class="shrink-0 text-ui-primary-600 font-medium hover:underline">
               View installation guide →
             </a>
           </div>
@@ -187,7 +187,7 @@
         {{ if .Params.downloads }}
           <div class="overflow-x-auto rounded-lg">
             <table class="w-full">
-              <thead class="border-b">
+              <thead class="border-b border-ui-neutral-200">
                 <tr>
                   <th class="text-left px-4 py-3 font-bold">Platform</th>
                   <th class="text-left px-4 py-3 font-bold">File</th>
@@ -195,18 +195,18 @@
                   <th class="text-left px-4 py-3 font-bold">SHA256</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-neutral-200">
+              <tbody class="divide-y divide-ui-neutral-200">
                 {{ range .Params.downloads }}
-                  <tr class="hover:bg-neutral-50 overscroll-x-none">
-                    <td class="px-4 py-3 text-neutral-700">{{ .platform }}</td>
-                    <td class="px-4 py-3 text-neutral-600">{{ .file }}</td>
+                  <tr class="hover:bg-ui-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-ui-neutral-700">{{ .platform }}</td>
+                    <td class="px-4 py-3 text-ui-neutral-600">{{ .file }}</td>
                     <td class="px-4 py-3">
-                      <a href="https://plakar.io/dl/{{ .file }}" class="text-primary-500 hover:underline">download</a>
+                      <a href="https://plakar.io/dl/{{ .file }}" class="text-ui-primary-500 hover:underline">download</a>
                     </td>
                     <td class="px-4 py-3">
                       <span class="inline-flex items-center gap-2">
-                        <code class="text-xs text-neutral-800">{{ substr .sha256 0 12 }}…</code>
-                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="{{ .sha256 }}">
+                        <code class="text-xs text-ui-neutral-800">{{ substr .sha256 0 12 }}…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-ui-neutral-300 rounded hover:bg-ui-neutral-100 transition-colors" data-sha="{{ .sha256 }}">
                           Copy
                         </button>
                       </span>
@@ -229,8 +229,8 @@
 <section class="py-12">
   <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
     <div class="flex flex-col gap-2">
-      <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
-      <p class="text-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>
+      <h2 class="text-2xl font-medium text-ui-neutral-900">Need help getting started?</h2>
+      <p class="text-ui-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>
     </div>
     <div class="flex flex-col sm:flex-row gap-3 shrink-0">
       {{ range $versions }}
@@ -248,10 +248,10 @@
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Documentation"
         "href" "/docs/community"
-        "bgColor" "bg-neutral-900"
-        "bgHoverColor" "bg-neutral-50"
-        "textColor" "text-neutral-50"
-        "textHoverColor" "hover:text-neutral-900"
+        "bgColor" "bg-ui-neutral-900"
+        "bgHoverColor" "bg-ui-neutral-50"
+        "textColor" "text-ui-neutral-50"
+        "textHoverColor" "hover:text-ui-neutral-900"
       ) }}
     </div>
   </div>
