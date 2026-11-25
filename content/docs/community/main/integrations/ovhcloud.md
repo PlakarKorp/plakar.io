@@ -1,7 +1,7 @@
 ---
 title: "OVHcloud"
 date: "2026-11-25T00:00:00Z"
-weight: 39
+weight: 40
 summary:
   "Back up and restore OVHcloud Public Cloud instances and Block Storage volumes
   with the OpenStack integration."
