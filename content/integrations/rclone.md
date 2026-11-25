@@ -37,7 +37,9 @@ seo_tags:
   - versioning
   - immutable storage
 
-links: []
+links:
+  - type: community
+    url: /docs/community/main/integrations/rclone/
 
 related:
   - googledrive
