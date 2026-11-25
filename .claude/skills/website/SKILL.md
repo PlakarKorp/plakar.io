@@ -19,6 +19,8 @@ style, use the `docs` skill.
 - Before new work, sync `main` with PlakarKorp and run
   `git submodule update --init --recursive`. If `git status` then shows
   `M themes/blowfish`, run it again. Bump the submodule only in a dedicated PR.
+- The Hugo version lives in `.hugo-version`. CI reads it, and the npm scripts
+  refuse to run with a different local Hugo. Bump it there, not in workflows.
 
 ## JavaScript and assets
 

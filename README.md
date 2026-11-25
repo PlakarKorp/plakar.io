@@ -48,8 +48,9 @@ If you cloned without `--recurse-submodules`, fetch the theme with
 
 ## Requirements
 
-- [Hugo](https://gohugo.io/installation/) extended, 0.160.1 (the version CI
-  uses)
+- [Hugo](https://gohugo.io/installation/) extended, the version in
+  `.hugo-version`. `npm run dev`, `build` and `check:links` stop if your Hugo
+  differs.
 - Node.js 24 (see `.node-version`)
 - [codespell](https://github.com/codespell-project/codespell), optional, for
   spell checking (`brew install codespell`)
