@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups on cost-effective S3-compatible cloud storage
+
+Protect your data with Plakar on Backblaze B2 Cloud Storage. Immutable, encrypted snapshots stored on one of the most cost-effective S3-compatible object storage platforms available, with free egress and enterprise-grade security.
+
 
 ## Why Backblaze B2 is a natural fit for backup storage
 

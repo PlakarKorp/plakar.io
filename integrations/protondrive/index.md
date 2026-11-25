@@ -1,3 +1,7 @@
+# Resilient, encrypted backups for your Proton Drive data
+
+Back up your Proton Drive workloads with Plakar to protect against data loss, corruption, and ransomware. Immutable, encrypted, and restorable even offline and across environments.
+
 
 ## Why protecting Proton Drive matters
 

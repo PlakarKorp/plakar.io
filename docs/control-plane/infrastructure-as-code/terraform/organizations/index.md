@@ -57,7 +57,7 @@ state, which the person is required to change at their first
 which of the two happened.
 
 A service account is an
-[application user](../../../access-control/users#application-users). It has no
+[application user](../../../access-control/users/applications). It has no
 address and no interactive login, so its `generated_password` is inert and its
 API key is created from the web interface. This is also how the key the provider
 itself authenticates with comes into existence, which means the first

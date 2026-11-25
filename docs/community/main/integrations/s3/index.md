@@ -124,8 +124,50 @@ credentials of the environment Plakar runs in, known as ambient credentials:
 - the IAM role of an EKS pod, through IAM Roles for Service Accounts or Pod
   Identity
 
-The role needs the same permissions on the bucket as a user with static
-credentials.
+The role needs the same [permissions](#aws-permissions) on the bucket as a user
+with static credentials.
+
+### AWS permissions
+
+On AWS, the user or role needs the following permissions. Bucket permissions
+apply to the bucket, and object permissions to the objects in it, so the policy
+grants them in two statements. `s3:ListBucketVersions` is only needed when the
+bucket uses Object Lock.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "BucketAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:ListBucketVersions",
+        "s3:GetBucketLocation",
+        "s3:GetBucketObjectLockConfiguration",
+        "s3:GetBucketVersioning",
+        "s3:PutBucketVersioning"
+      ],
+      "Resource": "arn:aws:s3:::your-bucket"
+    },
+    {
+      "Sid": "ObjectAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion",
+        "s3:GetObjectTagging",
+        "s3:GetObjectVersionTagging",
+        "s3:PutObject",
+        "s3:PutObjectTagging",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:s3:::your-bucket/*"
+    }
+  ]
+}
+```
 
 ## Configuration
 

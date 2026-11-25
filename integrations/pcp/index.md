@@ -1,3 +1,7 @@
+# Back up and restore the Plakar Control Plane appliance itself
+
+Protect the Plakar Control Plane appliance against hardware failure, misconfiguration, or a full appliance replacement. Plakar backs up its own configuration and internal database into an encrypted, deduplicated Kloset snapshot.
+
 
 ## Why back up the appliance itself?
 

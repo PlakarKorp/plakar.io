@@ -1,3 +1,7 @@
+# Secure, encrypted backups over the SFTP protocol
+
+Back up and restore directories to and from remote servers over SFTP. Plakar ensures encrypted, deduplicated, and verifiable snapshots across Linux, BSD, and NAS environments.
+
 
 ## Why protecting SFTP matters
 

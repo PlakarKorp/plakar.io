@@ -14,7 +14,7 @@ Plakar Control Plane supports three ways to schedule backup operations:
 - **Policy scheduler**: policies automatically schedule tasks based on SLA rules
   defined for your sources
 - **User schedulers**: each
-  [Application user](../access-control/users#application-users) can have its own
+  [Application user](../access-control/users/applications) can have its own
   scheduler, created and managed through the Plakar Control Plane API using that
   user's API key
 

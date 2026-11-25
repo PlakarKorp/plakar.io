@@ -9,6 +9,25 @@ both backup and restore. The integration supports two protocols, `mongodb` and
 `mongodb+srv`, matching the two MongoDB connection string formats. Both support
 backup and restore.
 
+## MongoDB user
+
+With a username and password, the source and destination apps authenticate
+against the `admin` database by default, so the MongoDB user must be defined
+there. The built-in `backup` role covers a backup of every database, and the
+built-in `restore` role covers a restore. Set **Auth Database** when the user is
+defined in another database.
+
+### Backing up a single database
+
+A backup dumps every database, including `admin`, so the user needs read access
+to `admin`. Set **Database** on the source app to back up a single database
+instead. The user then only needs the built-in `read` role on that database. A
+user defined in that database needs nothing else. A user defined in `admin` also
+needs **Auth Database** set to `admin`.
+
+A restore loads whatever the restore point holds, so it restores only that
+database.
+
 ## Running MongoDB tasks on an edge
 
 The MongoDB integration relies on `mongosh`, `mongodump`, and `mongorestore`,
@@ -56,7 +75,8 @@ or import them from a CSV file.
 To add a MongoDB server as a resource, use `Database` as the class and leave the
 subclass empty. For the endpoint, use the hostname or IP address of the MongoDB
 server, or the SRV hostname of the deployment when using the `mongodb+srv`
-protocol. See [resources documentation](../../resources) for more information on
+protocol. The endpoint is a host name only, without user, database or query
+string. See [resources documentation](../../resources) for more information on
 how to set up resources on a self-managed inventory.
 
 ## 1. `mongodb` protocol
@@ -115,6 +135,7 @@ flowchart TD
 The following settings are available when configuring both source and
 destination apps using the `mongodb` protocol.
 
+- **Auth Database**: The database that holds the user's credentials.
 - **Auth Mechanism**: The authentication mechanism used with the server, such as
   `SCRAM-SHA-256` or `MONGODB-X509`.
 - **Password**: The password used to authenticate to MongoDB.
@@ -128,6 +149,11 @@ destination apps using the `mongodb` protocol.
   only one of them is an error.
 - **Use Tls**: Use an encrypted TLS/SSL connection. Defaults to `true`.
 - **Username**: The username used to authenticate to MongoDB.
+
+### Source configuration
+
+- **Database**: Back up this database instead of the whole server. See
+  [Backing up a single database](#backing-up-a-single-database).
 
 ## 2. `mongodb+srv` protocol
 
@@ -188,6 +214,7 @@ flowchart TD
 The following settings are available when configuring both source and
 destination apps using the `mongodb+srv` protocol.
 
+- **Auth Database**: The database that holds the user's credentials.
 - **Auth Mechanism**: The authentication mechanism used with the server, such as
   `SCRAM-SHA-256` or `MONGODB-X509`.
 - **Password**: The password used to authenticate to MongoDB.
@@ -202,6 +229,19 @@ destination apps using the `mongodb+srv` protocol.
   only one of them is an error.
 - **Use Tls**: Use an encrypted TLS/SSL connection. Defaults to `true`.
 - **Username**: The username used to authenticate to MongoDB.
+
+### Source configuration
+
+- **Database**: Back up this database instead of the whole server. See
+  [Backing up a single database](#backing-up-a-single-database).
+
+## Snapshot contents
+
+Each snapshot holds a single file, `/mongodb-backup.bson`, the archive written
+by `mongodump --archive`. It contains every database the user can read, except
+`local`, and the users and roles defined in `admin`. With **Database**, it
+contains only that database. To restore a single collection from it, see
+[Restoring a single collection](/docs/community/main/integrations/mongodb/#restoring-a-single-collection).
 
 ## Restore behaviour
 

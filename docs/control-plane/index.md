@@ -67,6 +67,10 @@
 - [Supervision and Metrics](https://www.stg.plakar.io/docs/control-plane/edges/monitoring/index.md): Health, readiness, and Prometheus metrics endpoints exposed by edges.
 
 
+## [Backup & Restore](https://www.stg.plakar.io/docs/control-plane/backup-and-restore/index.md)
+
+
+
 ## [Scheduling](https://www.stg.plakar.io/docs/control-plane/scheduling/index.md)
 
 - [Scheduled Tasks](https://www.stg.plakar.io/docs/control-plane/scheduling/tasks/index.md): The different types of tasks you can run in Plakar Control Plane.
@@ -74,7 +78,7 @@
 - [Manual Scheduler](https://www.stg.plakar.io/docs/control-plane/scheduling/manual-scheduler/index.md): How to attach schedules to tasks and monitor job history in Plakar Control Plane.
 - [Policy Scheduler](https://www.stg.plakar.io/docs/control-plane/scheduling/policy-scheduler/index.md): How policies automatically schedule tasks in Plakar Control Plane.
 - [User Schedulers](https://www.stg.plakar.io/docs/control-plane/scheduling/user-schedulers/index.md): How Application users get their own scheduler through the Plakar Control Plane API.
-- [Job History](https://www.stg.plakar.io/docs/control-plane/scheduling/job-history/index.md): How to monitor job history and view job details in Plakar Control Plane.
+- [Job History](https://www.stg.plakar.io/docs/control-plane/scheduling/job-history/index.md): Follow the jobs of every scheduler, export them, and open a job to see its details and log.
 
 
 ## [Access Control](https://www.stg.plakar.io/docs/control-plane/access-control/index.md)
@@ -102,6 +106,7 @@
 - [Webhook Setup](https://www.stg.plakar.io/docs/control-plane/operations/webhooks/index.md): Configure webhooks to receive event notifications from Plakar Control Plane.
 - [Updating Control Plane](https://www.stg.plakar.io/docs/control-plane/operations/updating/index.md): How to update Plakar Control Plane and its underlying deployment infrastructure.
 - [Backup and Restore](https://www.stg.plakar.io/docs/control-plane/operations/backup-and-restore/index.md): How to back up and restore the Plakar Control Plane configuration and data.
+- [Safe Mode](https://www.stg.plakar.io/docs/control-plane/operations/safe-mode/index.md): Put Plakar Control Plane on hold, stopping all tasks and limiting access to the instance administrators.
 
 
 ## [Control Plane Appliance](https://www.stg.plakar.io/docs/control-plane/appliance/index.md)

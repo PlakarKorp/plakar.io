@@ -1,3 +1,7 @@
+# Disaster recovery backups for Windows Active Directory
+
+Protect Active Directory against the scenario replication can't fix: no  healthy Domain Controller left to recover from. Plakar captures encrypted  System State backups of Domain Controllers while they're healthy, ready to  bring Active Directory back after hardware failure, corruption, or ransomware.
+
 
 ## Why protecting Active Directory matters
 

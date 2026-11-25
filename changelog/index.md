@@ -19,6 +19,11 @@
 - [Plakar Operator v0.0.2](index.md): Adds Destination, task, and multi-group CRDs, a Helm chart, and a full regression test suite backed by a fake control plane.
 
 
+## [MongoDB](https://www.stg.plakar.io/changelog/mongodb/index.md)
+
+- [MongoDB v1.1.2](index.md): Backs up a single database, sets the authentication database, and fixes backups and restores that failed with an empty error.
+
+
 ## [SMB](https://www.stg.plakar.io/changelog/smb/index.md)
 
 - [SMB v1.1.5](index.md): A security release that keeps restores inside the restore root.
@@ -133,6 +138,7 @@
 
 ## [S3](https://www.stg.plakar.io/changelog/s3/index.md)
 
+- [S3 v1.1.11](index.md): Retries requests that the server is slow to answer, which speeds up backups on providers with slow responses.
 - [S3 v1.1.9](index.md): Limits the size of the store configuration read from a bucket and supports creating stores on Garage.
 - [S3 v1.1.8](index.md): Adds ambient credentials, protects buckets with Object Lock from store re-creation, and makes <code>root</code> a prefix in every addressing mode.
 - [S3 v1.1.7](index.md): Increases connection pool size and fixes prefix handling in virtual-host mode.

@@ -1,77 +1,407 @@
+# Free, open-source S3 bucket backup
 
-## Why protecting S3 data matters
+Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.
 
-S3 is often treated as the backup, but object storage durability is not the same
-as data protection. While S3 provides excellent infrastructure resilience, it
-remains logically vulnerable to:
 
-- **Silent Corruption**: Data can degrade over time without detection, and
-  standard object storage lacks built-in integrity validation across your entire
-  dataset.
-- **Accidental Deletion**: Misconfigured lifecycle policies can automatically
-  delete critical objects. Human errors like bulk delete operations happen
-  instantly and affect thousands of objects.
-- **Versioning Gaps**: Versioning is optional and easy to misconfigure. Even
-  when enabled, it doesn't protect against lifecycle policy deletions or
-  deliberate version purging.
-- **Replication Risks**: S3 replication is a double-edged sword. It spreads
-  corruption, accidental deletions, and malicious changes just as quickly as
-  legitimate data.
+## What the S3 integration does
+The S3 integration backs up an S3 bucket, or one prefix of it, into encrypted,
+deduplicated Plakar snapshots, reading each object through the S3 API with list
+and get permissions only. It restores a snapshot, or a single prefix, into any
+bucket on any S3-compatible endpoint, and it can host the Plakar store itself in
+a bucket. Plakar runs on any host that reaches the endpoint, with an access key
+pair.
 
-For production data, assets, logs, and compliance records, S3 needs an
-independent safety net beyond buckets and replication.
+The `s3` package provides three connectors. A source reads a bucket, a
+destination writes objects back, and a store keeps the encrypted backup data of
+any source, from a file server to a database, in a bucket with the storage class
+you choose.
 
-## What happens when S3 credentials are compromised
+The connectors speak the plain S3 API, so they work with any service that speaks
+it, such as Amazon S3, Scaleway, OVHcloud, MinIO, Ceph RGW or Garage.
 
-S3 access is controlled by API keys and IAM policies. These credentials are
-frequently shared across services, embedded in scripts, or stored in
-configuration files, creating significant exposure.
+```console {title="backup-host"}
+$ plakar pkg add s3
+$ plakar source add assets \
+    s3://s3.fr-par.scw.cloud/acme-assets \
+    access_key=SCWXXXXXXXXXXXXXXXXX \
+    secret_access_key=xxxxxxxx-xxxx-xxxx
+$ plakar at /var/backups backup "@assets"
+e41b7c09: OK ✓ /exports/2026-11-13.parquet
+e41b7c09: OK ✓ /exports/2026-11-14.parquet
+e41b7c09: OK ✓ /exports
+e41b7c09: OK ✓ /media/hero.webp
+e41b7c09: OK ✓ /media
+e41b7c09: OK ✓ /
+e41b7c09: backup completed without errors in 9m03.518s
+$ plakar at /var/backups ls
+2026-11-13T03:00:02Z   7aa2f5d1   412 GiB     8m51s /
+2026-11-14T03:00:03Z   e41b7c09   415 GiB      9m3s /
+$
+```
 
-If credentials are leaked or permissions are too broad:
+## Why use Plakar for S3 bucket backup
+### Off-provider S3 backups without paying egress for every copy
 
-- **Total Loss**: Attackers can delete or overwrite entire buckets through the
-  API. Automated scripts can wipe thousands of objects in seconds.
-- **Ransomware Encryption**: Malicious actors can encrypt all bucket contents,
-  making your data inaccessible without paying a ransom.
-- **Damage Propagation**: Replication and sync jobs immediately propagate
-  malicious changes across regions and accounts, amplifying the impact.
-- **Version Manipulation**: Even with versioning enabled, attackers can delete
-  object versions, configure aggressive lifecycle policies, or simply wait until
-  retention windows expire.
-- **No Recovery Path**: Without an independent backup, there is no way to "undo"
-  deletions or modifications in standard object storage.
+Run Plakar next to the bucket and only new, compressed chunks leave the
+provider. A copy at another provider no longer costs a full transfer every
+night.
 
-Plakar mitigates these risks by creating immutable snapshots stored outside the
-live S3 namespace. With end-to-end encryption and support for offline or
-air-gapped retention, your backups remain secure even if your cloud credentials
-are compromised.
+### Read-only keys on the source bucket
 
-## How Plakar secures your S3 workflows
+A backup lists the bucket and reads its objects, nothing else. The source
+credential needs `s3:ListBucket` and `s3:GetObject`, and the keys that write the
+store are a different pair that the application never sees.
 
-Plakar integrates with S3 as a flexible bridge, enabling secure data movement in
-multiple directions:
+### Back up S3 from any endpoint to any other
 
-- **Source Connector**: Take snapshots of one or multiple S3 buckets. Plakar
-  encrypts and deduplicates the content before saving it to a trusted Kloset
-  Store, creating an independent backup layer.
-- **Storage Connector**: Use S3-compatible storage (AWS S3, MinIO, Ceph, Wasabi)
-  as your Kloset backend. Store encrypted, deduplicated, and versioned snapshots
-  from any source like databases, file systems, containers, or other cloud
-  services.
-- **Destination Connector**: Restore verified snapshots back into S3, whether to
-  your original bucket, a different region, or an entirely separate account.
+Source, destination and store are configured separately. Back up a bucket at one
+provider, keep the store at a second one, and restore into a third, a
+self-hosted MinIO or Ceph cluster included.
 
-This enables multiple backup strategies:
+### Restore one S3 prefix, not the whole bucket
 
-- Pull data from production buckets into isolated backup storage
-- Push encrypted snapshots to low-cost or off-cloud object storage
-- Separate backup credentials from production IAM roles for improved security
+Pick a prefix in a snapshot and only those objects are written back, under their
+original keys or under a new prefix next to the live data.
 
-Plakar also allows direct inspection of backups. You can browse, search, or
-verify the integrity of your S3 data via the CLI or UI without performing a full
-restore first.
+### S3 backups verified apart from the provider
 
-Instead of relying solely on S3 configuration and access controls, Plakar
-provides cryptographic guarantees and operational control over your data all the
-way from snapshot creation to integrity verification to recovery.
+Every chunk of a snapshot is addressed by its content, and `plakar check`
+verifies a snapshot end to end from the backup host, whatever the storage behind
+the store reports.
+
+## S3 backup and recovery scenarios
+### An AI agent empties an S3 prefix to cut storage costs
+
+An ops agent asked to lower the storage bill runs
+`aws s3 rm s3://acme-assets/exports/ --recursive` with the operator's
+credentials, then adds a lifecycle rule that expires noncurrent versions after
+one day. The same keys purged the versions. With a snapshot taken before the
+session, in a store whose passphrase the agent never saw,
+`plakar diff -recursive` lists every removed key and a restore of `/exports`
+writes them back. The agent's other cleanups stay in place.
+
+### A leaked S3 key re-encrypts the bucket with SSE-C
+
+A key with write access to the production bucket leaks from a CI log. The
+attacker copies every object onto itself with `CopyObject` and an SSE-C key only
+they hold. The objects are still there, unreadable. The Plakar store sits in
+another bucket, ideally at another provider, under credentials the application
+never held, and restores the objects as they were before the first unknown
+request.
+
+### An S3 lifecycle rule deletes more than intended
+
+A rule meant for `tmp/` is saved with an empty filter and starts expiring
+objects across the whole bucket. Once the noncurrent versions pass their window,
+the bucket has nothing left to roll back to. Nightly snapshots keep each state
+of the bucket for as long as your Plakar retention says, and deduplication
+stores unchanged objects only once.
+
+## How to restore deleted S3 objects
+When objects are deleted, overwritten or encrypted with a key you do not hold,
+the snapshot from before the event brings them back. Restore them next to the
+live data first, then move them into place once checked.
+
+**Find the last good snapshot.** `plakar ls` lists the snapshots with their
+dates, and `plakar locate` shows which snapshots hold a given object name.
+
+**See what changed.** `plakar diff -recursive` between that snapshot and the
+latest one lists the keys that disappeared or changed.
+
+**Restore the prefix next to the original.** A destination whose location ends
+with `restore-2026-11-14` writes the objects under that prefix, and the live
+`exports/` is not touched.
+
+**Put the objects back in place.** Once checked, restore the same snapshot path
+to a destination on the bucket root, and the objects return under their original
+keys.
+
+```bash
+$ plakar at /var/backups ls
+$ plakar at /var/backups locate "2026-11-*.parquet"
+$ plakar at /var/backups diff -recursive 7aa2f5d1 e41b7c09
+
+$ plakar destination add assets-restore \
+    s3://s3.fr-par.scw.cloud/acme-assets/restore-2026-11-14 \
+    access_key=... secret_access_key=...
+$ plakar at /var/backups restore -to "@assets-restore" 7aa2f5d1:/exports
+
+$ plakar destination add assets-live \
+    s3://s3.fr-par.scw.cloud/acme-assets \
+    access_key=... secret_access_key=...
+$ plakar at /var/backups restore -to "@assets-live" 7aa2f5d1:/exports
+```
+
+## How to back up S3 to another provider
+A copy at a second provider survives the loss of an account, a region or a set
+of credentials at the first. Plakar reads the bucket at one provider and writes
+encrypted snapshots to a store at another, and neither side holds the other's
+keys.
+
+**Create the store at the second provider.** A bucket there, with its own access
+key, holds the Plakar store. The passphrase stays on the backup host.
+
+**Add the production bucket as a source.** A key limited to `s3:ListBucket` and
+`s3:GetObject` is enough.
+
+**Back up on a schedule from next to the bucket.** Run Plakar on a host or an
+edge in the same region as the production bucket.
+
+**Restore wherever you need.** Into the original bucket, a new bucket at either
+provider, or a local disk.
+
+```bash
+$ plakar store add offsite \
+    s3://s3.eu-west-par.io.cloud.ovh.net/acme-backups \
+    access_key=... secret_access_key=...
+$ plakar at "@offsite" create
+
+$ plakar source add assets \
+    s3://s3.fr-par.scw.cloud/acme-assets \
+    access_key=... secret_access_key=...
+$ plakar at "@offsite" backup "@assets"
+$ plakar at "@offsite" check
+```
+
+## Cutting egress costs when backing up S3 to another provider
+Many teams keep their only backup inside the provider they protect, because
+copying every bucket out each night costs more in data transfer than in storage.
+Plakar cuts what leaves the provider at the source:
+
+- **Reads stay inside the provider's region.** Plakar runs on a host or an edge next to the bucket, so listing and reading the
+objects never crosses to the other provider.
+
+- **Only new chunks cross.** Plakar splits objects into content-defined chunks and sends a chunk only when
+the store does not hold it yet. After the first run, a nightly backup transfers
+what changed since the night before.
+
+- **What crosses is compressed and encrypted first.** Chunks are compressed with LZ4, then encrypted, before they leave the host. Even
+the first copy sends a duplicated object once, and text, logs or exports smaller
+than they sit in the bucket.
+
+## S3 versioning, replication and Plakar snapshots compared
+S3 versioning and replication answer the most frequent incidents inside the
+bucket's own account. A Plakar snapshot adds a copy under other credentials.
+
+|                                    | S3 versioning                           | S3 replication                          | Plakar snapshot                              |
+| ---------------------------------- | --------------------------------------- | --------------------------------------- | -------------------------------------------- |
+| Undo a single delete               | ✓ Remove the delete marker              | ◐ Depends on delete marker replication  | ✓ Restore the key from any snapshot          |
+| Survives a purge of older versions | ✗ The purged versions are gone          | ◐ Depends on the replica's own rules    | ✓ The store keeps its own retention          |
+| Credentials apart from the bucket  | ✗ Same account and IAM                  | ◐ Often the same account                | ✓ Separate keys for the store                |
+| Copy at another provider           | ✗                                       | ✗ Same provider                         | ✓ Any S3-compatible endpoint, a disk or SFTP |
+| Point-in-time view of a prefix     | ◐ Object by object                      | ✗                                       | ✓ Browse, diff or mount a snapshot           |
+| Encrypted before it leaves you     | ◐ Server-side encryption by the service | ◐ Server-side encryption by the service | ✓ Encrypted on the backup host               |
+
+## Storing Plakar backups in S3: storage classes and Object Lock
+- **Archival storage classes for long retention.** `storage_class` sets the class the provider offers for the objects of the store.
+With an archival class, backup data goes to that class while the store
+configuration and snapshot index stay in `STANDARD`, so `plakar ls` lists every
+snapshot at once. Providers map the S3 class names to their own archival tiers,
+such as `GLACIER` for Scaleway Glacier or `DEEP_ARCHIVE` for OVHcloud Cold
+Archive.
+
+- **Object Lock retention on the store bucket.** Enable Object Lock with a default retention on the bucket that holds the store,
+and immutability comes from the provider. Plakar sends a Content-MD5 header with
+every write, so Object Lock buckets accept the store's objects.
+
+- **A second copy at another site.** [`plakar sync`](/docs/community/v1.1.0/references/commands/plakar-sync/) copies
+snapshots from one store to another, such as a bucket at a second provider or an
+[SFTP host](/integrations/sftp/).
+
+- **Store keys apart from production keys.** Give the store its own access key, allowed on the backup bucket only, and keep
+it and the store passphrase off the hosts and pipelines that use the production
+bucket.
+
+- **Backups you have verified.** [`plakar check`](/docs/community/v1.1.0/references/commands/plakar-check/) reads
+a snapshot back and verifies every chunk against its content address.
+
+## How Plakar reads and writes S3 buckets
+### Path-style and virtual-hosted S3 URLs
+
+Path style is the default. `virtual_host=true` with `endpoint` handles services
+that put the bucket name in the hostname.
+
+### S3 buckets encrypted with SSE-C
+
+For buckets that require customer-provided keys, `sse_customer_key` takes the
+Base64 AES-256 key used to read and write objects.
+
+### Self-hosted S3 endpoints
+
+`port`, `region`, `use_tls` and `tls_insecure_no_verify` reach MinIO, Ceph RGW
+and Garage clusters on private networks with their own certificates.
+
+## Amazon S3 backup: IAM roles, S3 Glacier and SSE-C
+### Back up Amazon S3 without stored keys
+
+Leave `access_key` and `secret_access_key` out and Plakar uses the IAM role of
+the EC2 instance, the ECS task or the EKS pod it runs in, through IRSA or Pod
+Identity. In Plakar Control Plane, leave both credential fields empty to use the
+IAM role of the edge that runs the task.
+
+### Keep Plakar backups in S3 Glacier
+
+`storage_class` takes the Amazon S3 class names: `STANDARD`, `STANDARD_IA`,
+`ONEZONE_IA`, `INTELLIGENT_TIERING`, `GLACIER_IR`, `GLACIER`, `DEEP_ARCHIVE` and
+`REDUCED_REDUNDANCY`.
+
+### Amazon S3 buckets re-encrypted with SSE-C
+
+AWS described this attack in a January 2025 security advisory: leaked keys used
+to copy every object onto itself with an SSE-C key only the attacker holds. The
+recovery scenario above shows the way back.
+
+## S3 backup tools compared: Plakar, backup services and sync scripts
+S3 buckets are usually protected in one of three other ways: an enterprise
+backup suite with an object storage module, the cloud provider's own backup
+service, or a scheduled sync to a second bucket. Plakar keeps the open S3 API of
+the last one and adds a verified, encrypted history.
+
+|                                        | Plakar                                         | Enterprise backup suites      | Cloud provider backup services | A scheduled bucket sync    |
+| -------------------------------------- | ---------------------------------------------- | ----------------------------- | ------------------------------ | -------------------------- |
+| Any S3-compatible source               | ✓ Any S3 API endpoint                          | ◐ Depends on the product      | ✗ That provider's buckets      | ✓                          |
+| Copy at another provider               | ✓ Store on any S3 endpoint, a disk or SFTP     | ◐ Depends on the product      | ✗ Inside that provider         | ✓                          |
+| Read-only source credentials           | ✓ `s3:ListBucket` and `s3:GetObject`           | ◐ Depends on the product      | ◐ Depends on the service       | ✓                          |
+| Encrypted, deduplicated history        | ✓ Checked with `plakar check`                  | ◐ Depends on the product      | ◐ Depends on the service       | ✗ A sync mirrors deletions |
+| Restore one prefix to any bucket       | ✓ On any S3-compatible endpoint                | ◐ Through the suite's console | ◐ Within that provider         | ◐ Copied back by hand      |
+| File servers and databases in one tool | ✓ Same CLI and store                           | ✓                             | ◐ The provider's own services  | ✗                          |
+| Fleet-wide scheduling                  | ✓ Plakar Control Plane: discovery and policies | ✓ A central console           | ✓ Within that provider         | ✗ Your own tooling         |
+| Free and open source                   | ✓ The CLI                                      | ✗ Commercial licence          | ✗ A paid service               | ◐ Depends on the tool      |
+
+## How to back up an S3 bucket with the open-source Plakar CLI
+The Plakar CLI is free and open source. Install the S3 package, create a store,
+add the bucket as a source, then restore a prefix into a bucket on another
+endpoint, here a MinIO lab.
+
+The [S3 CLI documentation](/docs/community/main/integrations/s3/) covers every
+option, including addressing styles, ambient credentials and SSE-C.
+
+```bash
+$ plakar pkg add s3
+$ plakar at /var/backups create
+
+$ plakar source add prod-assets \
+    s3://s3.fr-par.scw.cloud/acme-assets \
+    access_key=... secret_access_key=...
+$ plakar at /var/backups backup "@prod-assets"
+$ plakar at /var/backups check
+
+$ plakar destination add minio-restore \
+    s3://minio.lab.internal:9000/acme-assets-restore \
+    access_key=... secret_access_key=...
+$ plakar at /var/backups restore -to "@minio-restore" <snapshot_id>:/exports
+```
+
+## S3 bucket backups across accounts with Plakar Control Plane
+Plakar Control Plane schedules bucket backups across every account you connect.
+Managed inventories discover the buckets of each cloud account, and other
+S3-compatible endpoints are registered in a self-managed inventory. Tasks run on
+an edge.
+
+[See how Plakar Control Plane works](/solutions/control-plane/), read the
+[Control Plane S3 documentation](/docs/control-plane/resources/object-storage/s3/),
+or [contact us](/contact/) to plan a deployment.
+
+**Bring the buckets into an inventory.** A managed inventory lists the buckets
+of a cloud account. Other endpoints are added as resources of class
+`Object Storage`, subclass `S3`.
+
+**Choose the credentials.** Enter an access key pair for the endpoint.
+
+**Create a store.** Set its passphrase and storage class. A store on an archival
+class is marked Cold so policies account for it.
+
+**Let a policy schedule it.** A policy sets the frequency, the retention and the
+target store, and every bucket that matches it is backed up automatically.
+
+## S3 backup FAQ
+### How do I back up an S3 bucket?
+
+Install the package with `plakar pkg add s3`, add the bucket with
+`plakar source add assets s3://<endpoint>/<bucket>` and a read-only key, then
+run `plakar backup "@assets"` on a schedule. Each run is a full, deduplicated
+snapshot of the bucket.
+
+### Is S3 versioning a backup?
+
+Versioning keeps older copies of each object inside the same bucket, under the
+same account and permissions. A backup is a copy held elsewhere, with its own
+credentials and retention. Plakar provides that copy as encrypted snapshots.
+
+### How do I restore deleted S3 objects?
+
+Find the snapshot taken before the deletion with `plakar ls`, then restore the
+prefix with `plakar restore -to @dest <snapshot_id>:/prefix`. Restoring under a
+new prefix first leaves the live objects untouched.
+
+### How do I back up an S3 bucket to another provider?
+
+Add the bucket as a source and create the Plakar store on a bucket at the other
+provider, or on a disk or SFTP host. Each side gets its own credentials.
+
+### Where can I restore an S3 backup?
+
+Into the original bucket, a new bucket that the destination creates, a bucket at
+another S3-compatible provider, or a local directory. A restore can cover the
+whole snapshot or one prefix.
+
+### Can I back up only part of an S3 bucket?
+
+Yes. Put a prefix in the location, such as `s3://endpoint/bucket/media`, or set
+`root`. Each source covers one bucket.
+
+### Which permissions does the S3 backup user need?
+
+`s3:ListBucket` on the bucket and `s3:GetObject` on its objects. Write
+permissions belong to the destination and the store, with other credentials.
+
+### What does a snapshot of an S3 bucket contain?
+
+The content of every object at backup time, with its key, size and last modified
+date. The series of snapshots, kept by your retention policy, is the history of
+the bucket.
+
+### Does Plakar work with S3-compatible storage?
+
+Yes. The connectors use the S3 API, so any service that speaks it, such as
+Amazon S3, Scaleway, OVHcloud, MinIO, Ceph RGW or Garage, works as source,
+destination or store.
+
+### Can Plakar back up Amazon S3 without stored keys?
+
+Yes. With no access key configured, Plakar uses the ambient credentials of
+Amazon S3: the instance profile of an EC2 instance, an ECS task role, or an EKS
+pod role through IRSA or Pod Identity.
+
+### Can I keep Plakar backups in Amazon S3 Glacier?
+
+Yes. Set `storage_class` on the store to `GLACIER_IR`, `GLACIER` or
+`DEEP_ARCHIVE`. With `GLACIER` or `DEEP_ARCHIVE`, backup data goes to the
+archival class while the snapshot index stays in `STANDARD`, so every snapshot
+remains listed. Other providers' archival tiers use the same option.
+
+### How does Plakar reduce egress costs for S3 backups at another provider?
+
+Run Plakar next to the bucket, inside the provider's region: it reads the
+objects there and sends to the other provider only the chunks the store does not
+hold yet, compressed with LZ4 and encrypted. After the first run, each backup
+transfers what changed.
+
+### How do I protect S3 backups from ransomware?
+
+Keep the store in another bucket or at another provider, with keys absent from
+the application, enable Object Lock with a default retention on that bucket, and
+keep a second copy with `plakar sync`.
+
+### How much storage does a nightly S3 backup use?
+
+After the first run, each snapshot stores only new or changed content, so a
+nightly backup of a mostly stable bucket adds little to the store.
+
+### Should I use the free CLI or Plakar Control Plane?
+
+The free, open-source CLI suits a handful of buckets. Plakar Control Plane adds
+discovery, policies and one view across accounts and teams, with the same S3
+connectors.
+
 

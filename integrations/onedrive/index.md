@@ -1,3 +1,7 @@
+# Resilient, encrypted backups for your OneDrive environment
+
+Back up your OneDrive files with Plakar to protect against data loss, corruption, and ransomware. Create immutable, encrypted, and verifiable backups for your OneDrive data.
+
 
 ## Why protecting OneDrive matters
 

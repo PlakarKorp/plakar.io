@@ -1,3 +1,7 @@
+# Consistent, encrypted backups for live Windows servers
+
+Protect Windows Server workloads like Active Directory and SQL Server against accidental deletion, ransomware, and configuration mistakes. Plakar captures a consistent, point-in-time snapshot of a live Windows system and restores it with confidence, without taking anything offline.
+
 
 ## Why protecting Windows Server data matters
 

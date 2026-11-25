@@ -45,18 +45,19 @@ $ plakar-edge \
 
 The most important options are:
 
-| Option           | Required  | Description                                                                                                                                |
-| ---------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `-control-plane` | Yes       | Base URL of the Plakar Control Plane.                                                                                                      |
-| `-pool-enroll`   | First run | Enrollment key of the edge pool the edge joins. It can also be provided through `PLAKAR_EDGE_POOL_ENROLL_KEY`.                             |
-| `-name`          | No        | Name displayed for the edge in PCP. Defaults to the hostname.                                                                              |
-| `-state-dir`     | No        | Directory used to store the edge identity and authentication token. Defaults to `/var/lib/plakar-edge`.                                    |
-| `-pkg`           | No        | Directory used for downloaded connector packages. Defaults to `<state-dir>/pkg`.                                                           |
-| `-max-parallel`  | No        | Maximum number of tasks the edge runs concurrently. Defaults to `5`.                                                                       |
-| `-poll-hold`     | No        | Expected server-side long-poll duration. Defaults to `30s`.                                                                                |
-| `-listen`        | No        | Address of the [supervision HTTP server](../../monitoring). Defaults to `127.0.0.1:9877`. Set it to an empty string to disable the server. |
-| `-metrics`       | No        | Enables the Prometheus `/metrics` endpoint. Defaults to `true`.                                                                            |
-| `-scripts-dir`   | No        | Directory holding the [hook scripts](../../hooks) tasks may run. Empty by default, which refuses every hook.                               |
+| Option                 | Required  | Description                                                                                                                                |
+| ---------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `-control-plane`       | Yes       | Base URL of the Plakar Control Plane.                                                                                                      |
+| `-pool-enroll`         | First run | Enrollment key of the edge pool the edge joins. It can also be provided through `PLAKAR_EDGE_POOL_ENROLL_KEY`.                             |
+| `-name`                | No        | Name displayed for the edge in PCP. Defaults to the hostname.                                                                              |
+| `-state-dir`           | No        | Directory used to store the edge identity, authentication token and other edge data. Defaults to `/var/lib/plakar-edge`.                   |
+| `-packfiles-build-dir` | No        | Directory where backups and syncs build their packfiles before sending them to the store. Defaults to `<state-dir>/tmp/packfiles-build`.   |
+| `-pkg`                 | No        | Directory used for downloaded connector packages. Defaults to `<state-dir>/pkg`.                                                           |
+| `-max-parallel`        | No        | Maximum number of tasks the edge runs concurrently. Defaults to `5`.                                                                       |
+| `-poll-hold`           | No        | Expected server-side long-poll duration. Defaults to `30s`.                                                                                |
+| `-listen`              | No        | Address of the [supervision HTTP server](../../monitoring). Defaults to `127.0.0.1:9877`. Set it to an empty string to disable the server. |
+| `-metrics`             | No        | Enables the Prometheus `/metrics` endpoint. Defaults to `true`.                                                                            |
+| `-scripts-dir`         | No        | Directory holding the [hook scripts](../../hooks) tasks may run. Empty by default, which refuses every hook.                               |
 
 `-max-parallel` caps how much work one edge takes on at a time. The Control
 Plane does not assign an edge more tasks than this limit at once.

@@ -81,17 +81,35 @@ recreate the virtual machine. The snapshot is removed once the backup completes.
 
 ### Transport modes
 
-A backup transfers disks in one of two modes, set with `transport_mode`, and the
-mode decides the format the disks are stored in.
+A backup transfers disks in one of three modes, set with `transport_mode`, and
+the mode decides the format the disks are stored in.
 
-| Mode      | Disk format           | Transfer                           |
-| --------- | --------------------- | ---------------------------------- |
-| `nbd`     | Raw disk contents     | Streamed over the ESXi NFC socket. |
-| `nfchttp` | Stream-optimized VMDK | Downloaded over vCenter HTTP NFC.  |
+| Mode      | Disk format           | Transfer                                                       |
+| --------- | --------------------- | -------------------------------------------------------------- |
+| `hotadd`  | Raw disk contents     | Attached to the virtual machine running Plakar and read there. |
+| `nbd`     | Raw disk contents     | Streamed over the ESXi NFC socket.                             |
+| `nfchttp` | Stream-optimized VMDK | Downloaded over vCenter HTTP NFC.                              |
 
-`nbd` is the default. It replaces the former `vmware+nbd` protocol, and no
-longer needs a separate NBD server. `nfchttp` produces the stream-optimized VMDK
-files earlier versions of the integration produced.
+The default, `auto`, uses `hotadd` when the machine running Plakar meets the
+[hot-add prerequisites](#hot-add-prerequisites), and `nbd` otherwise. Setting
+`transport_mode=hotadd` makes the backup fail instead of falling back to `nbd`.
+
+### Hot-add prerequisites
+
+With `hotadd`, Plakar attaches the disks of the snapshot to the virtual machine
+it runs in, reads them as local block devices, then detaches them. This keeps
+disk data off the network. It requires that:
+
+- Plakar runs inside a virtual machine managed by the same vCenter Server.
+- The user running Plakar is in the `disk` group, so it can read block devices.
+- That virtual machine has a SCSI controller with empty slots. Hot-add attaches
+  the disks being transferred to these slots, so add empty slots to it before
+  using `hotadd`.
+- The vSphere account has the `VirtualMachine.Config.AddRemoveDevice` privilege
+  on that virtual machine.
+
+The virtual machine running Plakar cannot back itself up over `hotadd`. With
+`auto`, its own backup uses `nbd`.
 
 ## How a restore works
 
@@ -104,9 +122,12 @@ existing virtual machine or creates a new one:
   virtual machine is shut down before the swap and started again afterwards. The
   disks it had before the restore are deleted.
 - **As a new virtual machine**, with `vmware://spawn`. Plakar creates a virtual
-  machine from the configuration and disks stored in the snapshot, under the
-  original name, adding a suffix if that name is already in use. The new virtual
-  machine is left powered off.
+  machine from the configuration and disks stored in the snapshot, and leaves it
+  powered off. It adds a suffix to the original name if that name is in use. The
+  restore fails if a folder with the new name already exists on the datastore.
+
+A restore writes raw disks over `hotadd` when the machine running Plakar meets
+the [hot-add prerequisites](#hot-add-prerequisites), and over `nbd` otherwise.
 
 ### Network adapters
 
@@ -122,6 +143,10 @@ environment according to `network_adapter_restore_mode`:
   after a ransomware incident.
 - `remove` creates the virtual machine without network adapters.
 
+On an NSX segment, each adapter of the new virtual machine gets its own NSX
+port. It does not take over the network attachment of the original virtual
+machine.
+
 ## Data flow
 
 ### Backup flow
@@ -136,7 +161,7 @@ subgraph Source["vSphere"]
   VM --> Snap
 end
 
-Via["Disk transfer<br/>nbd or nfchttp"]
+Via["Disk transfer<br/>hotadd, nbd or nfchttp"]
 
 Plakar["Plakar"]
 
@@ -198,15 +223,15 @@ The following options apply to both source and destination connectors.
 ### Source configuration
 
 When `nsx_url` is set, the backup also captures the NSX network state of the
-virtual machine from the NSX Manager.
+virtual machine from the NSX Manager. A restore does not apply it.
 
-| Option            | Required | Description                                                                     |
-| ----------------- | -------- | ------------------------------------------------------------------------------- |
-| `transport_mode`  | No       | `nbd` or `nfchttp`. See [Transport modes](#transport-modes). Defaults to `nbd`. |
-| `nsx_url`         | No       | NSX Manager endpoint.                                                           |
-| `nsx_username`    | No       | NSX account username. Defaults to `vsphere_username`.                           |
-| `nsx_password`    | No       | NSX account password. Defaults to `vsphere_password`.                           |
-| `nsx_skip_verify` | No       | Skip NSX TLS certificate verification. Defaults to `false`.                     |
+| Option            | Required | Description                                                                                        |
+| ----------------- | -------- | -------------------------------------------------------------------------------------------------- |
+| `transport_mode`  | No       | `auto`, `hotadd`, `nbd` or `nfchttp`. See [Transport modes](#transport-modes). Defaults to `auto`. |
+| `nsx_url`         | No       | NSX Manager endpoint.                                                                              |
+| `nsx_username`    | No       | NSX account username. Defaults to `vsphere_username`.                                              |
+| `nsx_password`    | No       | NSX account password. Defaults to `vsphere_password`.                                              |
+| `nsx_skip_verify` | No       | Skip NSX TLS certificate verification. Defaults to the value of `vsphere_tls_skip_verify`.         |
 
 ### Destination configuration
 
@@ -214,7 +239,6 @@ virtual machine from the NSX Manager.
 | ------------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------- |
 | `network_adapter_restore_mode` | No          | `preserve`, `disconnected` or `remove`. See [Network adapters](#network-adapters). Defaults to `preserve`. |
 | `network_recovery_port_group`  | Conditional | Port group used by `network_adapter_restore_mode=disconnected`. Required in that mode.                     |
-| `tmp_dir`                      | No          | Local directory used to stage disk data during the restore. Defaults to `/home/plakar/tmp`.                |
 
 ## Examples
 

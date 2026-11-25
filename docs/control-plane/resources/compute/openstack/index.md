@@ -12,9 +12,10 @@ original disks are never modified.
 [Managed inventories](../../inventories#managed-inventories) can discover Nova
 servers automatically once the
 [OpenStack inventory](../../inventories/managed/openstack) is connected to a
-project. OpenStack Compute resources are only discovered by the
-[OpenStack inventory](../../inventories/managed/openstack) and cannot be set up
-by a self-managed inventory.
+project. The [OVHcloud inventory](../../inventories/managed/ovhcloud) also
+discovers the instances of OVHcloud Public Cloud projects, which run on
+OpenStack, and you back them up with the same apps. OpenStack Compute resources
+cannot be set up by a self-managed inventory.
 
 ## Backup and restore
 
@@ -103,7 +104,8 @@ The following settings are available when configuring both source and
 destination apps.
 
 - **Openstack Auth Url**: Required. The Keystone v3 endpoint, for example
-  `https://keystone.example.com:5000/v3`.
+  `https://keystone.example.com:5000/v3`. For OVHcloud Public Cloud, use
+  `https://auth.cloud.ovh.net/v3`.
 - **Openstack Region**: Required. A single region. For a source app, the region
   the server runs in. For a destination app, the region the server is restored
   to.

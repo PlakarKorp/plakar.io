@@ -1,3 +1,7 @@
+# Encrypted, immutable backups for your Notion workspace
+
+Back up and restore Notion pages, databases, media, and comments. Plakar ensures encrypted, deduplicated, and verifiable snapshots of your entire workspace.
+
 
 ## Why protecting Notion matters
 

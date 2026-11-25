@@ -1,3 +1,7 @@
+# Resilient, encrypted backups for your Google Drive environment
+
+Back up your Google Drive workloads with Plakar to protect against data loss, corruption, and ransomware. Create immutable, encrypted, and verifiable backups for your Google drive data.
+
 
 ## Why protecting Google Drive matters
 

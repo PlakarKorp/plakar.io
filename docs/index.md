@@ -13,6 +13,7 @@
 - [Resource Apps](https://www.stg.plakar.io/docs/control-plane/apps/index.md): How apps work in Plakar Control Plane and how to configure them.
 - [Resource Types](https://www.stg.plakar.io/docs/control-plane/resources/index.md): Resources are the systems and storage targets that Plakar Control Plane backs up, stores data in, or restores to. Learn how to configure each resource type and manage resource settings.
 - [Plakar Edge](https://www.stg.plakar.io/docs/control-plane/edges/index.md): Configure remote edge executors for Plakar Control Plane.
+- [Backup & Restore](https://www.stg.plakar.io/docs/control-plane/backup-and-restore/index.md): Back up, restore, check or sync any resource or store of the organization, immediately or on a schedule.
 - [Scheduling](https://www.stg.plakar.io/docs/control-plane/scheduling/index.md): How to create and manage tasks and schedules in Plakar Control Plane.
 - [Access Control](https://www.stg.plakar.io/docs/control-plane/access-control/index.md): Organizations, users, authentication and permissions in Plakar Control Plane.
 - [Compliance](https://www.stg.plakar.io/docs/control-plane/compliance/index.md): Enforce backup requirements, data location, and retention obligations, and review activity in Plakar Control Plane.

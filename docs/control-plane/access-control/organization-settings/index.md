@@ -3,10 +3,9 @@
 
 Organization settings apply to one organization only. Every organization on the
 instance carries its own settings, so changing them affects that organization
-and the resources that belong to it, and nothing else.
-
-Settings that apply to the appliance as a whole, and so to every organization it
-hosts, are [Control Plane settings](../../operations/control-plane-settings).
+and the resources that belong to it, and nothing else. Settings that apply to
+the appliance as a whole, and so to every organization it hosts, are
+[Control Plane settings](../../operations/control-plane-settings).
 
 ## Handing settings down
 
@@ -57,9 +56,14 @@ at sign-in.
 Two time-to-live (TTL) durations are configured together here:
 
 - **Authentication badge TTL:** how long an authentication badge remains valid.
-  The badge indicates the current authentication status of a session.
-- **API key rotation TTL:** how long an API key remains valid after its owner
-  rotates it.
+  The badge indicates the current authentication status of a session. Defaults
+  to 1 day.
+- **API key rotation TTL:** how long the new key issued when an application
+  [rotates its API key](../users/applications#rotating-an-api-key) remains
+  valid. Defaults to 90 days.
+
+When neither this organization nor any organization above it sets a lifetime,
+the default applies and the screen shows it with a **(default)** label.
 
 ### Two-factor authentication
 
@@ -79,11 +83,37 @@ domains, not the admins of the organization. See
 [who manages single sign-on](../sso#who-manages-single-sign-on). See
 [Single Sign-On](../sso) for how providers are added.
 
+## Sign-in and AI agents
+
+The address members use to reach this organization, and whether they can sign in
+with an identity provider.
+
+### Public URL
+
+The address that members and identity providers reach this organization at, such
+as `https://pcp.example.com`. Single sign-on needs it, because Plakar Control
+Plane does not know its own address. Organizations below always inherit it, and
+can set their own. Only the [Superuser](../permissions/superuser) and
+[Platform Admins](../permissions/platform-admin) can set it. See
+[setting the public URL](../sso#setting-the-public-url).
+
+### Single sign-on
+
+Lets members of this organization sign in with an identity provider. Turning it
+off only pauses single sign-on. PCP revokes nothing, and keeps the providers and
+email domains. Organizations below inherit it by default. You can also keep it
+to this organization or lock it, as described in
+[handing settings down](#handing-settings-down). An organization that uses the
+public URL of an organization above it cannot set its own switch. It follows the
+switch of that organization. See
+[turning single sign-on on](../sso#turning-single-sign-on-on).
+
 ## System
 
 The system settings connect the organization to the infrastructure around Plakar
-Control Plane. They define the mail server used for its email, and an external
-Vector instance that receives a copy of its logs.
+Control Plane. They define the mail server used for its email, an external
+Vector instance that receives a copy of the logs of Plakar Control Plane, and
+the key edges enroll with.
 
 ### SMTP
 
@@ -94,11 +124,31 @@ details.
 
 ### Vector
 
-Forward Plakar Control Plane logs to a Vector instance you manage. Plakar
-Control Plane runs its own internal Vector instance for local log processing.
-This setting adds the instance you provide as an additional
-[Vector sink](https://vector.dev/docs/reference/configuration/sinks/vector/), so
-a copy of the logs is forwarded there rather than replacing local processing.
+Plakar Control Plane processes its logs with its own Vector instance. This
+setting forwards a copy of them to a Vector instance you manage, which PCP adds
+as a
+[Vector sink](https://vector.dev/docs/reference/configuration/sinks/vector/).
+
+PCP uses only the address set in the root organization, and forwards the logs of
+the whole deployment there. An address with no scheme connects over HTTPS, so
+use `http://host:port` for a Vector instance that listens over plain HTTP.
+
+PCP reads the level of each log line before forwarding it, so your Vector
+instance receives `level`, `msg` and `attrs` fields alongside the original
+`message`.
+
+### Edge enrollment
+
+> [!WARNING]+ Deprecated
+>
+> The organization enrollment key is deprecated. Create an
+> [edge pool](../../edges/enrollment#creating-and-managing-pools) for your edges
+> and enroll them with the key of that pool instead.
+
+An enrollment key for the organization itself, separate from the keys of its
+pools. Edges that enroll with it join the default pool. Closing or regenerating
+it does not affect pool keys. See
+[organization enrollment key](../../edges/enrollment#organization-enrollment-key).
 
 ## Notifications
 

@@ -1,3 +1,7 @@
+# Encrypted, application-consistent backups for SQL Server on Windows
+
+Protect Microsoft SQL Server against accidental deletion, ransomware, and failed maintenance without taking the database offline to back it up. Plakar captures a consistent snapshot of a live SQL Server installation and restores it with confidence, on the original server or a new one.
+
 
 ## Why protecting SQL Server matters
 

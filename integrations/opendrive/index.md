@@ -1,3 +1,7 @@
+# Resilient, encrypted backups for your OpenDrive environment
+
+Back up your OpenDrive workloads with Plakar to protect against data loss, corruption, and ransomware. Plakar provides immutable, encrypted backups.
+
 
 ## Why protecting OpenDrive matters
 

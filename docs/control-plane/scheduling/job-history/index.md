@@ -1,47 +1,45 @@
 
 # Job History
 
-The **Governance > Scheduling** section includes a **Job History** for the
+The **Job history** tab of **Governance > Scheduling** lists every job of the
+organization, whichever scheduler planned it: the
 [manual scheduler](../manual-scheduler), the
-[policy scheduler](../policy-scheduler), and each
-[user scheduler](../user-schedulers), listing all jobs that have run, whether
-they succeeded or failed, along with any jobs that are currently running.
+[policy scheduler](../policy-scheduler) or a
+[user scheduler](../user-schedulers). It shows the jobs that have run, whether
+they succeeded or failed, and the jobs that are queued or running. The newest
+jobs come first, grouped by day, and the list is split into pages.
 
-![](../images/manual-scheduler-history.png)
-![](../images/policy-scheduler-history.png)
-![](../images/user-scheduler-history.png)
+![](../images/job-history.png)
+
+Each row shows when the job ran, its status, the task with its apps, the
+scheduler that planned it and how long it took. A failed job also shows its
+error, with a link to open the log. The list can be filtered by status, by the
+scheduler that planned the job, by inventory and by app. The job history can be
+exported as a CSV file, in full or from a given date.
 
 ## Job details
 
-Each job has a details popup with the following information:
+Opening a job shows its details page. When the job produced a restore point, the
+page starts with a **Browse snapshot** button that opens it.
 
-- **Job ID** - a unique identifier for the job
-- **Status** - the current state of the job: `succeeded`, `failed`, `running`,
-  or `canceled`
-- **Restore Point** - the restore point produced by the job, available once the
-  backup job completes
-- **Progress** - the restore point ID, number of objects processed and bytes
-  stored so far
-- **Resources** - a graph of CPU and memory usage over the job's runtime
-- **Network** - a graph of network throughput over the job's runtime
-- **Recent Paths** - a live list of the last files being processed, each showing
-  whether it has `succeeded`, `failed`, or is still in `progress`
-- **Output** - the full log output for the job, useful for diagnosing failures.
-  Logs can also be downloaded from this view using the download icon.
+![](../images/job-info.png)
 
-{{< figure src="../images/job-info-1.png" class="max-w-150 mx-auto" >}}
+- **Details**: the status, the task, when the job was scheduled and started, its
+  duration, what it processed so far, and the job ID.
+- **Resources**: a graph of CPU and memory usage over the job's runtime.
+- **Network**: a graph of network throughput over the job's runtime.
+- **Output**: the log output of the job, useful for diagnosing failures.
+  **Download** saves the full log.
+- **Recent paths**: a live list of the last files processed, each showing
+  whether it has `succeeded`, `failed`, or is still in `progress`.
 
-If a job is currently running, the output and recent paths update in real time.
-A **Cancel job** button is available to stop the job.
+While a job is running, the output and recent paths update in real time, and a
+**Cancel job** button stops it.
 
 A job run on an [edge](../../edges) shows the same details. The edge streams
 them back while the job runs, and its output also includes the output of the
 job's [pre-job and post-job hooks](../../edges/hooks). Cancelling a job on an
 edge still runs its post-job hook.
-
-Failed or successful jobs from the manual scheduler can be retried directly from
-the job history list. This is not available for jobs triggered by the policy
-scheduler, as those are fully managed by the policies engine.
 
 ## Jobs and Schedules on Apps
 
@@ -49,10 +47,13 @@ Each app ([sources](../apps/sources), [stores](../apps/stores) &
 [destinations](../apps/destinations)) also surfaces scheduling information on
 its own details page:
 
-- The **Dashboard** tab lists all past and upcoming jobs involving that app,
-  scoped to that app only.
 - The **Scheduling** tab lists all schedules that involve that app, so you can
   see at a glance what is configured to run and when.
 
-![](../images/connector-jobs-1.png) ![](../images/connector-jobs-2.png)
+  ![](../images/app-job-1.png)
+
+- The **Dashboard** tab lists all past and upcoming jobs involving that app,
+  scoped to that app only.
+
+  ![](../images/app-job-2.png) ![](../images/app-job-3.png)
 

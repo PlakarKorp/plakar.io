@@ -31,12 +31,12 @@ flowchart TD
 
 ## Supported Resources
 
-| Resource                                                 | Source | Store | Destination |
-| -------------------------------------------------------- | ------ | ----- | ----------- |
-| [Object Storage (S3)](../../resources/object-storage/s3) | Yes    | Yes   | Yes         |
-| [Compute Instance](../../resources/compute/ovhcloud)     | Yes    | No    | Yes         |
-| Block Storage Volume                                     | Yes    | No    | Yes         |
-| [Managed Database](../../resources/database)             | Yes    | No    | Yes         |
+| Resource                                                        | Source | Store | Destination |
+| --------------------------------------------------------------- | ------ | ----- | ----------- |
+| [Object Storage (S3)](../../resources/object-storage/s3)        | Yes    | Yes   | Yes         |
+| [Compute Instance](../../resources/compute/openstack)           | Yes    | No    | Yes         |
+| [Block Storage Volume](../../resources/block-storage/openstack) | Yes    | No    | Yes         |
+| [Managed Database](../../resources/database)                    | Yes    | No    | Yes         |
 
 ## Authentication
 

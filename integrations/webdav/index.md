@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups for WebDAV remotes and self-hosted cloud storage
+
+Protect your WebDAV remotes against data loss and accidental deletion. Plakar provides encrypted, deduplicated snapshots of any WebDAV-compatible service, restorable to any environment.
+
 
 ## Why protecting WebDAV remotes matters
 

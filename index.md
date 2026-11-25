@@ -6,6 +6,8 @@
 
 ## [Plakar Blog](https://www.stg.plakar.io/posts/index.md)
 
+- [Backup for Freedom: OVHcloud Backup Center runs on Plakar](https://www.stg.plakar.io/posts/2026-11-20/ovhcloud-backup-center-plakar/index.md): OVHcloud presented Backup Center at its AI Summit: native backup for Public Cloud, built on the open-source Plakar engine. Managed Kubernetes comes first, with a free Beta and general availability in early 2027.
+- [How to backup and restore PVCs with the Kubernetes Operator](https://www.stg.plakar.io/posts/2026-11-17/backup-restore-pvcs-kubernetes-operator-walkthrough/index.md): An 18-minute walkthrough of the Plakar Kubernetes Operator: WordPress and MariaDB on EKS, backed up to S3 and restored, every step declared in YAML.
 - [Free backup for KubeVirt VMs and OpenShift](https://www.stg.plakar.io/posts/2026-10-28/free-backup-for-kubevirt-and-openshift/index.md): Plakar&rsquo;s Kubernetes integration now backs up KubeVirt VMs: every disk plus the VM manifest, in one consistent snapshot. On OpenShift, a new openshift package keeps restores from doing things you didn&rsquo;t ask for. Both are free.
 - [Take a Glance: Plakar's OpenStack backup is now free in Plakar Community](https://www.stg.plakar.io/posts/2026-10-22/backing-up-openstack-with-plakar/index.md): Plakar&rsquo;s OpenStack backup is now free in Plakar Community (OSS): back up and restore Cinder volumes and Nova servers through the OpenStack APIs. No agent. Encrypted and deduplicated.
 - [Backing up MongoDB with Plakar](https://www.stg.plakar.io/posts/2026-10-13/backing-up-mongodb-with-plakar/index.md): Plakar now backs up MongoDB. One package, a connection string, and your collections land encrypted and deduplicated in a store you own. Our first NoSQL database, after PostgreSQL, MySQL, MariaDB and SQL Server.
@@ -63,7 +65,7 @@
 
 - [OpenStack](https://www.stg.plakar.io/integrations/openstack/index.md): Manage OpenStack from Plakar Control Plane end to end. Discover Nova servers, Cinder volumes and the other resources of a project automatically, and protect servers and volumes with encrypted, deduplicated backups and restores.
 
-- [MongoDB](https://www.stg.plakar.io/integrations/mongodb/index.md): Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.
+- [MongoDB](https://www.stg.plakar.io/integrations/mongodb/index.md): Free, open-source MongoDB backup: mongodump archives in encrypted, deduplicated snapshots. Restore a server, or one collection with mongorestore.
 
 - [NFS](https://www.stg.plakar.io/integrations/nfs/index.md): Protect the shared storage your infrastructure runs on against accidental deletion, ransomware, and appliance failure. Plakar captures immutable, encrypted snapshots of NFS exports on NAS appliances and Unix file servers, restorable to any export or environment.
 
@@ -73,11 +75,11 @@
 
 - [Google Cloud (GCP)](https://www.stg.plakar.io/integrations/gcp/index.md): Connect a Google Cloud project to Plakar Control Plane and automatically discover the resources running in it, keeping an up-to-date inventory as Cloud Storage buckets and CloudSQL instances are created or removed.
 
-- [Amazon Web Services (AWS)](https://www.stg.plakar.io/integrations/aws/index.md): Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.
+- [Amazon Web Services (AWS)](https://www.stg.plakar.io/integrations/aws/index.md): Plakar Control Plane finds the S3 buckets and RDS databases of an AWS account, schedules their backups from AWS tags and reads credentials from Secrets Manager.
 
-- [Scaleway](https://www.stg.plakar.io/integrations/scaleway/index.md): Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.
+- [Scaleway](https://www.stg.plakar.io/integrations/scaleway/index.md): Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.
 
-- [OVHcloud](https://www.stg.plakar.io/integrations/ovhcloud/index.md): Manage OVHcloud Public Cloud from Plakar Control Plane end to end. Discover compute instances, block storage volumes, and object storage automatically, manage secrets through OVHcloud's own secret store, and protect resources with encrypted, deduplicated backups and restores.
+- [OVHcloud](https://www.stg.plakar.io/integrations/ovhcloud/index.md): Back up OVHcloud Public Cloud instances with their Cinder volumes into an encrypted store, restore them in any region and discover every project of the account.
 
 - [Plakar Control Plane](https://www.stg.plakar.io/integrations/pcp/index.md): Protect the Plakar Control Plane appliance against hardware failure, misconfiguration, or a full appliance replacement. Plakar backs up its own configuration and internal database into an encrypted, deduplicated Kloset snapshot.
 
@@ -101,15 +103,15 @@
 
 - [OCI Registry](https://www.stg.plakar.io/integrations/oci/index.md): Use your existing container registry infrastructure to store Plakar backups. Plakar encodes repository data as native OCI artifacts, giving you immutable, encrypted snapshots with registry-native replication and access controls.
 
-- [Kubernetes](https://www.stg.plakar.io/integrations/kubernetes/index.md): Protect your Kubernetes infrastructure at every level. Plakar discovers cluster resources, backs up etcd for disaster recovery, manifests for granular inspection and restore, and persistent volumes via CSI snapshots. All encrypted, deduplicated, and portable across environments.
+- [Kubernetes](https://www.stg.plakar.io/integrations/kubernetes/index.md): Free, open-source Kubernetes backup: objects, PVC data and KubeVirt VMs in encrypted snapshots. Restore a deleted namespace, one kind or a single object.
 
 - [Proxmox](https://www.stg.plakar.io/integrations/proxmox/index.md): Protect your Proxmox clusters against data loss, ransomware, and misconfiguration. Plakar wraps native Proxmox backups into encrypted, deduplicated snapshots that are portable, verifiable, and restorable across clusters or storage backends.
 
 - [etcd](https://www.stg.plakar.io/integrations/etcd/index.md): Protect your etcd cluster against data loss and node failures. Plakar takes encrypted, deduplicated snapshots of etcd cluster state, giving you a reliable recovery point when it matters most.
 
-- [MySQL / MariaDB](https://www.stg.plakar.io/integrations/mysql/index.md): Protect your MySQL and MariaDB databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using the backup tools MySQL and MariaDB already ship with.
+- [MySQL / MariaDB](https://www.stg.plakar.io/integrations/mysql/index.md): Free, open-source MySQL and MariaDB backup: mysqldump or mariadb-dump into encrypted snapshots. Restore a dropped table through a side database.
 
-- [PostgreSQL](https://www.stg.plakar.io/integrations/postgres/index.md): Protect your PostgreSQL databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using either logical or physical backups, restorable to any environment.
+- [PostgreSQL](https://www.stg.plakar.io/integrations/postgres/index.md): Free, open-source PostgreSQL backup with pg_dump or pg_basebackup into encrypted snapshots, self-hosted or managed. Restore one table with pg_restore.
 
 - [Dropbox](https://www.stg.plakar.io/integrations/dropbox/index.md): Back up your Dropbox workloads with Plakar to protect against data loss, corruption, and ransomware. Immutable, encrypted, and restorable even offline and across environments.
 
@@ -137,13 +139,13 @@
 
 - [Rclone](https://www.stg.plakar.io/integrations/rclone/index.md): Back up and restore cloud storage services such as Google Drive, Dropbox, OneDrive and Proton Drive with Plakar, using rclone to reach them. Create immutable, encrypted, and verifiable backups of your cloud files.
 
-- [S3](https://www.stg.plakar.io/integrations/s3/index.md): Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.
+- [S3](https://www.stg.plakar.io/integrations/s3/index.md): Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.
 
 - [SFTP](https://www.stg.plakar.io/integrations/sftp/index.md): Back up and restore directories to and from remote servers over SFTP. Plakar ensures encrypted, deduplicated, and verifiable snapshots across Linux, BSD, and NAS environments.
 
 - [Stdio](https://www.stg.plakar.io/integrations/stdio/index.md): Back up and restore data directly via Stdio without creating temporary files. Plakar ensures encrypted, deduplicated, and verifiable snapshots for database dumps, logs, and automated pipelines.
 
-- [Tar](https://www.stg.plakar.io/integrations/tar/index.md): Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.
+- [Tar](https://www.stg.plakar.io/integrations/tar/index.md): Free, open-source import of tar and tar.gz archives into encrypted, deduplicated snapshots, read in place without extraction, compared and exported as tar.
 
 
 
@@ -171,6 +173,7 @@
 
 - [Plakar](https://www.stg.plakar.io/changelog/plakar/index.md)
 - [Plakar Operator](https://www.stg.plakar.io/changelog/plakar-operator/index.md)
+- [MongoDB](https://www.stg.plakar.io/changelog/mongodb/index.md)
 - [SMB](https://www.stg.plakar.io/changelog/smb/index.md)
 - [OpenShift](https://www.stg.plakar.io/changelog/openshift/index.md)
 - [SQLite](https://www.stg.plakar.io/changelog/sqlite/index.md)

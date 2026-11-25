@@ -68,7 +68,8 @@ certificate.
 ![](../images/ovhcloud3.png)
 
 Next, select the users, user groups, or service accounts that the certificate
-should be associated with, then generate the certificate.
+should be associated with, then generate the certificate. They need an IAM
+policy that allows them to list and read the secrets of the OKMS domain.
 
 > [!WARNING]+ Private Key
 >

@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups for virtual machines and containers
+
+Protect your Proxmox clusters against data loss, ransomware, and misconfiguration. Plakar wraps native Proxmox backups into encrypted, deduplicated snapshots that are portable, verifiable, and restorable across clusters or storage backends.
+
 
 ## Why protecting Proxmox data matters
 

@@ -1,3 +1,7 @@
+# Encrypted, point-in-time snapshots for etcd clusters
+
+Protect your etcd cluster against data loss and node failures. Plakar takes encrypted, deduplicated snapshots of etcd cluster state, giving you a reliable recovery point when it matters most.
+
 
 ## Why protecting etcd matters
 

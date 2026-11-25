@@ -1,3 +1,7 @@
+# Resilient, encrypted backups for your Koofr environment
+
+Back up your Koofr files with Plakar to protect against data loss, corruption, and ransomware. Create immutable, encrypted, and verifiable backups for your Koofr data.
+
 
 ## Why protecting Koofr matters
 

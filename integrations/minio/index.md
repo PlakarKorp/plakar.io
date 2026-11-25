@@ -1,3 +1,7 @@
+# Resilient, encrypted backups for your MinIO environment
+
+Back up your MinIO workloads with Plakar to protect against data loss, corruption, and ransomware. Immutable, encrypted, and restorable even offline and across environments.
+
 
 ## Why protecting MinIO matters
 

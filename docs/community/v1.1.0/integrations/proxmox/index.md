@@ -178,13 +178,15 @@ Store --> Plakar --> Transform --> Via --> Restore
 
 The following options apply to both source and destination connectors.
 
-| Option               | Required     | Description                                                        |
-| -------------------- | ------------ | ------------------------------------------------------------------ |
-| `location`           | Yes          | Proxmox node address. Format: `proxmox+backup://<host>`            |
-| `mode`               | Yes          | Operating mode. `local` or `remote`.                               |
-| `conn_username`      | Yes (remote) | SSH username on the Proxmox node.                                  |
-| `conn_identity_file` | No           | Path to the SSH private key. Required when `conn_method=identity`. |
-| `conn_method`        | No           | Authentication method. `identity` for key-based auth.              |
+| Option               | Required     | Description                                                                                              |
+| -------------------- | ------------ | -------------------------------------------------------------------------------------------------------- |
+| `location`           | Yes          | Proxmox node address. Format: `proxmox+backup://<host>`                                                  |
+| `mode`               | Yes          | Operating mode. `local` or `remote`.                                                                     |
+| `conn_username`      | Yes (remote) | SSH username on the Proxmox node.                                                                        |
+| `conn_method`        | No           | Authentication method. `password` or `identity` for key-based auth.                                      |
+| `conn_password`      | No           | SSH password. Required when `conn_method=password`.                                                      |
+| `conn_identity_file` | No           | Path to the SSH private key. With `conn_method=identity`, set either this option or `conn_identity_key`. |
+| `conn_identity_key`  | No           | Content of the SSH private key, instead of `conn_identity_file`.                                         |
 
 ### Example
 

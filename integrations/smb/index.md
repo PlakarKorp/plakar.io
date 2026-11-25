@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups for SMB and CIFS network shares
+
+Protect the file shares your teams work from every day against accidental deletion, ransomware, and hardware failure. Plakar captures immutable, encrypted snapshots of SMB shares on Windows servers, NAS appliances, and Samba hosts, restorable to any share or environment.
+
 
 ## Why protecting network shares matters
 

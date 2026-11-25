@@ -41,9 +41,9 @@ out, which is how the key is normally supplied in CI.
 ## Authentication
 
 The provider authenticates with an API key belonging to an
-[application user](../../access-control/users#application-users), the account
-type intended for automation. API keys carry the `pcp_ak_` prefix and are
-created from the web interface.
+[application user](../../access-control/users/applications), the account type
+intended for automation. API keys carry the `pcp_ak_` prefix and are created
+from the web interface.
 
 An API key belongs to one organization, and the provider acts in that
 organization unless told otherwise. Setting `organization_id` on the provider

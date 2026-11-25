@@ -1,3 +1,7 @@
+# Direct backups for data streams and command outputs via Stdio
+
+Back up and restore data directly via Stdio without creating temporary files. Plakar ensures encrypted, deduplicated, and verifiable snapshots for database dumps, logs, and automated pipelines.
+
 
 ## Why use Streams instead of Files
 

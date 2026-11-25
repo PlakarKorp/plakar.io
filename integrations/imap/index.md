@@ -1,3 +1,7 @@
+# Secure, encrypted backups for your email infrastructure
+
+Back up and restore IMAP mailboxes with end-to-end encryption, immutability, and verifiable integrity. Plakar ensures your email history remains protected across any IMAP-compatible mail server.
+
 
 ## Why protecting IMAP matters
 

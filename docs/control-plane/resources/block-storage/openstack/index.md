@@ -13,9 +13,10 @@ modified by a restore.
 volumes automatically once the
 [OpenStack inventory](../../inventories/managed/openstack) is connected to a
 project. The inventory discovers volumes in every region the credentials can
-reach. Openstack Block Storage resources are only discovered by the
-[OpenStack inventory](../../inventories/managed/openstack) and cannot be setup
-by a self-managed inventory.
+reach. The [OVHcloud inventory](../../inventories/managed/ovhcloud) also
+discovers the volumes of OVHcloud Public Cloud projects, which run on OpenStack,
+and you back them up with the same apps. OpenStack Block Storage resources
+cannot be set up by a self-managed inventory.
 
 ## Backup and restore
 
@@ -97,7 +98,8 @@ The following settings are available when configuring both source and
 destination apps.
 
 - **Openstack Auth Url**: Required. The Keystone v3 endpoint, for example
-  `https://keystone.example.com:5000/v3`.
+  `https://keystone.example.com:5000/v3`. For OVHcloud Public Cloud, use
+  `https://auth.cloud.ovh.net/v3`.
 - **Openstack Region**: Required. A single region. For a source app, the region
   the volume lives in. For a destination app, the region the volume is restored
   to.
