@@ -45,6 +45,8 @@ seo_tags:
   - OVHcloud Backup Center
 
 links:
+  - type: community
+    url: /docs/community/main/integrations/ovhcloud/
   - type: control-plane
     url: /docs/control-plane/resources/compute/openstack/
   - type: custom
@@ -65,6 +67,7 @@ related:
   - mysql
 
 edition:
+  - community
   - control-plane
 
 stage: stable
