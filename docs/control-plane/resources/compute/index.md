@@ -26,10 +26,6 @@ Plane supports the following compute resources:
 
 
 
-## [OVHcloud Compute](https://www.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md)
-
-
-
 ## [Kubernetes](https://www.plakar.io/docs/control-plane/resources/compute/kubernetes/index.md)
 
 - [Kubernetes Cluster](https://www.plakar.io/docs/control-plane/resources/compute/kubernetes/cluster/index.md): How to back up and restore the manifests of a Kubernetes cluster or namespace in Plakar Control Plane.
