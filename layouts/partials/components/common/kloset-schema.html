@@ -46,7 +46,7 @@
     <div class="flex-1 p-1 md:p-2 lg:p-4 grid grid-cols-2 gap-1 md:gap-2">
       {{ range slice
         (dict "icon" "ri/puzzle-2-line" "label" "Deduplication")
-        (dict "icon" "ri/terminal-window-line" "label" "Compression")
+        (dict "icon" "ri/terminal-box-line" "label" "Compression")
         (dict "icon" "ri/collapse-diagonal-line" "label" "Encryption")
         (dict "icon" "ri/git-merge-line" "label" "Versioning")
       }}
@@ -76,10 +76,10 @@
     <div class="border-t border-neutral-200"></div>
     <div class="flex-1 p-1 md:p-3 flex flex-col">
       {{ range slice
-        (dict "icon" "ri/database-line" "label" "S3")
+        (dict "icon" "ri/database-2-line" "label" "S3")
         (dict "icon" "ri/folder-2-line" "label" "Local")
         (dict "icon" "ri/server-line" "label" "SFTP")
-        (dict "icon" "ri/earth-line" "label" "Cloud")
+        (dict "icon" "ri/global-line" "label" "Cloud")
       }}
         <div class="flex items-center gap-2 md:gap-3 px-1 py-1.5 md:py-2">
           <span class="w-4 h-4 md:w-5 md:h-5 shrink-0 text-neutral-800">{{ partial "icon.html" .icon }}</span>

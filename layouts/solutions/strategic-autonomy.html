@@ -93,7 +93,7 @@
       {{ range (slice
         (dict "icon" "ri/server-line" "title" "Self-hosted appliance" "body" "AWS, Google Cloud, OVHcloud, Scaleway, Exoscale, VMware vSphere, or Proxmox VE." "href" "/docs/control-plane/intro/installation/")
         (dict "icon" "ri/cloud-off-line" "title" "Air-gapped operation" "body" "An offline license and a self-hosted package repository for installs and updates." "href" "/docs/control-plane/guides/self-hosted-package-repository/")
-        (dict "icon" "ri/earth-line" "title" "Data residency" "body" "Tie resources to a country. Backups, restores, and copies stay within it." "href" "/docs/control-plane/compliance/residency/")
+        (dict "icon" "ri/global-line" "title" "Data residency" "body" "Tie resources to a country. Backups, restores, and copies stay within it." "href" "/docs/control-plane/compliance/residency/")
         (dict "icon" "ri/shield-keyhole-line" "title" "Your secret manager" "body" "Vault, AWS, Google Cloud, Scaleway, or OVHcloud." "href" "/docs/control-plane/infrastructure/secret-providers/")
         (dict "icon" "ri/search-line" "title" "European inventories" "body" "Discover OVHcloud, Scaleway, and VMware resources." "href" "/docs/control-plane/infrastructure/inventories/")
         (dict "icon" "ri/refresh-line" "title" "Cross-provider copies" "body" "Sync a Kloset to another provider or storage tier." "href" "/docs/control-plane/scheduling/tasks/")
@@ -122,14 +122,14 @@
         &ldquo;Running on infrastructure and software we control has unlocked a full compliance track for us with French providers.&rdquo;
       </blockquote>
       <figcaption class="flex items-center justify-center gap-4 flex-wrap">
-        {{ with $pierrick }}<img src="{{ .RelPermalink }}" alt="Pierrick Gicquelais" class="w-14 h-14 rounded-full object-cover" loading="lazy">{{ end }}
+        {{ with $pierrick }}{{ partial "components/image.html" (dict "resource" . "alt" "Pierrick Gicquelais" "class" "w-14 h-14 rounded-full object-cover" "widths" (slice 160)) }}{{ end }}
         <div class="text-left">
           <span class="block font-bold text-neutral-900">Pierrick Gicquelais</span>
           <span class="block text-neutral-500 text-sm">Lead Infrastructure &amp; AI Platform</span>
         </div>
         {{ with $alan }}
           <span class="w-px h-10 bg-neutral-200 hidden sm:block"></span>
-          <img src="{{ .RelPermalink }}" alt="Alan" class="h-7 w-auto" loading="lazy">
+          {{ partial "components/image.html" (dict "resource" . "alt" "Alan" "class" "h-7 w-auto" "widths" (slice 160)) }}
         {{ end }}
       </figcaption>
     </figure>

@@ -64,7 +64,7 @@ date: 2026-08-10
 
 resource: Windows
 
-image: img/integrations/vss.svg
+image: img/integrations/vss.png
 ---
 
 ## Why protecting Windows Server data matters

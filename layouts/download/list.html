@@ -3,7 +3,7 @@
 <!-- JS: assets/js/main/download.js -->
 
 {{ $nestorRocket := resources.Get "img/nestor/nestor-rocket.png" }}
-{{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
+{{ $gradientBlue := (resources.Get "img/general/gradient-blue.png").Resize "1600x webp q80" }}
 
 {{/* --- OSS Plakar versions --- */}}
 {{ $versions := partial "utils/sort-by-version.html" (where site.RegularPages "Section" "download") }}
@@ -16,7 +16,7 @@
 <!-- Rocket banner -->
 <section class="pt-26 text-neutral-50" style="background-image: url('{{ $gradientBlue.RelPermalink }}'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center;">
   <div class="max-w-350 mx-auto flex justify-center items-end">
-    <img src="{{ $nestorRocket.RelPermalink }}" alt="Nestor rocket" class="w-full max-h-50 md:max-h-112 object-contain object-top">
+    {{ partial "components/image.html" (dict "resource" $nestorRocket "alt" "Nestor rocket" "class" "w-full max-h-50 md:max-h-112 object-contain object-top") }}
   </div>
 </section>
 
@@ -131,7 +131,7 @@
             <button id="version-dropdown-btn" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 hover:bg-primary-200 text-primary-900 rounded-lg transition-colors">
               <span class="hidden md:block">Change version</span>
               <span class="block md:hidden">Version</span>
-              <span class="w-4 h-4">{{ partial "icon.html" "chevron-down" }}</span>
+              <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-down-s-line" }}</span>
             </button>
             <div id="version-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-neutral-50 border border-neutral-200 z-10 max-h-96 overflow-y-auto">
               {{ range $versions }}

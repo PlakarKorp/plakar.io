@@ -1,9 +1,9 @@
 {{ define "main" }}
 
-{{ $lfLogo := resources.Get "img/community/lf-member-level-silver.svg" }}
-{{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.svg" }}
-{{ $backupDone := resources.Get "img/nestor/backup-done.svg" }}
-{{ $nestorDance := resources.Get "img/nestor/dance.svg" }}
+{{ $lfLogo := resources.Get "img/community/lf-member-level-silver.png" }}
+{{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.png" }}
+{{ $backupDone := resources.Get "img/nestor/backup-done.png" }}
+{{ $nestorDance := resources.Get "img/nestor/dance.png" }}
 {{ $discord := resources.Get "img/general/discord-screenshot.png" }}
 {{ $nestorMeetup := resources.Get "img/nestor/nestor-speaker.png" }}
 {{ $nestorSpread := resources.Get "img/nestor/nestor-podcaster.png" }}
@@ -32,8 +32,8 @@
     </div>
 
     <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 py-8 opacity-90">
-      <img src="{{ $lfLogo.RelPermalink }}" alt="Linux Foundation Silver Member" class="h-12 md:h-16 w-auto" />
-      <img src="{{ $cncfLogo.RelPermalink }}" alt="CNCF Silver Member" class="h-10 md:h-14 w-auto" />
+      {{ partial "components/image.html" (dict "resource" $lfLogo "alt" "Linux Foundation Silver Member" "class" "h-12 md:h-16 w-auto" "widths" (slice 160)) }}
+      {{ partial "components/image.html" (dict "resource" $cncfLogo "alt" "CNCF Silver Member" "class" "h-10 md:h-14 w-auto" "widths" (slice 400)) }}
     </div>
 
     <div class="flex flex-col items-center py-16">
@@ -41,19 +41,19 @@
         "label" "Join Plakar Community on Discord"
         "href" site.Params.socials.discord
         "target" "_blank"
-        "icon" "discord"
+        "icon" "ri/discord-fill"
       ) }}
     </div>
 
     <div class="w-full flex justify-center items-end">
       <div class="w-1/4 flex justify-end items-end aspect-square">
-        <img src="{{ $backupDone.RelPermalink }}" alt="Backup done" class="h-2/3 object-contain" />
+        {{ partial "components/image.html" (dict "resource" $backupDone "alt" "Backup done" "class" "h-2/3 object-contain") }}
       </div>
       <div class="w-1/2 overflow-hidden aspect-2/1 flex items-end">
-        <img src="{{ $discord.RelPermalink }}" alt="Discord screenshot" class="w-full h-full object-cover object-top rounded-t-lg" />
+        {{ partial "components/image.html" (dict "resource" $discord "alt" "Discord screenshot" "class" "w-full h-full object-cover object-top rounded-t-lg") }}
       </div>
       <div class="w-1/4 flex justify-start items-end aspect-square">
-        <img src="{{ $nestorDance.RelPermalink }}" alt="Nestor dance" class="h-2/3 object-contain" />
+        {{ partial "components/image.html" (dict "resource" $nestorDance "alt" "Nestor dance" "class" "h-2/3 object-contain") }}
       </div>
     </div>
 
@@ -118,7 +118,7 @@
     <div class="flex flex-col md:flex-row items-center gap-8 max-w-6xl">
       <div class="w-full md:w-1/3 flex justify-center">
         <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
-          <img src="{{ $nestorMeetup.RelPermalink }}" alt="Organize Meetups" class="object-contain w-full h-full" />
+          {{ partial "components/image.html" (dict "resource" $nestorMeetup "alt" "Organize Meetups" "class" "object-contain w-full h-full") }}
         </div>
       </div>
       <div class="w-full md:w-2/3">
@@ -137,7 +137,7 @@
     <div class="flex flex-col md:flex-row-reverse items-center gap-8 max-w-6xl">
       <div class="w-full md:w-1/3 flex justify-center">
         <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
-          <img src="{{ $nestorSpread.RelPermalink }}" alt="Spread the Word" class="object-contain w-full h-full" />
+          {{ partial "components/image.html" (dict "resource" $nestorSpread "alt" "Spread the Word" "class" "object-contain w-full h-full") }}
         </div>
       </div>
       <div class="w-full md:w-2/3">
@@ -155,7 +155,7 @@
     <div class="flex flex-col md:flex-row items-center gap-8 max-w-6xl">
       <div class="w-full md:w-1/3 flex justify-center">
         <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
-          <img src="{{ $nestorDocs.RelPermalink }}" alt="Improve Documentation" class="object-contain w-full h-full" />
+          {{ partial "components/image.html" (dict "resource" $nestorDocs "alt" "Improve Documentation" "class" "object-contain w-full h-full") }}
         </div>
       </div>
       <div class="w-full md:w-2/3">
@@ -334,35 +334,24 @@
         "label" "Join us on Discord"
         "href" site.Params.socials.discord
         "target" "_blank"
-        "icon" "discord"
+        "icon" "ri/discord-fill"
       ) }}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Join us on Reddit"
         "href" site.Params.socials.reddit
         "target" "_blank"
-        "icon" "ri/reddit-line"
+        "icon" "ri/reddit-fill"
       ) }}
     </div>
 
     <div class="bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm px-6 py-5 flex flex-col items-center gap-4">
       <div class="flex flex-wrap justify-center gap-4">
         <span class="text-lg lg:text-xl font-medium text-secondary-500">Follow us on:</span>
-        <a href="{{ .Site.Params.socials.x | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
-          {{ partial "icon.html" "ri/twitter-x-line" }}
-        </a>
-        <a href="{{ .Site.Params.socials.bluesky | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
-          {{ partial "icon.html" "bluesky" }}
-        </a>
-        <a href="{{ .Site.Params.socials.linkedin | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
-          {{ partial "icon.html" "ri/linkedin-box-fill" }}
-        </a>
-        <a href="{{ .Site.Params.github.organization | default "#" }}" target="_blank" class="w-6 h-6 text-neutral-900">
-          {{ partial "icon.html" "github" }}
-        </a>
+        {{ partial "components/social/links.html" (dict "networks" (slice "x" "bluesky" "linkedin" "github-org") "class" "w-7 h-7 text-neutral-900") }}
       </div>
     </div>
 
-    <img src="{{ $nestorDance.RelPermalink }}" alt="Nestor dance" class="w-32 h-32 mt-8">
+    {{ partial "components/image.html" (dict "resource" $nestorDance "alt" "Nestor dance" "class" "w-32 h-32 mt-8" "widths" (slice 160)) }}
   </div>
 </section>
 

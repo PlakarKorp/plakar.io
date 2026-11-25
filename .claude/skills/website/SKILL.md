@@ -32,6 +32,29 @@ Files under `assets/js/` are not included automatically.
 Load images, icons and CSS with `resources.Get`, never a hardcoded path such as
 `/img/logo.svg`, so Hugo can fingerprint them.
 
+### Icons
+
+- Render icons with `partial "icon.html" "ri/<name>"`. Never inline an `<svg>`.
+- Icons come from [Remix Icon](https://remixicon.com) only, saved as
+  `assets/icons/ri/<name>.svg`. Do not use the Font Awesome icons bundled with
+  Blowfish. Brand icons use the `-fill` variant.
+- Single-colour brand marks missing from Remix go in `assets/icons/corporate/`
+  and use `currentColor`.
+- Reuse an existing icon before adding a new one, and delete an icon once
+  nothing references it.
+- A missing icon fails the build.
+
+### Logos
+
+- Images other than icons are PNG, so Hugo can resize them and convert them to
+  WebP.
+- Brand logos live in `assets/img/integrations/`, named after the integration.
+  Render them with
+  `partial "logo.html" (dict "src" "img/integrations/<name>.png")`, which fails
+  the build when the file is missing.
+- `assets/img/providers/` holds the square tiles of the home page, which sit on
+  dark backgrounds. Do not use them elsewhere.
+
 ## Content
 
 | Path                                        | Notes                                                                                           |

@@ -1,4 +1,4 @@
-{{ $nestor := resources.Get "img/nestor/dance.svg" }}
+{{ $nestor := resources.Get "img/nestor/dance.png" }}
 
 <div class="mt-6 rounded-xl bg-primary-500 text-neutral-50 p-5 flex flex-col gap-4">
 
@@ -6,7 +6,7 @@
   <div class="flex flex-col items-center gap-3 text-center">
     <span class="text-lg font-medium">You liked this article?</span>
     {{ if $nestor }}
-      <img src="{{ $nestor.RelPermalink }}" alt="Nestor" class="w-26 h-26">
+      {{ partial "components/image.html" (dict "resource" $nestor "alt" "Nestor" "class" "w-26 h-26" "widths" (slice 160)) }}
     {{ end }}
   </div>
 
@@ -14,18 +14,7 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Share it</span>
     <div class="flex items-center gap-3">
-      <a href="https://bsky.app/intent/compose?text={{ .Title | urlize }}%20{{ .Permalink }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "bluesky" }}
-      </a>
-      <a href="https://reddit.com/submit?url={{ .Permalink }}&title={{ .Title | urlize }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/reddit-line" }}
-      </a>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/linkedin-box-fill" }}
-      </a>
-      <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title | urlize }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/twitter-x-line" }}
-      </a>
+      {{ partial "components/social/share.html" (dict "page" . "class" "w-6 h-6 text-neutral-50") }}
     </div>
   </div>
 
@@ -33,12 +22,7 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Join us</span>
     <div class="flex items-center gap-3">
-      <a href="{{ .Site.Params.socials.discord }}" target="_blank" class="w-6 h-6 translate-y-1 text-neutral-50">
-        {{ partial "icon.html" "discord" }}
-      </a>
-      <a href="{{ .Site.Params.socials.reddit }}" target="_blank" class="w-6 h-6 text-neutral-50">
-        {{ partial "icon.html" "ri/reddit-line" }}
-      </a>
+      {{ partial "components/social/links.html" (dict "networks" (slice "discord" "reddit") "class" "w-6 h-6 text-neutral-50") }}
     </div>
   </div>
 
@@ -46,9 +30,7 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Help us</span>
     <div class="flex items-center gap-3">
-      <a href="{{ .Site.Params.github.plakar }}" target="_blank" class="w-5.5 h-5.5 text-neutral-50">
-        {{ partial "icon.html" "github" }}
-      </a>
+      {{ partial "components/social/links.html" (dict "networks" (slice "github") "class" "w-6 h-6 text-neutral-50") }}
     </div>
   </div>
 </div>
