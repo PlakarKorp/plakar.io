@@ -68,10 +68,10 @@ that pool, so their tasks run on an edge that has the client tools. See
 
 ## Inventory Management
 
-Currently no [managed inventory](../../inventories#managed-inventories) has the
-capability of discovering MongoDB resources. You need to set up a
-[self-managed inventory](../../inventories/self-managed) before adding a MongoDB
-resource.
+The [Scaleway inventory](../../inventories/managed/scaleway) discovers Scaleway
+managed MongoDB instances automatically. For other MongoDB servers, set up a
+[self-managed inventory](../../inventories/self-managed) and add the resource
+manually.
 
 ### Adding MongoDB as a resource
 
