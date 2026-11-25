@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     options.forEach((o) => {
       const active = o.dataset.version === version;
-      o.classList.toggle("bg-primary-50", active);
-      o.classList.toggle("text-primary-700", active);
+      o.classList.toggle("bg-ui-primary-50", active);
+      o.classList.toggle("text-ui-primary-700", active);
       o.classList.toggle("font-medium", active);
       if (active && releaseNotesLink && o.dataset.releaseNotesUrl) {
         releaseNotesLink.href = o.dataset.releaseNotesUrl;

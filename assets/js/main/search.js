@@ -108,28 +108,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainExcerpt = subResults.length > 0 ? subResults[0].excerpt : excerpt;
 
     const sectionBadge = section
-      ? `<span class="shrink-0 text-[10px] px-1.5 py-0.5 rounded bg-primary-50 text-primary-600 border border-primary-200">${section}</span>`
+      ? `<span class="shrink-0 text-[10px] px-1.5 py-0.5 rounded bg-ui-primary-50 text-ui-primary-600 border border-ui-primary-200">${section}</span>`
       : "";
     const versionBadge = version
-      ? `<span class="shrink-0 text-[10px] px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-500 border border-neutral-200">${version}</span>`
+      ? `<span class="shrink-0 text-[10px] px-1.5 py-0.5 rounded bg-ui-neutral-100 text-ui-neutral-500 border border-ui-neutral-200">${version}</span>`
       : "";
 
     const el = document.createElement("div");
-    el.className = "border-b border-neutral-100 group";
+    el.className = "border-b border-ui-neutral-100 group";
 
     // Page-level row
     const pageLink = document.createElement("a");
     pageLink.href = mainHref;
     pageLink.className =
-      "flex gap-3 px-5 py-3 hover:bg-neutral-50 transition-colors";
+      "flex gap-3 px-5 py-3 hover:bg-ui-neutral-50 transition-colors";
     pageLink.innerHTML = `
-      <div class="shrink-0 mt-0.5 w-5 h-5 text-neutral-300 group-hover:text-neutral-500 transition-colors">${fileIconHTML}</div>
+      <div class="shrink-0 mt-0.5 w-5 h-5 text-ui-neutral-300 group-hover:text-ui-neutral-500 transition-colors">${fileIconHTML}</div>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2">
-          <span class="text-sm font-semibold text-neutral-900 truncate">${title}</span>
+          <span class="text-sm font-semibold text-ui-neutral-900 truncate">${title}</span>
           ${sectionBadge}${versionBadge}
         </div>
-        <div class="text-sm text-neutral-500 mt-1 leading-relaxed line-clamp-2">${mainExcerpt}</div>
+        <div class="text-sm text-ui-neutral-500 mt-1 leading-relaxed line-clamp-2">${mainExcerpt}</div>
       </div>
     `;
     pageLink.addEventListener("click", closeModal);
@@ -141,12 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const a = document.createElement("a");
         a.href = sub.url;
         a.className =
-          "flex items-start gap-2 pl-14 pr-5 py-1.5 hover:bg-neutral-50 transition-colors border-t border-neutral-50";
+          "flex items-start gap-2 pl-14 pr-5 py-1.5 hover:bg-ui-neutral-50 transition-colors border-t border-ui-neutral-50";
         a.innerHTML = `
-          <span class="text-neutral-300 text-xs mt-px">#</span>
+          <span class="text-ui-neutral-300 text-xs mt-px">#</span>
           <div class="flex-1 min-w-0">
-            <div class="text-sm font-medium text-neutral-700">${sub.title}</div>
-            <div class="text-xs text-neutral-500 mt-0.5 leading-relaxed line-clamp-1">${sub.excerpt}</div>
+            <div class="text-sm font-medium text-ui-neutral-700">${sub.title}</div>
+            <div class="text-xs text-ui-neutral-500 mt-0.5 leading-relaxed line-clamp-1">${sub.excerpt}</div>
           </div>
         `;
         a.addEventListener("click", closeModal);
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const remaining = restSubs.length - 4;
         const showAllBtn = document.createElement("button");
         showAllBtn.className =
-          "pl-14 pr-5 py-1.5 text-xs text-primary-500 hover:text-primary-600 font-medium transition-colors border-t border-neutral-50 w-full text-left";
+          "pl-14 pr-5 py-1.5 text-xs text-ui-primary-500 hover:text-ui-primary-600 font-medium transition-colors border-t border-ui-neutral-50 w-full text-left";
         showAllBtn.textContent = `Show all (${remaining} more)`;
         showAllBtn.addEventListener("click", () => {
           showAllBtn.remove();
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
       wrap.className = "px-5 py-3 text-center";
       const btn = document.createElement("button");
       btn.className =
-        "text-sm text-primary-500 hover:text-primary-600 font-medium transition-colors disabled:opacity-50";
+        "text-sm text-ui-primary-500 hover:text-ui-primary-600 font-medium transition-colors disabled:opacity-50";
       btn.textContent = `Load more (${resultCount - loadedCount} remaining)`;
       btn.addEventListener("click", async () => {
         btn.disabled = true;

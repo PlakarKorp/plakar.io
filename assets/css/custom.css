@@ -22,6 +22,41 @@ html {
   font-family: "Inter", sans-serif;
 }
 
+body {
+  color: rgb(var(--ui-neutral-900));
+  background-color: rgb(var(--ui-neutral-50));
+}
+
+/* Markdown follows the adaptive palette, so it needs no prose-invert. */
+.prose {
+  --tw-prose-body: rgb(var(--ui-neutral-700));
+  --tw-prose-headings: rgb(var(--ui-neutral-800));
+  --tw-prose-lead: rgb(var(--ui-neutral-500));
+  --tw-prose-links: rgb(var(--ui-primary-600));
+  --tw-prose-counters: rgb(var(--ui-neutral-800));
+  --tw-prose-bullets: rgb(var(--ui-neutral-500));
+  --tw-prose-quotes: rgb(var(--ui-neutral-700));
+  --tw-prose-quote-borders: rgb(var(--ui-primary-500));
+  --tw-prose-captions: rgb(var(--ui-neutral-500));
+  --tw-prose-code: rgb(var(--ui-secondary-700));
+  --tw-prose-pre-code: rgb(var(--ui-neutral-700));
+  --tw-prose-pre-bg: rgb(var(--ui-neutral-50));
+  --tw-prose-th-borders: rgb(var(--ui-neutral-500));
+  --tw-prose-td-borders: rgb(var(--ui-neutral-300));
+}
+
+.prose a:hover {
+  color: rgb(var(--ui-primary-600));
+}
+
+.prose hr {
+  border-color: rgb(var(--ui-neutral-300));
+}
+
+.prose kbd {
+  background-color: rgb(var(--ui-neutral-200));
+}
+
 .icon svg {
   width: 100%;
   height: 100%;
@@ -55,8 +90,8 @@ html {
 }
 
 section.section-light-2 {
-  color: rgb(var(--color-neutral-900));
-  background-color: rgb(var(--color-neutral-100));
+  color: rgb(var(--ui-neutral-900));
+  background-color: rgb(var(--ui-neutral-100));
 }
 
 section.section-dark-1 {
@@ -70,8 +105,8 @@ section.section-primary-1 {
 }
 
 section.section-light-1 {
-  color: rgb(var(--color-neutral-900));
-  background-color: rgb(var(--color-neutral-50));
+  color: rgb(var(--ui-neutral-900));
+  background-color: rgb(var(--ui-neutral-50));
 }
 
 section.section-secondary-1 {
@@ -81,16 +116,8 @@ section.section-secondary-1 {
 
 .grid-background {
   background-image:
-    linear-gradient(
-      to right,
-      rgb(var(--color-neutral-200)) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgb(var(--color-neutral-200)) 1px,
-      transparent 1px
-    );
+    linear-gradient(to right, rgb(var(--ui-neutral-200)) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--ui-neutral-200)) 1px, transparent 1px);
   background-size: 64px 64px;
   background-repeat: repeat;
   background-attachment: fixed;
@@ -111,7 +138,7 @@ section.section-secondary-1 {
   background-image: linear-gradient(
     transparent 0%,
     transparent 25%,
-    rgb(var(--color-neutral-50)) 100%
+    rgb(var(--ui-neutral-50)) 100%
   );
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -121,7 +148,7 @@ section.section-secondary-1 {
   background-image: linear-gradient(
     transparent 0%,
     transparent 25%,
-    rgb(var(--color-neutral-100)) 100%
+    rgb(var(--ui-neutral-100)) 100%
   );
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -167,11 +194,13 @@ table.Nm {
   height: 1.08em;
   vertical-align: bottom;
 }
+
 .hv2-rotate-inner {
   display: flex;
   flex-direction: column;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .hv2-rotate-inner span {
   display: block;
   line-height: 1.08;
@@ -184,6 +213,7 @@ table.Nm {
   overflow: hidden;
   transition: max-height 0.4s ease;
 }
+
 .hv2-d-expand.open {
   max-height: 340px;
 }
@@ -197,6 +227,7 @@ table.Nm {
     transform 0.25s ease;
   pointer-events: none;
 }
+
 .hv2-d-modal.open {
   opacity: 1;
   transform: scale(1);
@@ -257,8 +288,8 @@ table.Nm {
   width: var(--steps-badge-size);
   height: var(--steps-badge-size);
   border-radius: 9999px;
-  background-color: rgb(var(--color-neutral-200));
-  color: rgb(var(--color-neutral-700));
+  background-color: rgb(var(--ui-neutral-200));
+  color: rgb(var(--ui-neutral-700));
   font-size: 0.8125rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -272,7 +303,7 @@ table.Nm {
   left: calc(-1 * var(--steps-gutter) + var(--steps-badge-size) / 2);
   width: 1px;
   height: 9999px;
-  background-color: rgb(var(--color-neutral-300));
+  background-color: rgb(var(--ui-neutral-300));
 }
 
 .steps > .step::before {
@@ -353,15 +384,18 @@ table.Nm {
   transition: all 0.15s ease;
   cursor: pointer;
 }
+
 .goodies-chip:hover {
   border-color: rgb(var(--color-secondary-400));
   color: rgb(var(--color-secondary-600));
 }
+
 .goodies-chip.is-active {
   background-color: rgb(var(--color-secondary-500));
   border-color: rgb(var(--color-secondary-500));
   color: rgb(var(--color-neutral-50));
 }
+
 .goodies-chip:focus-visible {
   outline: 2px solid rgb(var(--color-secondary-500));
   outline-offset: 2px;
@@ -374,11 +408,11 @@ table.Nm {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.13em;
-  color: rgb(var(--color-neutral-500));
+  color: rgb(var(--ui-neutral-500));
   margin-top: 2rem;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgb(var(--color-neutral-200));
+  border-bottom: 1px solid rgb(var(--ui-neutral-200));
 }
 
 .changelog-body > :first-child {
@@ -396,12 +430,8 @@ table.Nm {
 .codeblock {
   margin: 1.5rem 0;
   overflow: hidden;
-  border: 1px solid rgb(var(--color-neutral-200));
+  border: 1px solid rgb(var(--ui-neutral-200));
   border-radius: 0.5rem;
-}
-
-.dark .codeblock {
-  border-color: rgb(var(--color-neutral-700));
 }
 
 .codeblock .highlight pre {
@@ -417,15 +447,9 @@ table.Nm {
   padding: 0 0.375rem 0 0.875rem;
   font-size: 0.8125rem;
   font-weight: 500;
-  color: rgb(var(--color-neutral-500));
-  background-color: rgb(var(--color-neutral-50));
-  border-bottom: 1px solid rgb(var(--color-neutral-200));
-}
-
-.dark .codeblock-title {
-  color: rgb(var(--color-neutral-400));
-  background-color: rgb(var(--color-neutral-800));
-  border-color: rgb(var(--color-neutral-700));
+  color: rgb(var(--ui-neutral-500));
+  background-color: rgb(var(--ui-neutral-50));
+  border-bottom: 1px solid rgb(var(--ui-neutral-200));
 }
 
 .codeblock-icon {
@@ -448,7 +472,7 @@ table.Nm {
   width: 1.875rem;
   height: 1.875rem;
   margin-left: auto;
-  color: rgb(var(--color-neutral-500));
+  color: rgb(var(--ui-neutral-500));
   border-radius: 0.375rem;
   cursor: pointer;
   transition:
@@ -457,17 +481,12 @@ table.Nm {
 }
 
 .codeblock-copy:hover {
-  color: rgb(var(--color-neutral-800));
-  background-color: rgb(var(--color-neutral-200));
-}
-
-.dark .codeblock-copy:hover {
-  color: rgb(var(--color-neutral-100));
-  background-color: rgb(var(--color-neutral-700));
+  color: rgb(var(--ui-neutral-800));
+  background-color: rgb(var(--ui-neutral-200));
 }
 
 .codeblock-copy:focus-visible {
-  outline: 2px solid rgb(var(--color-primary-500));
+  outline: 2px solid rgb(var(--ui-primary-500));
   outline-offset: 1px;
 }
 
@@ -515,11 +534,7 @@ table.Nm {
   display: none;
 }
 
-/* =============================================
-   Solutions landing pages: terminal, tabs, copy
-   (dynamic states live here so they survive the
-   Tailwind purge; JS in assets/js/main/solutions-landing.js)
-   ============================================= */
+/* Solutions landing pages */
 .landing-terminal {
   background-color: rgb(var(--color-neutral-900));
   border: 1px solid rgb(var(--color-neutral-700));
@@ -529,6 +544,7 @@ table.Nm {
   display: flex;
   flex-direction: column;
 }
+
 .landing-terminal__bar {
   display: flex;
   align-items: center;
@@ -537,26 +553,32 @@ table.Nm {
   background-color: rgba(255, 255, 255, 0.03);
   border-bottom: 1px solid rgb(var(--color-neutral-700));
 }
+
 .landing-dot {
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 9999px;
 }
+
 .landing-dot--r {
   background: rgba(255, 90, 90, 0.7);
 }
+
 .landing-dot--y {
   background: rgba(255, 200, 80, 0.7);
 }
+
 .landing-dot--g {
   background: rgba(90, 220, 120, 0.7);
 }
+
 .landing-terminal__title {
   margin-left: 0.5rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.74rem;
   color: rgb(var(--color-neutral-500));
 }
+
 .landing-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -564,6 +586,7 @@ table.Nm {
   padding: 0.5rem 0.5rem 0;
   background-color: rgba(255, 255, 255, 0.02);
 }
+
 .landing-tab {
   appearance: none;
   border: none;
@@ -580,30 +603,37 @@ table.Nm {
     color 0.15s ease,
     background-color 0.15s ease;
 }
+
 .landing-tab:hover {
   color: #fff;
 }
+
 .landing-tab[aria-selected="true"] {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.06);
   border-bottom-color: rgb(var(--color-primary-400));
 }
+
 .landing-panel {
   padding: 1.375rem;
 }
+
 .landing-panel[hidden] {
   display: none;
 }
+
 .landing-panel__note {
   margin-top: 0.75rem;
   font-size: 0.82rem;
   color: rgb(var(--color-neutral-400));
 }
+
 .landing-panel__lead {
   margin-bottom: 0.875rem;
   font-size: 0.92rem;
   color: rgb(var(--color-neutral-400));
 }
+
 .landing-cmd {
   display: flex;
   align-items: flex-start;
@@ -614,6 +644,7 @@ table.Nm {
   border-radius: 0.75rem;
   padding: 0.875rem 0.875rem 0.875rem 1rem;
 }
+
 .landing-cmd pre {
   margin: 0;
   flex: 1;
@@ -625,12 +656,15 @@ table.Nm {
   word-break: break-word;
   overflow-wrap: anywhere;
 }
+
 .landing-cmd .tok-key {
   color: rgb(var(--color-primary-300));
 }
+
 .landing-cmd .tok-str {
   color: rgb(var(--color-secondary-400));
 }
+
 .landing-copy {
   flex: none;
   display: inline-flex;
@@ -648,73 +682,61 @@ table.Nm {
     background-color 0.15s ease,
     border-color 0.15s ease;
 }
+
 .landing-copy:hover {
   background-color: rgba(255, 255, 255, 0.14);
 }
+
 .landing-copy svg {
   width: 0.875rem;
   height: 0.875rem;
 }
+
 .landing-copy .ic-check {
   display: none;
 }
+
 .landing-copy.is-copied {
   background-color: rgba(var(--color-primary-500), 0.35);
   border-color: rgb(var(--color-primary-400));
   color: #fff;
 }
+
 .landing-copy.is-copied .ic-copy {
   display: none;
 }
+
 .landing-copy.is-copied .ic-check {
   display: inline;
 }
 
-/* Legal pages: keep the bullet glyphs of the source document (● or -). */
-.prose ul.list-bullet {
-  list-style-type: disc;
-}
-.prose ul.list-dash {
-  list-style-type: "-  ";
-}
-.prose ul.list-dash > li::marker {
-  color: currentColor;
+/* Appearance toggle: show the icon of the current choice */
+.appearance-icon {
+  display: none;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
-/* Legal pages: print the document only, without the site chrome. */
-@media print {
-  body:has(.legal-document) > section,
-  body:has(.legal-document) > footer,
-  body:has(.legal-document) #axeptio_overlay,
-  .legal-document .heading-anchor {
-    display: none !important;
-  }
-  body:has(.legal-document) main > section:first-child,
-  body:has(.legal-document) main > section:first-child > div {
-    background: none !important;
-    padding-top: 0 !important;
-  }
-  body:has(.legal-document) main > section:nth-child(2) {
-    padding-top: 1rem !important;
-    margin-bottom: 0 !important;
-  }
-  .legal-document h2,
-  .legal-document h3 {
-    break-after: avoid;
-  }
-  .legal-document table,
-  .legal-document li {
-    break-inside: avoid;
-  }
+html[data-appearance="system"] .appearance-icon[data-for="system"],
+html[data-appearance="light"] .appearance-icon[data-for="light"],
+html[data-appearance="dark"] .appearance-icon[data-for="dark"] {
+  display: block;
 }
 
-/* Legal pages with `wide: true`: full container width, justified text. */
-.prose.legal-wide {
-  max-width: none;
+/* Header logo: the black logo in light mode, the white outline one in dark mode */
+.site-logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
-.legal-wide p,
-.legal-wide li {
-  text-align: justify;
+
+.site-logo--dark,
+html.dark .site-logo--light {
+  display: none;
+}
+
+html.dark .site-logo--dark {
+  display: block;
 }
 
 /* Integration landing pages: body layout and components
@@ -810,7 +832,7 @@ table.Nm {
 .integration-body > h2 + p {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: rgb(var(--color-neutral-700));
+  color: rgb(var(--ui-neutral-700));
 }
 
 .dark .integration-body > h2 {
@@ -873,7 +895,7 @@ table.Nm {
 
 .lp-card-body p,
 .lp-card-body li {
-  color: rgb(var(--color-neutral-700));
+  color: rgb(var(--ui-neutral-700));
   font-size: 0.98rem;
 }
 
@@ -900,18 +922,18 @@ table.Nm {
 
 .lp-cards--ruled {
   gap: 0;
-  border-top: 2px solid rgb(var(--color-neutral-900));
+  border-top: 2px solid rgb(var(--ui-neutral-900));
 }
 
 .lp-cards--ruled .lp-card {
   padding: 1.5rem 1.5rem 1.5rem 0;
-  border-bottom: 1px solid rgb(var(--color-neutral-200));
+  border-bottom: 1px solid rgb(var(--ui-neutral-200));
 }
 
 .lp-cards--ruled.lp-cols-3 .lp-card:not(:nth-child(3n + 1)),
 .lp-cards--ruled.lp-cols-2 .lp-card:nth-child(2n) {
   padding-left: 1.5rem;
-  border-left: 1px solid rgb(var(--color-neutral-200));
+  border-left: 1px solid rgb(var(--ui-neutral-200));
 }
 
 .dark .lp-cards--boxed .lp-card,
@@ -947,7 +969,7 @@ table.Nm {
 /* Pairs */
 .lp-pairs {
   margin: 2rem 0;
-  border-top: 2px solid rgb(var(--color-neutral-900));
+  border-top: 2px solid rgb(var(--ui-neutral-900));
 }
 
 .lp-pair {
@@ -955,7 +977,7 @@ table.Nm {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
   gap: 1rem 3rem;
   padding: 1.5rem 0;
-  border-bottom: 1px solid rgb(var(--color-neutral-200));
+  border-bottom: 1px solid rgb(var(--ui-neutral-200));
 }
 
 .lp-pair-lead {
@@ -977,7 +999,7 @@ table.Nm {
 }
 
 .lp-pair-body p {
-  color: rgb(var(--color-neutral-700));
+  color: rgb(var(--ui-neutral-700));
 }
 
 /* Tables */
@@ -1185,7 +1207,7 @@ table.Nm {
 
   .lp-cards--ruled.lp-cols-3 .lp-card:nth-child(2n) {
     padding-left: 1.5rem;
-    border-left: 1px solid rgb(var(--color-neutral-200));
+    border-left: 1px solid rgb(var(--ui-neutral-200));
   }
 }
 
@@ -1513,7 +1535,7 @@ table.Nm {
 .integration-body > h2 + .lp-columns > .lp-column:first-child > p:first-child {
   font-size: 1.2rem;
   line-height: 1.6;
-  color: rgb(var(--color-neutral-700));
+  color: rgb(var(--ui-neutral-700));
 }
 
 /* Steps on two columns: the connecting line only makes sense in one column. */
@@ -1530,7 +1552,7 @@ table.Nm {
 
 .steps.steps--cols-2 > .step {
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgb(var(--color-neutral-200));
+  border-bottom: 1px solid rgb(var(--ui-neutral-200));
 }
 
 @media (max-width: 1023px) {
@@ -1550,4 +1572,107 @@ table.Nm {
   .steps.steps--cols-2 {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* Home newsletter: the light gradient image is for light mode only */
+html.dark .home-newsletter {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(var(--ui-neutral-100)) 0%,
+    rgba(var(--color-primary-700), 0.55) 70%,
+    rgb(var(--color-primary-600)) 100%
+  ) !important;
+}
+
+/* Mermaid diagrams */
+pre.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 2rem 1.5rem;
+  overflow-x: auto;
+  border: 1px solid rgb(var(--ui-neutral-200));
+  border-radius: 1rem;
+  background-color: rgb(var(--ui-neutral-50));
+  background-image: radial-gradient(
+    rgb(var(--ui-neutral-200)) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+}
+
+/* Hide the source text until Mermaid has drawn the diagram */
+pre.mermaid:not([data-processed]) {
+  color: transparent;
+}
+
+pre.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+pre.mermaid svg :is(.node rect, .node polygon, .node circle) {
+  stroke-width: 1px;
+  filter: none !important;
+}
+
+pre.mermaid svg .node rect {
+  rx: 10px;
+  ry: 10px;
+}
+
+pre.mermaid svg .cluster rect {
+  rx: 14px;
+  ry: 14px;
+  stroke-width: 1px;
+  filter: none !important;
+}
+
+pre.mermaid svg .flowchart-link {
+  stroke-width: 1.25px;
+}
+
+/*
+ * Inlined technology illustrations (assets/img/integrations/technology/*.svg)
+ * are drawn with the light palette. In dark mode, map each of those colours to
+ * its adaptive ui-* token. CSS overrides SVG presentation attributes.
+ */
+html.dark .technology-illustration [fill="rgb(28,28,30)"] {
+  fill: rgb(var(--ui-neutral-900));
+}
+html.dark .technology-illustration [fill="rgb(79,78,102)"] {
+  fill: rgb(var(--ui-neutral-700));
+}
+html.dark .technology-illustration [fill="rgb(160,159,180)"] {
+  fill: rgb(var(--ui-neutral-400));
+}
+html.dark .technology-illustration [stroke="rgb(160,159,180)"] {
+  stroke: rgb(var(--ui-neutral-400));
+}
+html.dark .technology-illustration [stroke="rgb(79,78,102)"] {
+  stroke: rgb(var(--ui-neutral-700));
+}
+html.dark .technology-illustration [fill="rgb(245,244,251)"] {
+  fill: rgb(var(--ui-neutral-100));
+}
+html.dark .technology-illustration [stroke="rgb(231,230,240)"] {
+  stroke: rgb(var(--ui-neutral-200));
+}
+html.dark .technology-illustration [fill="#fff"] {
+  fill: rgb(var(--ui-white));
+}
+html.dark .technology-illustration [fill="rgb(218,217,255)"] {
+  fill: rgb(var(--ui-primary-100));
+}
+html.dark .technology-illustration [fill="rgb(82,76,255)"] {
+  fill: rgb(var(--ui-primary-500));
+}
+html.dark .technology-illustration [stroke="rgb(82,76,255)"] {
+  stroke: rgb(var(--ui-primary-500));
+}
+
+/* Integration logos are drawn for a light background: give them a light tile in dark mode. */
+html.dark .logo-tile {
+  background-color: #fff;
+  padding: 0.375rem;
 }

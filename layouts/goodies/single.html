@@ -26,7 +26,7 @@
     <h1 class="text-4xl lg:text-6xl font-medium leading-tighter max-w-5xl">
       The <span class="text-secondary-500">Nestor</span> sticker collection
     </h1>
-    <p class="text-lg lg:text-2xl text-neutral-700 max-w-3xl">
+    <p class="text-lg lg:text-2xl text-ui-neutral-700 max-w-3xl">
       The stickers we print and hand out at events and online. {{ len $stickers }}
       designs so far, with more on the way.
     </p>
@@ -45,8 +45,8 @@
         "labelShort" "Get goodies"
         "href" "#get-goodies"
         "icon" ""
-        "bgColor" "bg-neutral-50"
-        "bgHoverColor" "bg-neutral-100"
+        "bgColor" "bg-ui-neutral-50"
+        "bgHoverColor" "bg-ui-neutral-100"
         "textColor" "text-secondary-700"
         "textHoverColor" "text-secondary-700"
         "border" "border"
@@ -60,10 +60,10 @@
 <section id="gallery" class="section-light-1 pt-14 pb-16 lg:pt-20 lg:pb-24 scroll-mt-24">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
     <div class="flex flex-col gap-2">
-      <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900">
+      <h2 class="text-3xl lg:text-5xl font-medium text-ui-neutral-900">
         The <span class="text-secondary-500">collection</span>
       </h2>
-      <p class="text-base lg:text-xl text-neutral-600 max-w-3xl">
+      <p class="text-base lg:text-xl text-ui-neutral-600 max-w-3xl">
         Backup humor, drawn on Nestor. Filter by series to browse.
       </p>
     </div>
@@ -80,7 +80,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-2" id="goodies-grid">
       {{ range $stickers }}
         {{ $img := resources.Get .image }}
-        <article class="goodies-card group/card relative flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 transition-all duration-300"
+        <article class="goodies-card group/card relative flex flex-col gap-4 p-4 rounded-lg border border-ui-neutral-200 bg-ui-neutral-100 shadow-xl outline-8 outline-ui-neutral-400/20 transition-all duration-300"
           data-series="{{ .series }}" data-title="{{ .title }}">
 
           <!-- Sticker art -->
@@ -93,26 +93,26 @@
                 "class" "max-h-full w-auto object-contain drop-shadow-sm"
               ) }}
             {{ else }}
-              <span class="text-sm text-neutral-400">Art coming soon</span>
+              <span class="text-sm text-ui-neutral-400">Art coming soon</span>
             {{ end }}
           </div>
 
           <!-- Title + series tag -->
           <div class="flex flex-col gap-1">
-            <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 leading-tight">{{ .title }}</h3>
+            <h3 class="text-lg lg:text-xl font-semibold text-ui-neutral-900 leading-tight">{{ .title }}</h3>
             {{ with index $seriesLabels .series }}
               <span class="text-xs font-semibold uppercase tracking-wide text-secondary-600">{{ . }}</span>
             {{ end }}
           </div>
 
           {{ with .caption }}
-            <p class="text-sm text-neutral-600 leading-snug -mt-1">{{ . }}</p>
+            <p class="text-sm text-ui-neutral-600 leading-snug -mt-1">{{ . }}</p>
           {{ end }}
         </article>
       {{ end }}
     </div>
 
-    <p id="goodies-empty" class="text-center text-neutral-500 py-10" hidden>No stickers in this series yet. Check back after the next batch.</p>
+    <p id="goodies-empty" class="text-center text-ui-neutral-500 py-10" hidden>No stickers in this series yet. Check back after the next batch.</p>
   </div>
 </section>
 
@@ -120,8 +120,8 @@
 <section class="section-secondary-1 py-12 lg:py-16">
   <div class="max-w-350 mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
     <div class="flex flex-col gap-1">
-      <h2 class="text-2xl lg:text-3xl font-medium text-neutral-900">Spot a favorite?</h2>
-      <p class="text-neutral-700 text-base lg:text-lg">Share the collection with someone who needs it on their laptop.</p>
+      <h2 class="text-2xl lg:text-3xl font-medium text-ui-neutral-900">Spot a favorite?</h2>
+      <p class="text-ui-neutral-700 text-base lg:text-lg">Share the collection with someone who needs it on their laptop.</p>
     </div>
     <div class="flex flex-wrap items-center gap-3 shrink-0">
       {{ partial "components/buttons/base-button.html" (dict
@@ -130,8 +130,10 @@
         "href" (printf "https://twitter.com/intent/tweet?%s" (querify "text" $shareText "url" $pageURL) | safeURL)
         "target" "_blank"
         "icon" "ri/twitter-x-fill"
-        "bgColor" "bg-neutral-900"
-        "bgHoverColor" "bg-neutral-800"
+        "bgColor" "bg-ui-neutral-900"
+        "bgHoverColor" "bg-ui-neutral-800"
+        "textColor" "text-ui-neutral-50"
+        "textHoverColor" "text-ui-neutral-50"
       ) }}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Share on LinkedIn"
@@ -150,10 +152,10 @@
 <section id="get-goodies" class="section-light-2 py-14 lg:py-24 scroll-mt-24">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
     <div class="flex flex-col gap-3 max-w-3xl">
-      <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900">
+      <h2 class="text-3xl lg:text-5xl font-medium text-ui-neutral-900">
         How to get <span class="text-secondary-500">Plakar goodies</span>
       </h2>
-      <p class="text-base lg:text-xl text-neutral-600">
+      <p class="text-base lg:text-xl text-ui-neutral-600">
         Goodies go to the people who show up for the project. Here are the best
         ways to get involved, and get stickers in hand.
       </p>
@@ -161,9 +163,9 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {{ range $data.contribute }}
-        <div class="flex flex-col gap-3 p-6 rounded-lg border border-neutral-300 bg-neutral-50 shadow-sm">
+        <div class="flex flex-col gap-3 p-6 rounded-lg border border-ui-neutral-300 bg-ui-neutral-50 shadow-sm">
           <h3 class="text-xl lg:text-2xl font-semibold text-secondary-500">{{ .title }}</h3>
-          <p class="text-neutral-700 text-base lg:text-lg leading-snug flex-1">{{ .body }}</p>
+          <p class="text-ui-neutral-700 text-base lg:text-lg leading-snug flex-1">{{ .body }}</p>
           {{ partial "components/buttons/base-button.html" (dict
             "label" .cta_label
             "href" .cta_href
@@ -177,7 +179,7 @@
       {{ end }}
     </div>
 
-    <p class="text-base text-neutral-600">
+    <p class="text-base text-ui-neutral-600">
       There is more to the community than swag.
       <a href="/community/" class="text-secondary-600 underline font-medium">Explore the Plakar Community</a>
       for daily briefings, hackrooms, weekly calls, and how to contribute.
