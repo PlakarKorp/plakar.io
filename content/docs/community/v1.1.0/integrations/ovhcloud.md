@@ -11,9 +11,9 @@ summary:
 
 OVHcloud Public Cloud runs on OpenStack. Plakar backs up its instances and Block
 Storage volumes, and restores them to OVHcloud, with the
-[OpenStack integration](../openstack). There is no separate OVHcloud package.
-This page covers what is specific to OVHcloud. See the OpenStack integration for
-how backups work, the restore behaviour and every option.
+[OpenStack integration](../openstack). This page covers what is specific to
+OVHcloud. See the OpenStack integration for how backups work, the restore
+behaviour and every option.
 
 The OpenStack integration supports two protocols:
 
