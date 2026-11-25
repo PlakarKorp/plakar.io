@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-12T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-25T10:57:43+01:00">
+    <meta property="article:modified_time" content="2026-11-25T14:16:04+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.48b3068f59742386f0afdc8ef1998ba05fd2b63ca7e6ca760e5deb802cb6d6beeddc01a10045b72d3df186e50ba41f6f4aeadeff8a88a6d3d3c732659fd5bd62.css"
-    integrity="sha512-SLMGj1l0I4bwr9yO8ZmLoF/Stjyn5sp2Dl3rgCy21r7t3AGhAEW3LT3xhuULpB9vSure/4qIptPTxzJln9W9Yg==">
+    href="/css/main.bundle.min.9d8b3d3a769e1fcb34830c40c256c895e6300b002dc9a0f22e0e6156407d1943a14f3b950e766732d15a8eb9f685aa4da0454620800e37dd334055844be11ffc.css"
+    integrity="sha512-nYs9OnaeH8s0gwxAwlbIleYwCwAtyaDyLg5hVkB9GUOhTzuVDnZnMtFajrn2hapNoEVGIIAON90zQFWES&#43;Ef/A==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -244,7 +244,7 @@
     "dateCreated": "2026-06-12T00:00:00\u002b00:00",
     "datePublished": "2026-06-12T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-25T10:57:43\u002b01:00",
+    "dateModified": "2026-11-25T14:16:04\u002b01:00",
     
     
     
@@ -4623,53 +4623,53 @@ databases using <code>mysqldump</code> and <code>mariadb-dump</code>, and restor
 human-readable and can be restored without Plakar if needed.</p>
 <p>The integration includes two connectors:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Connector type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Source connector</strong></td>
-          <td>Back up MySQL or MariaDB databases into a Kloset store.</td>
-      </tr>
-      <tr>
-          <td><strong>Destination connector</strong></td>
-          <td>Restore databases from a Kloset store to a running server.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Connector type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Source connector</strong></td>
+					<td>Back up MySQL or MariaDB databases into a Kloset store.</td>
+			</tr>
+			<tr>
+					<td><strong>Destination connector</strong></td>
+					<td>Restore databases from a Kloset store to a running server.</td>
+			</tr>
+	</tbody>
 </table>
 <p>Both connectors support three protocols:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Protocol</th>
-          <th>Target</th>
-          <th>Dump tool</th>
-          <th>Restore tool</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>mysql://</code></td>
-          <td>MySQL 5.7 / 8.x</td>
-          <td><code>mysqldump</code></td>
-          <td><code>mysql</code></td>
-      </tr>
-      <tr>
-          <td><code>mysql+mariadb://</code></td>
-          <td>MariaDB 10.x / 11.x</td>
-          <td><code>mariadb-dump</code></td>
-          <td><code>mariadb</code></td>
-      </tr>
-      <tr>
-          <td><code>mysql+gcsql://</code></td>
-          <td>MySQL on Google Cloud SQL</td>
-          <td><code>mysqldump</code></td>
-          <td><code>mysql</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Protocol</th>
+					<th>Target</th>
+					<th>Dump tool</th>
+					<th>Restore tool</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>mysql://</code></td>
+					<td>MySQL 5.7 / 8.x</td>
+					<td><code>mysqldump</code></td>
+					<td><code>mysql</code></td>
+			</tr>
+			<tr>
+					<td><code>mysql+mariadb://</code></td>
+					<td>MariaDB 10.x / 11.x</td>
+					<td><code>mariadb-dump</code></td>
+					<td><code>mariadb</code></td>
+			</tr>
+			<tr>
+					<td><code>mysql+gcsql://</code></td>
+					<td>MySQL on Google Cloud SQL</td>
+					<td><code>mysqldump</code></td>
+					<td><code>mysql</code></td>
+			</tr>
+	</tbody>
 </table>
 <p><code>mysql://</code> and <code>mysql+mariadb://</code> are independent connectors. Each always uses
 its own set of binaries, regardless of the server at the other end.</p>
@@ -4958,46 +4958,46 @@ point to the correct binary directory.</p>
 written before the dump data. It captures the server state at the time of
 backup.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Field</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>version</code></td>
-          <td>Manifest schema version.</td>
-      </tr>
-      <tr>
-          <td><code>connector</code></td>
-          <td><code>mysql</code> or <code>mariadb</code>.</td>
-      </tr>
-      <tr>
-          <td><code>server_version</code></td>
-          <td>MySQL or MariaDB server version string.</td>
-      </tr>
-      <tr>
-          <td><code>mysqldump_version</code></td>
-          <td><code>mysqldump</code> version string (or <code>mariadump_version</code> for MariaDB).</td>
-      </tr>
-      <tr>
-          <td><code>server_config</code></td>
-          <td>Key server settings: <code>datadir</code>, <code>hostname</code>, <code>character_set_server</code>, <code>collation_server</code>, <code>max_connections</code>, <code>gtid_mode</code>.</td>
-      </tr>
-      <tr>
-          <td><code>databases</code></td>
-          <td>One entry per database: name, character set, collation, tables (with engine, row estimate, columns), routines, triggers, and events.</td>
-      </tr>
-      <tr>
-          <td><code>users</code></td>
-          <td>User accounts on the server. Only in full-server backups.</td>
-      </tr>
-      <tr>
-          <td><code>options</code></td>
-          <td>The effective dump options used for this backup.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Field</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>version</code></td>
+					<td>Manifest schema version.</td>
+			</tr>
+			<tr>
+					<td><code>connector</code></td>
+					<td><code>mysql</code> or <code>mariadb</code>.</td>
+			</tr>
+			<tr>
+					<td><code>server_version</code></td>
+					<td>MySQL or MariaDB server version string.</td>
+			</tr>
+			<tr>
+					<td><code>mysqldump_version</code></td>
+					<td><code>mysqldump</code> version string (or <code>mariadump_version</code> for MariaDB).</td>
+			</tr>
+			<tr>
+					<td><code>server_config</code></td>
+					<td>Key server settings: <code>datadir</code>, <code>hostname</code>, <code>character_set_server</code>, <code>collation_server</code>, <code>max_connections</code>, <code>gtid_mode</code>.</td>
+			</tr>
+			<tr>
+					<td><code>databases</code></td>
+					<td>One entry per database: name, character set, collation, tables (with engine, row estimate, columns), routines, triggers, and events.</td>
+			</tr>
+			<tr>
+					<td><code>users</code></td>
+					<td>User accounts on the server. Only in full-server backups.</td>
+			</tr>
+			<tr>
+					<td><code>options</code></td>
+					<td>The effective dump options used for this backup.</td>
+			</tr>
+	</tbody>
 </table>
 <p>Metadata collection is best-effort. If a query fails, the affected field is
 omitted and the backup continues normally.</p>
@@ -5116,80 +5116,80 @@ Connector --> DB
 <p>The following options apply to both source and destination connectors using the
 <code>mysql</code> protocol.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td>Connection URI: <code>mysql://[user[:password]@]host[:port][/database]</code></td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td>No</td>
-          <td>Server hostname. Overrides the URI host. Defaults to <code>127.0.0.1</code>.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td>No</td>
-          <td>Server port. Overrides the URI port. Defaults to <code>3306</code>.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>No</td>
-          <td>Username. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>No</td>
-          <td>Password. Overrides the URI password. Passed via <code>MYSQL_PWD</code>, never on the command line.</td>
-      </tr>
-      <tr>
-          <td><code>mysql_bin_dir</code></td>
-          <td>No</td>
-          <td>Directory containing <code>mysqldump</code> (source) or the <code>mysql</code> binary (destination). When omitted, resolved via <code>$PATH</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td>No</td>
-          <td>TLS mode: <code>disabled</code>, <code>preferred</code>, <code>required</code>, <code>verify_ca</code>, <code>verify_identity</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>No</td>
-          <td>Path to the client SSL certificate (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert_data</code></td>
-          <td>No</td>
-          <td>Inline PEM content of the client SSL certificate. Mutually exclusive with <code>ssl_cert</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>No</td>
-          <td>Path to the client SSL private key (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key_data</code></td>
-          <td>No</td>
-          <td>Inline PEM content of the client SSL private key. Mutually exclusive with <code>ssl_key</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_ca</code></td>
-          <td>No</td>
-          <td>Path to the CA certificate (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_ca_data</code></td>
-          <td>No</td>
-          <td>Inline PEM content of the CA certificate. Mutually exclusive with <code>ssl_ca</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td>Connection URI: <code>mysql://[user[:password]@]host[:port][/database]</code></td>
+			</tr>
+			<tr>
+					<td><code>host</code></td>
+					<td>No</td>
+					<td>Server hostname. Overrides the URI host. Defaults to <code>127.0.0.1</code>.</td>
+			</tr>
+			<tr>
+					<td><code>port</code></td>
+					<td>No</td>
+					<td>Server port. Overrides the URI port. Defaults to <code>3306</code>.</td>
+			</tr>
+			<tr>
+					<td><code>username</code></td>
+					<td>No</td>
+					<td>Username. Overrides the URI user.</td>
+			</tr>
+			<tr>
+					<td><code>password</code></td>
+					<td>No</td>
+					<td>Password. Overrides the URI password. Passed via <code>MYSQL_PWD</code>, never on the command line.</td>
+			</tr>
+			<tr>
+					<td><code>mysql_bin_dir</code></td>
+					<td>No</td>
+					<td>Directory containing <code>mysqldump</code> (source) or the <code>mysql</code> binary (destination). When omitted, resolved via <code>$PATH</code>.</td>
+			</tr>
+			<tr>
+					<td><code>ssl_mode</code></td>
+					<td>No</td>
+					<td>TLS mode: <code>disabled</code>, <code>preferred</code>, <code>required</code>, <code>verify_ca</code>, <code>verify_identity</code>.</td>
+			</tr>
+			<tr>
+					<td><code>ssl_cert</code></td>
+					<td>No</td>
+					<td>Path to the client SSL certificate (PEM).</td>
+			</tr>
+			<tr>
+					<td><code>ssl_cert_data</code></td>
+					<td>No</td>
+					<td>Inline PEM content of the client SSL certificate. Mutually exclusive with <code>ssl_cert</code>.</td>
+			</tr>
+			<tr>
+					<td><code>ssl_key</code></td>
+					<td>No</td>
+					<td>Path to the client SSL private key (PEM).</td>
+			</tr>
+			<tr>
+					<td><code>ssl_key_data</code></td>
+					<td>No</td>
+					<td>Inline PEM content of the client SSL private key. Mutually exclusive with <code>ssl_key</code>.</td>
+			</tr>
+			<tr>
+					<td><code>ssl_ca</code></td>
+					<td>No</td>
+					<td>Path to the CA certificate (PEM).</td>
+			</tr>
+			<tr>
+					<td><code>ssl_ca_data</code></td>
+					<td>No</td>
+					<td>Inline PEM content of the CA certificate. Mutually exclusive with <code>ssl_ca</code>.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5211,70 +5211,70 @@ Connector --> DB
 <p>The following extra options are available to source connectors using the <code>mysql</code>
 protocol.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>database</code></td>
-          <td>No</td>
-          <td>Database to back up. Overrides the URI path. If omitted, all databases are backed up.</td>
-      </tr>
-      <tr>
-          <td><code>single_transaction</code></td>
-          <td>No</td>
-          <td>Use <code>--single-transaction</code> for a lock-free InnoDB snapshot. Defaults to <code>true</code>.</td>
-      </tr>
-      <tr>
-          <td><code>routines</code></td>
-          <td>No</td>
-          <td>Include stored procedures and functions (<code>--routines</code>). Defaults to <code>true</code>.</td>
-      </tr>
-      <tr>
-          <td><code>events</code></td>
-          <td>No</td>
-          <td>Include event scheduler events (<code>--events</code>). Defaults to <code>true</code>.</td>
-      </tr>
-      <tr>
-          <td><code>triggers</code></td>
-          <td>No</td>
-          <td>Include triggers. Set to <code>false</code> to pass <code>--skip-triggers</code>. Defaults to <code>true</code>.</td>
-      </tr>
-      <tr>
-          <td><code>no_data</code></td>
-          <td>No</td>
-          <td>Dump schema only, no data (<code>--no-data</code>). Mutually exclusive with <code>no_create_info</code>. Defaults to <code>false</code>.</td>
-      </tr>
-      <tr>
-          <td><code>no_create_info</code></td>
-          <td>No</td>
-          <td>Dump data only, no schema (<code>--no-create-info</code>). Mutually exclusive with <code>no_data</code>. Defaults to <code>false</code>.</td>
-      </tr>
-      <tr>
-          <td><code>no_tablespaces</code></td>
-          <td>No</td>
-          <td>Suppress tablespace statements (<code>--no-tablespaces</code>). Defaults to <code>true</code>.</td>
-      </tr>
-      <tr>
-          <td><code>hex_blob</code></td>
-          <td>No</td>
-          <td>Encode BINARY/BLOB columns as hex (<code>--hex-blob</code>). Defaults to <code>false</code>.</td>
-      </tr>
-      <tr>
-          <td><code>column_statistics</code></td>
-          <td>No</td>
-          <td>Query <code>COLUMN_STATISTICS</code>. Set to <code>false</code> (<code>--column-statistics=0</code>) when using mysqldump 8.0 against MySQL 5.7. Defaults to <code>true</code>.</td>
-      </tr>
-      <tr>
-          <td><code>set_gtid_purged</code></td>
-          <td>No</td>
-          <td>GTID mode: <code>AUTO</code>, <code>ON</code>, or <code>OFF</code>. Defaults to <code>AUTO</code>. See <a href="/docs/community/v1.1.0/integrations/mysql/#gtids" >GTIDs</a>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>database</code></td>
+					<td>No</td>
+					<td>Database to back up. Overrides the URI path. If omitted, all databases are backed up.</td>
+			</tr>
+			<tr>
+					<td><code>single_transaction</code></td>
+					<td>No</td>
+					<td>Use <code>--single-transaction</code> for a lock-free InnoDB snapshot. Defaults to <code>true</code>.</td>
+			</tr>
+			<tr>
+					<td><code>routines</code></td>
+					<td>No</td>
+					<td>Include stored procedures and functions (<code>--routines</code>). Defaults to <code>true</code>.</td>
+			</tr>
+			<tr>
+					<td><code>events</code></td>
+					<td>No</td>
+					<td>Include event scheduler events (<code>--events</code>). Defaults to <code>true</code>.</td>
+			</tr>
+			<tr>
+					<td><code>triggers</code></td>
+					<td>No</td>
+					<td>Include triggers. Set to <code>false</code> to pass <code>--skip-triggers</code>. Defaults to <code>true</code>.</td>
+			</tr>
+			<tr>
+					<td><code>no_data</code></td>
+					<td>No</td>
+					<td>Dump schema only, no data (<code>--no-data</code>). Mutually exclusive with <code>no_create_info</code>. Defaults to <code>false</code>.</td>
+			</tr>
+			<tr>
+					<td><code>no_create_info</code></td>
+					<td>No</td>
+					<td>Dump data only, no schema (<code>--no-create-info</code>). Mutually exclusive with <code>no_data</code>. Defaults to <code>false</code>.</td>
+			</tr>
+			<tr>
+					<td><code>no_tablespaces</code></td>
+					<td>No</td>
+					<td>Suppress tablespace statements (<code>--no-tablespaces</code>). Defaults to <code>true</code>.</td>
+			</tr>
+			<tr>
+					<td><code>hex_blob</code></td>
+					<td>No</td>
+					<td>Encode BINARY/BLOB columns as hex (<code>--hex-blob</code>). Defaults to <code>false</code>.</td>
+			</tr>
+			<tr>
+					<td><code>column_statistics</code></td>
+					<td>No</td>
+					<td>Query <code>COLUMN_STATISTICS</code>. Set to <code>false</code> (<code>--column-statistics=0</code>) when using mysqldump 8.0 against MySQL 5.7. Defaults to <code>true</code>.</td>
+			</tr>
+			<tr>
+					<td><code>set_gtid_purged</code></td>
+					<td>No</td>
+					<td>GTID mode: <code>AUTO</code>, <code>ON</code>, or <code>OFF</code>. Defaults to <code>AUTO</code>. See <a href="/docs/community/v1.1.0/integrations/mysql/#gtids" >GTIDs</a>.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5296,30 +5296,30 @@ protocol.</p>
 <p>The following extra options are available to destination connectors using the
 <code>mysql</code> protocol.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>database</code></td>
-          <td>No</td>
-          <td>Target database. Inferred from the dump filename if omitted.</td>
-      </tr>
-      <tr>
-          <td><code>create_db</code></td>
-          <td>No</td>
-          <td>Issue <code>CREATE DATABASE IF NOT EXISTS</code> before restoring. Defaults to <code>false</code>.</td>
-      </tr>
-      <tr>
-          <td><code>force</code></td>
-          <td>No</td>
-          <td>Pass <code>--force</code> to continue on SQL errors during restore. Defaults to <code>false</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>database</code></td>
+					<td>No</td>
+					<td>Target database. Inferred from the dump filename if omitted.</td>
+			</tr>
+			<tr>
+					<td><code>create_db</code></td>
+					<td>No</td>
+					<td>Issue <code>CREATE DATABASE IF NOT EXISTS</code> before restoring. Defaults to <code>false</code>.</td>
+			</tr>
+			<tr>
+					<td><code>force</code></td>
+					<td>No</td>
+					<td>Pass <code>--force</code> to continue on SQL errors during restore. Defaults to <code>false</code>.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5427,20 +5427,20 @@ MariaDB server, to avoid binary-compatibility issues.</p>
 <p><code>mysql+mariadb://</code> supports the same source and destination options as
 <code>mysql://</code>, with the following differences:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>mariadb_bin_dir</code></td>
-          <td>No</td>
-          <td>Directory containing <code>mariadb-dump</code> / <code>mariadb</code>. Replaces <code>mysql_bin_dir</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>mariadb_bin_dir</code></td>
+					<td>No</td>
+					<td>Directory containing <code>mariadb-dump</code> / <code>mariadb</code>. Replaces <code>mysql_bin_dir</code>.</td>
+			</tr>
+	</tbody>
 </table>
 <p>The <code>column_statistics</code> and <code>set_gtid_purged</code> options are MySQL-only and have no
 effect on <code>mysql+mariadb://</code>.</p>
@@ -6064,8 +6064,8 @@ is always piped to the client CLI.</p>
 
     <div class="overflow-hidden md:px-8">
       <img
-      src="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp"
-      srcset="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp 400w, /img/general/plakar-footer-banner_hu_f6d93c3223e43dd4.webp 800w, /img/general/plakar-footer-banner_hu_874c0cb913e58b5b.webp 1200w" sizes="auto"
+      src="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp"
+      srcset="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp 400w, /img/general/plakar-footer-banner_hu_ae1daca09bcae57b.webp 800w, /img/general/plakar-footer-banner_hu_c962588300d46a9f.webp 1200w" sizes="auto"
       width="400"
       height="72"
       alt="Footer banner"

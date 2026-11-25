@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-23T06:42:38+00:00">
-    <meta property="article:modified_time" content="2026-11-25T10:57:43+01:00">
+    <meta property="article:modified_time" content="2026-11-25T14:16:04+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.48b3068f59742386f0afdc8ef1998ba05fd2b63ca7e6ca760e5deb802cb6d6beeddc01a10045b72d3df186e50ba41f6f4aeadeff8a88a6d3d3c732659fd5bd62.css"
-    integrity="sha512-SLMGj1l0I4bwr9yO8ZmLoF/Stjyn5sp2Dl3rgCy21r7t3AGhAEW3LT3xhuULpB9vSure/4qIptPTxzJln9W9Yg==">
+    href="/css/main.bundle.min.9d8b3d3a769e1fcb34830c40c256c895e6300b002dc9a0f22e0e6156407d1943a14f3b950e766732d15a8eb9f685aa4da0454620800e37dd334055844be11ffc.css"
+    integrity="sha512-nYs9OnaeH8s0gwxAwlbIleYwCwAtyaDyLg5hVkB9GUOhTzuVDnZnMtFajrn2hapNoEVGIIAON90zQFWES&#43;Ef/A==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -229,7 +229,7 @@
     "dateCreated": "2026-09-23T06:42:38\u002b00:00",
     "datePublished": "2026-09-23T06:42:38\u002b00:00",
     
-    "dateModified": "2026-11-25T10:57:43\u002b01:00",
+    "dateModified": "2026-11-25T14:16:04\u002b01:00",
     
     
     
@@ -9464,30 +9464,30 @@ the Plakar management API.</p>
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>String, Sensitive</td>
-          <td>API key of a service account (pcp_ak_&hellip;). Falls back to PLAKAR_API_KEY.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>String</td>
-          <td>Base URL of the Plakar management API, e.g. <a href="https://plakar.example.com"  target="_blank" rel="noreferrer">https://plakar.example.com</a>. Falls back to PLAKAR_API_URL.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>String</td>
-          <td>Organization to operate in, when different from the one the API key is bound to.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>String, Sensitive</td>
+					<td>API key of a service account (pcp_ak_&hellip;). Falls back to PLAKAR_API_KEY.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>String</td>
+					<td>Base URL of the Plakar management API, e.g. <a href="https://plakar.example.com"  target="_blank" rel="noreferrer">https://plakar.example.com</a>. Falls back to PLAKAR_API_URL.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>String</td>
+					<td>Organization to operate in, when different from the one the API key is bound to.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -9566,94 +9566,94 @@ the Plakar management API.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>fields</code></td>
-          <td>Map of String, Sensitive</td>
-          <td>Integration-specific configuration. Only the keys declared here are managed; anything else set server-side keeps its value.</td>
-      </tr>
-      <tr>
-          <td><code>integration</code></td>
-          <td>String</td>
-          <td>Name of the installed integration backing the connector, e.g. s3 or sftp.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td>Name of the connector, unique per connector type in the organization.</td>
-      </tr>
-      <tr>
-          <td><code>resource</code></td>
-          <td>String</td>
-          <td>URN or name of the inventory resource the connector attaches to.</td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>String</td>
-          <td>What the connector is used for: source or destination.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>fields</code></td>
+					<td>Map of String, Sensitive</td>
+					<td>Integration-specific configuration. Only the keys declared here are managed; anything else set server-side keeps its value.</td>
+			</tr>
+			<tr>
+					<td><code>integration</code></td>
+					<td>String</td>
+					<td>Name of the installed integration backing the connector, e.g. s3 or sftp.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td>Name of the connector, unique per connector type in the organization.</td>
+			</tr>
+			<tr>
+					<td><code>resource</code></td>
+					<td>String</td>
+					<td>URN or name of the inventory resource the connector attaches to.</td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>String</td>
+					<td>What the connector is used for: source or destination.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>data_classes</code></td>
-          <td>List of String</td>
-          <td>Data classes the connector carries.</td>
-      </tr>
-      <tr>
-          <td><code>environment</code></td>
-          <td>String</td>
-          <td>Environment label, e.g. production.</td>
-      </tr>
-      <tr>
-          <td><code>protocol</code></td>
-          <td>String</td>
-          <td>Protocol spoken to the resource. Defaults to the integration name, which matches for the standard integrations.</td>
-      </tr>
-      <tr>
-          <td><code>temperature</code></td>
-          <td>String</td>
-          <td>Storage temperature. Computed by the server when not set.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>data_classes</code></td>
+					<td>List of String</td>
+					<td>Data classes the connector carries.</td>
+			</tr>
+			<tr>
+					<td><code>environment</code></td>
+					<td>String</td>
+					<td>Environment label, e.g. production.</td>
+			</tr>
+			<tr>
+					<td><code>protocol</code></td>
+					<td>String</td>
+					<td>Protocol spoken to the resource. Defaults to the integration name, which matches for the standard integrations.</td>
+			</tr>
+			<tr>
+					<td><code>temperature</code></td>
+					<td>String</td>
+					<td>Storage temperature. Computed by the server when not set.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>urn_id</code></td>
-          <td>String</td>
-          <td>Resolved id of the inventory resource.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>urn_id</code></td>
+					<td>String</td>
+					<td>Resolved id of the inventory resource.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -9746,59 +9746,59 @@ catalogue, the standard tier being owner, administrator, operator and auditor.</
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>role</code></td>
-          <td>String</td>
-          <td>Name of the role, as the catalogue spells it, e.g. operator.</td>
-      </tr>
-      <tr>
-          <td><code>subject_id</code></td>
-          <td>String</td>
-          <td>User id of the member holding the grant, e.g. a plakar_member&rsquo;s id.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>role</code></td>
+					<td>String</td>
+					<td>Name of the role, as the catalogue spells it, e.g. operator.</td>
+			</tr>
+			<tr>
+					<td><code>subject_id</code></td>
+					<td>String</td>
+					<td>User id of the member holding the grant, e.g. a plakar_member&rsquo;s id.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>String</td>
-          <td>Id of the organization the grant lives in. Defaults to the provider&rsquo;s organization.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>String</td>
+					<td>Id of the organization the grant lives in. Defaults to the provider&rsquo;s organization.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td>Id of the grant. A role change replaces the row server-side, so the id changes with it.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td>Id of the grant. A role change replaces the row server-side, so the id changes with it.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -9901,84 +9901,84 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td>Name of the inventory.</td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>String</td>
-          <td>What backs the inventory: aws, ovh, scaleway, gcp, vmware, k8s or self-managed. Must match the configuration block, one of which is required for every type but self-managed.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td>Name of the inventory.</td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>String</td>
+					<td>What backs the inventory: aws, ovh, scaleway, gcp, vmware, k8s or self-managed. Must match the configuration block, one of which is required for every type but self-managed.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>aws</code></td>
-          <td>Block</td>
-          <td>Configuration of an aws inventory.</td>
-      </tr>
-      <tr>
-          <td><code>gcp</code></td>
-          <td>Block</td>
-          <td>Configuration of a gcp inventory.</td>
-      </tr>
-      <tr>
-          <td><code>k8s</code></td>
-          <td>Block</td>
-          <td>Configuration of a k8s inventory.</td>
-      </tr>
-      <tr>
-          <td><code>ovh</code></td>
-          <td>Block</td>
-          <td>Configuration of an ovh inventory.</td>
-      </tr>
-      <tr>
-          <td><code>scaleway</code></td>
-          <td>Block</td>
-          <td>Configuration of a scaleway inventory.</td>
-      </tr>
-      <tr>
-          <td><code>vmware</code></td>
-          <td>Block</td>
-          <td>Configuration of a vmware inventory.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>aws</code></td>
+					<td>Block</td>
+					<td>Configuration of an aws inventory.</td>
+			</tr>
+			<tr>
+					<td><code>gcp</code></td>
+					<td>Block</td>
+					<td>Configuration of a gcp inventory.</td>
+			</tr>
+			<tr>
+					<td><code>k8s</code></td>
+					<td>Block</td>
+					<td>Configuration of a k8s inventory.</td>
+			</tr>
+			<tr>
+					<td><code>ovh</code></td>
+					<td>Block</td>
+					<td>Configuration of an ovh inventory.</td>
+			</tr>
+			<tr>
+					<td><code>scaleway</code></td>
+					<td>Block</td>
+					<td>Configuration of a scaleway inventory.</td>
+			</tr>
+			<tr>
+					<td><code>vmware</code></td>
+					<td>Block</td>
+					<td>Configuration of a vmware inventory.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -9999,35 +9999,35 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
 </h4>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>access_key</code></td>
-          <td>String, Sensitive</td>
-          <td>Access key id, when credentials_type is access_key.</td>
-      </tr>
-      <tr>
-          <td><code>credentials_type</code></td>
-          <td>String</td>
-          <td>How to authenticate: iam or access_key.</td>
-      </tr>
-      <tr>
-          <td><code>region</code></td>
-          <td>String</td>
-          <td>AWS region the discovery runs against.</td>
-      </tr>
-      <tr>
-          <td><code>secret_access_key</code></td>
-          <td>String, Sensitive</td>
-          <td>Secret access key, when credentials_type is access_key.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>access_key</code></td>
+					<td>String, Sensitive</td>
+					<td>Access key id, when credentials_type is access_key.</td>
+			</tr>
+			<tr>
+					<td><code>credentials_type</code></td>
+					<td>String</td>
+					<td>How to authenticate: iam or access_key.</td>
+			</tr>
+			<tr>
+					<td><code>region</code></td>
+					<td>String</td>
+					<td>AWS region the discovery runs against.</td>
+			</tr>
+			<tr>
+					<td><code>secret_access_key</code></td>
+					<td>String, Sensitive</td>
+					<td>Secret access key, when credentials_type is access_key.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10048,25 +10048,25 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
 </h4>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>project_id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>service_account_json</code></td>
-          <td>String, Sensitive</td>
-          <td>Service account key, as JSON. Unset falls back to ambient credentials.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>project_id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>service_account_json</code></td>
+					<td>String, Sensitive</td>
+					<td>Service account key, as JSON. Unset falls back to ambient credentials.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10087,20 +10087,20 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
 </h4>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>kubeconfig</code></td>
-          <td>String, Sensitive</td>
-          <td>Kubeconfig granting access to the cluster. Unset falls back to in-cluster credentials.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>kubeconfig</code></td>
+					<td>String, Sensitive</td>
+					<td>Kubeconfig granting access to the cluster. Unset falls back to in-cluster credentials.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10121,35 +10121,35 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
 </h4>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>application_key</code></td>
-          <td>String, Sensitive</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>application_secret</code></td>
-          <td>String, Sensitive</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>consumer_key</code></td>
-          <td>String, Sensitive</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>endpoint</code></td>
-          <td>String</td>
-          <td>OVH API endpoint, e.g. ovh-eu.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>application_key</code></td>
+					<td>String, Sensitive</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>application_secret</code></td>
+					<td>String, Sensitive</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>consumer_key</code></td>
+					<td>String, Sensitive</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>endpoint</code></td>
+					<td>String</td>
+					<td>OVH API endpoint, e.g. ovh-eu.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10170,30 +10170,30 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
 </h4>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>access_key</code></td>
-          <td>String, Sensitive</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>project_id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>secret_key</code></td>
-          <td>String, Sensitive</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>access_key</code></td>
+					<td>String, Sensitive</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>project_id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>secret_key</code></td>
+					<td>String, Sensitive</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10214,40 +10214,40 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
 </h4>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>password</code></td>
-          <td>String, Sensitive</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>server</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>tls_ca_bundle</code></td>
-          <td>String</td>
-          <td>CA bundle to verify the vSphere server against, PEM.</td>
-      </tr>
-      <tr>
-          <td><code>tls_skip_verify</code></td>
-          <td>Boolean</td>
-          <td>Skip TLS verification of the vSphere server.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>password</code></td>
+					<td>String, Sensitive</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>server</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>tls_ca_bundle</code></td>
+					<td>String</td>
+					<td>CA bundle to verify the vSphere server against, PEM.</td>
+			</tr>
+			<tr>
+					<td><code>tls_skip_verify</code></td>
+					<td>Boolean</td>
+					<td>Skip TLS verification of the vSphere server.</td>
+			</tr>
+			<tr>
+					<td><code>username</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10354,94 +10354,94 @@ plakar_resource data source.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>class</code></td>
-          <td>String</td>
-          <td>Resource class, e.g. compute, database, storage.</td>
-      </tr>
-      <tr>
-          <td><code>inventory_id</code></td>
-          <td>String</td>
-          <td>Id of the self-managed inventory the resource lives in.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td>Human name of the resource.</td>
-      </tr>
-      <tr>
-          <td><code>urn</code></td>
-          <td>String</td>
-          <td>URN identifying the resource, unique within the inventory.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>class</code></td>
+					<td>String</td>
+					<td>Resource class, e.g. compute, database, storage.</td>
+			</tr>
+			<tr>
+					<td><code>inventory_id</code></td>
+					<td>String</td>
+					<td>Id of the self-managed inventory the resource lives in.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td>Human name of the resource.</td>
+			</tr>
+			<tr>
+					<td><code>urn</code></td>
+					<td>String</td>
+					<td>URN identifying the resource, unique within the inventory.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>endpoints</code></td>
-          <td>List of String</td>
-          <td>Addresses of the resource — hostnames or IPs; the kind is derived server-side.</td>
-      </tr>
-      <tr>
-          <td><code>excluded_from_coverage</code></td>
-          <td>Boolean</td>
-          <td>Leave the resource out of coverage accounting.</td>
-      </tr>
-      <tr>
-          <td><code>service</code></td>
-          <td>String</td>
-          <td>Service label the resource belongs to.</td>
-      </tr>
-      <tr>
-          <td><code>subclass</code></td>
-          <td>String</td>
-          <td>Finer class, e.g. vm, postgres.</td>
-      </tr>
-      <tr>
-          <td><code>tags</code></td>
-          <td>List of String</td>
-          <td>Free-form tags.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>endpoints</code></td>
+					<td>List of String</td>
+					<td>Addresses of the resource — hostnames or IPs; the kind is derived server-side.</td>
+			</tr>
+			<tr>
+					<td><code>excluded_from_coverage</code></td>
+					<td>Boolean</td>
+					<td>Leave the resource out of coverage accounting.</td>
+			</tr>
+			<tr>
+					<td><code>service</code></td>
+					<td>String</td>
+					<td>Service label the resource belongs to.</td>
+			</tr>
+			<tr>
+					<td><code>subclass</code></td>
+					<td>String</td>
+					<td>Finer class, e.g. vm, postgres.</td>
+			</tr>
+			<tr>
+					<td><code>tags</code></td>
+					<td>List of String</td>
+					<td>Free-form tags.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td>Id of the resource&rsquo;s URN, the handle connectors attach to.</td>
-      </tr>
-      <tr>
-          <td><code>locked</code></td>
-          <td>Boolean</td>
-          <td>Whether the resource is locked — no task may use a connector configured against it. Placed and lifted outside Terraform, by an operator — which is why it plans as unknown: promising the state&rsquo;s value could contradict an operator&rsquo;s act.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td>Id of the resource&rsquo;s URN, the handle connectors attach to.</td>
+			</tr>
+			<tr>
+					<td><code>locked</code></td>
+					<td>Boolean</td>
+					<td>Whether the resource is locked — no task may use a connector configured against it. Placed and lifted outside Terraform, by an operator — which is why it plans as unknown: promising the state&rsquo;s value could contradict an operator&rsquo;s act.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10542,67 +10542,67 @@ not the person&rsquo;s account.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>email</code></td>
-          <td>String</td>
-          <td>Email address of the person. Required for a person; a service account has none.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td>Display name. Required for a service account, which has no address and is identified by it — changing it replaces. For a person it is decoration applied only when the account is created; an existing account keeps its own name, so it is neither refreshed nor sent again — changing it only updates state.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>String</td>
-          <td>Id of the organization. Defaults to the provider&rsquo;s organization.</td>
-      </tr>
-      <tr>
-          <td><code>service</code></td>
-          <td>Boolean</td>
-          <td>Add an application user rather than a person: no email, no interactive login.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>email</code></td>
+					<td>String</td>
+					<td>Email address of the person. Required for a person; a service account has none.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td>Display name. Required for a service account, which has no address and is identified by it — changing it replaces. For a person it is decoration applied only when the account is created; an existing account keeps its own name, so it is neither refreshed nor sent again — changing it only updates state.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>String</td>
+					<td>Id of the organization. Defaults to the provider&rsquo;s organization.</td>
+			</tr>
+			<tr>
+					<td><code>service</code></td>
+					<td>Boolean</td>
+					<td>Add an application user rather than a person: no email, no interactive login.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>account</code></td>
-          <td>String</td>
-          <td>Login identifier of the membership: <prefix>/<email>, or a bare email at the deployment root.</td>
-      </tr>
-      <tr>
-          <td><code>account_created</code></td>
-          <td>Boolean</td>
-          <td>Whether a brand-new account was registered for the address at creation.</td>
-      </tr>
-      <tr>
-          <td><code>generated_password</code></td>
-          <td>String, Sensitive</td>
-          <td>The one-time must-change password the server minted for a brand-new account, kept from creation; null when the address already had one. A service account&rsquo;s is inert — an application user has no interactive login.</td>
-      </tr>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td>User id of the member.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>account</code></td>
+					<td>String</td>
+					<td>Login identifier of the membership: <prefix>/<email>, or a bare email at the deployment root.</td>
+			</tr>
+			<tr>
+					<td><code>account_created</code></td>
+					<td>Boolean</td>
+					<td>Whether a brand-new account was registered for the address at creation.</td>
+			</tr>
+			<tr>
+					<td><code>generated_password</code></td>
+					<td>String, Sensitive</td>
+					<td>The one-time must-change password the server minted for a brand-new account, kept from creation; null when the address already had one. A service account&rsquo;s is inert — an application user has no interactive login.</td>
+			</tr>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td>User id of the member.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10695,64 +10695,64 @@ deletes the tenant and everything scoped to it.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td>Name of the organization.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td>Name of the organization.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>info</code></td>
-          <td>Map of String</td>
-          <td>Free-form key/value information attached at creation.</td>
-      </tr>
-      <tr>
-          <td><code>parent_id</code></td>
-          <td>String</td>
-          <td>Id of the parent organization. Defaults to the provider&rsquo;s organization.</td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>String</td>
-          <td>Organization type. Only enterprise organizations can be created as sub-organizations today.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>info</code></td>
+					<td>Map of String</td>
+					<td>Free-form key/value information attached at creation.</td>
+			</tr>
+			<tr>
+					<td><code>parent_id</code></td>
+					<td>String</td>
+					<td>Id of the parent organization. Defaults to the provider&rsquo;s organization.</td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>String</td>
+					<td>Organization type. Only enterprise organizations can be created as sub-organizations today.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10858,99 +10858,99 @@ scheduled prune carries the retention rule.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td>Name of the schedule. Stored but not echoed by the API, so drift on the name is not detected.</td>
-      </tr>
-      <tr>
-          <td><code>origin_id</code></td>
-          <td>String</td>
-          <td>Id of the origin connector: the source for a backup, the store for a prune, sync or check.</td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>String</td>
-          <td>What the schedule runs: backup, prune, sync or check.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td>Name of the schedule. Stored but not echoed by the API, so drift on the name is not detected.</td>
+			</tr>
+			<tr>
+					<td><code>origin_id</code></td>
+					<td>String</td>
+					<td>Id of the origin connector: the source for a backup, the store for a prune, sync or check.</td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>String</td>
+					<td>What the schedule runs: backup, prune, sync or check.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>description</code></td>
-          <td>String</td>
-          <td>Free-form description. Stored but not echoed by the API.</td>
-      </tr>
-      <tr>
-          <td><code>enabled</code></td>
-          <td>Boolean</td>
-          <td>Whether the schedule runs at all.</td>
-      </tr>
-      <tr>
-          <td><code>group_by</code></td>
-          <td>String</td>
-          <td>For a prune: partition matched snapshots before applying the rule, e.g. dataset to hold the rule per source.</td>
-      </tr>
-      <tr>
-          <td><code>ignores</code></td>
-          <td>List of String</td>
-          <td>For a backup: path patterns to exclude.</td>
-      </tr>
-      <tr>
-          <td><code>labels</code></td>
-          <td>List of String</td>
-          <td>For a backup: labels stamped on the snapshots. For the other types: only snapshots carrying these tags are considered.</td>
-      </tr>
-      <tr>
-          <td><code>retention</code></td>
-          <td>Map of Number</td>
-          <td>For a prune: the retention rule, as bucket options — minute, hour, day, week, month, year for how many recent buckets to keep, per_minute &hellip; per_year for how many snapshots in each.</td>
-      </tr>
-      <tr>
-          <td><code>target_id</code></td>
-          <td>String</td>
-          <td>Id of the target connector: the store for a backup, the destination store for a sync. A check has none.</td>
-      </tr>
-      <tr>
-          <td><code>rule</code></td>
-          <td>Block List</td>
-          <td>A recurrence of the schedule. At least one.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>description</code></td>
+					<td>String</td>
+					<td>Free-form description. Stored but not echoed by the API.</td>
+			</tr>
+			<tr>
+					<td><code>enabled</code></td>
+					<td>Boolean</td>
+					<td>Whether the schedule runs at all.</td>
+			</tr>
+			<tr>
+					<td><code>group_by</code></td>
+					<td>String</td>
+					<td>For a prune: partition matched snapshots before applying the rule, e.g. dataset to hold the rule per source.</td>
+			</tr>
+			<tr>
+					<td><code>ignores</code></td>
+					<td>List of String</td>
+					<td>For a backup: path patterns to exclude.</td>
+			</tr>
+			<tr>
+					<td><code>labels</code></td>
+					<td>List of String</td>
+					<td>For a backup: labels stamped on the snapshots. For the other types: only snapshots carrying these tags are considered.</td>
+			</tr>
+			<tr>
+					<td><code>retention</code></td>
+					<td>Map of Number</td>
+					<td>For a prune: the retention rule, as bucket options — minute, hour, day, week, month, year for how many recent buckets to keep, per_minute &hellip; per_year for how many snapshots in each.</td>
+			</tr>
+			<tr>
+					<td><code>target_id</code></td>
+					<td>String</td>
+					<td>Id of the target connector: the store for a backup, the destination store for a sync. A check has none.</td>
+			</tr>
+			<tr>
+					<td><code>rule</code></td>
+					<td>Block List</td>
+					<td>A recurrence of the schedule. At least one.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10971,64 +10971,64 @@ scheduled prune carries the retention rule.</p>
 </h4>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>periodicity</code></td>
-          <td>Number</td>
-          <td>Seconds between runs.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>periodicity</code></td>
+					<td>Number</td>
+					<td>Seconds between runs.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>enabled</code></td>
-          <td>Boolean</td>
-          <td>Whether this rule fires.</td>
-      </tr>
-      <tr>
-          <td><code>jitter</code></td>
-          <td>Number</td>
-          <td>Seconds of random spread around each run.</td>
-      </tr>
-      <tr>
-          <td><code>start</code></td>
-          <td>String</td>
-          <td>RFC3339 time the rule starts from.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>enabled</code></td>
+					<td>Boolean</td>
+					<td>Whether this rule fires.</td>
+			</tr>
+			<tr>
+					<td><code>jitter</code></td>
+					<td>Number</td>
+					<td>Seconds of random spread around each run.</td>
+			</tr>
+			<tr>
+					<td><code>start</code></td>
+					<td>String</td>
+					<td>RFC3339 time the rule starts from.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td>Server-assigned rule id.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td>Server-assigned rule id.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11120,99 +11120,99 @@ store from Plakar; data in the underlying storage is not touched.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>fields</code></td>
-          <td>Map of String, Sensitive</td>
-          <td>Integration-specific configuration. Must carry a non-empty <code>passphrase</code> when the store is initialized here: it encrypts the store at rest. Only the keys declared here are managed; anything else set server-side keeps its value.</td>
-      </tr>
-      <tr>
-          <td><code>integration</code></td>
-          <td>String</td>
-          <td>Name of the installed integration backing the store, e.g. s3.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td>Name of the store, unique among stores in the organization.</td>
-      </tr>
-      <tr>
-          <td><code>resource</code></td>
-          <td>String</td>
-          <td>URN or name of the inventory resource the store attaches to.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>fields</code></td>
+					<td>Map of String, Sensitive</td>
+					<td>Integration-specific configuration. Must carry a non-empty <code>passphrase</code> when the store is initialized here: it encrypts the store at rest. Only the keys declared here are managed; anything else set server-side keeps its value.</td>
+			</tr>
+			<tr>
+					<td><code>integration</code></td>
+					<td>String</td>
+					<td>Name of the installed integration backing the store, e.g. s3.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td>Name of the store, unique among stores in the organization.</td>
+			</tr>
+			<tr>
+					<td><code>resource</code></td>
+					<td>String</td>
+					<td>URN or name of the inventory resource the store attaches to.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>compression</code></td>
-          <td>String</td>
-          <td>Compression for the store at initialization (GZIP, LZ4, ZSTD). Unset keeps the engine&rsquo;s default.</td>
-      </tr>
-      <tr>
-          <td><code>data_classes</code></td>
-          <td>List of String</td>
-          <td>Data classes the store accepts.</td>
-      </tr>
-      <tr>
-          <td><code>environment</code></td>
-          <td>String</td>
-          <td>Environment label, e.g. production.</td>
-      </tr>
-      <tr>
-          <td><code>initialize</code></td>
-          <td>Boolean</td>
-          <td>Initialize the underlying storage at creation. Never re-runs on update. Set it to false when the storage is already initialized elsewhere, which also lifts the passphrase requirement.</td>
-      </tr>
-      <tr>
-          <td><code>protocol</code></td>
-          <td>String</td>
-          <td>Protocol spoken to the resource. Defaults to the integration name, which matches for the standard integrations.</td>
-      </tr>
-      <tr>
-          <td><code>temperature</code></td>
-          <td>String</td>
-          <td>Storage temperature. Computed by the server when not set.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>compression</code></td>
+					<td>String</td>
+					<td>Compression for the store at initialization (GZIP, LZ4, ZSTD). Unset keeps the engine&rsquo;s default.</td>
+			</tr>
+			<tr>
+					<td><code>data_classes</code></td>
+					<td>List of String</td>
+					<td>Data classes the store accepts.</td>
+			</tr>
+			<tr>
+					<td><code>environment</code></td>
+					<td>String</td>
+					<td>Environment label, e.g. production.</td>
+			</tr>
+			<tr>
+					<td><code>initialize</code></td>
+					<td>Boolean</td>
+					<td>Initialize the underlying storage at creation. Never re-runs on update. Set it to false when the storage is already initialized elsewhere, which also lifts the passphrase requirement.</td>
+			</tr>
+			<tr>
+					<td><code>protocol</code></td>
+					<td>String</td>
+					<td>Protocol spoken to the resource. Defaults to the integration name, which matches for the standard integrations.</td>
+			</tr>
+			<tr>
+					<td><code>temperature</code></td>
+					<td>String</td>
+					<td>Storage temperature. Computed by the server when not set.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>urn_id</code></td>
-          <td>String</td>
-          <td>Resolved id of the inventory resource.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>urn_id</code></td>
+					<td>String</td>
+					<td>Resolved id of the inventory resource.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11312,57 +11312,57 @@ store from Plakar; data in the underlying storage is not touched.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>String</td>
-          <td>source or destination.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>String</td>
+					<td>source or destination.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>environment</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>protocol</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>urn_id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>environment</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>protocol</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>urn_id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11415,37 +11415,37 @@ store from Plakar; data in the underlying storage is not touched.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11498,42 +11498,42 @@ store from Plakar; data in the underlying storage is not touched.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>String</td>
-          <td>aws, ovh, scaleway, gcp, vmware, k8s or self-managed.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>String</td>
+					<td>aws, ovh, scaleway, gcp, vmware, k8s or self-managed.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11595,57 +11595,57 @@ account, which has no address).</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Optional</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>email</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>String</td>
-          <td>Id of the organization. Defaults to the provider&rsquo;s organization.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>email</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>String</td>
+					<td>Id of the organization. Defaults to the provider&rsquo;s organization.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>account</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td>User id of the member.</td>
-      </tr>
-      <tr>
-          <td><code>service</code></td>
-          <td>Boolean</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>account</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td>User id of the member.</td>
+			</tr>
+			<tr>
+					<td><code>service</code></td>
+					<td>Boolean</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11698,47 +11698,47 @@ account, which has no address).</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>parent_id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>parent_id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11791,47 +11791,47 @@ account, which has no address).</p>
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>ref</code></td>
-          <td>String</td>
-          <td>URN or name of the resource. Names must be unique to resolve; use the URN to disambiguate.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>ref</code></td>
+					<td>String</td>
+					<td>URN or name of the resource. Names must be unique to resolve; use the URN to disambiguate.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>urn</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>urn_id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>urn</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>urn_id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11884,57 +11884,57 @@ account, which has no address).</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <p><strong>Required</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Argument</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>name</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Argument</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>name</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Read-Only</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>environment</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>protocol</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>urn_id</code></td>
-          <td>String</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>environment</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>protocol</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>urn_id</code></td>
+					<td>String</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 
       </article>
@@ -12261,8 +12261,8 @@ account, which has no address).</p>
 
     <div class="overflow-hidden md:px-8">
       <img
-      src="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp"
-      srcset="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp 400w, /img/general/plakar-footer-banner_hu_f6d93c3223e43dd4.webp 800w, /img/general/plakar-footer-banner_hu_874c0cb913e58b5b.webp 1200w" sizes="auto"
+      src="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp"
+      srcset="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp 400w, /img/general/plakar-footer-banner_hu_ae1daca09bcae57b.webp 800w, /img/general/plakar-footer-banner_hu_c962588300d46a9f.webp 1200w" sizes="auto"
       width="400"
       height="72"
       alt="Footer banner"

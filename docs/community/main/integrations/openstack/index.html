@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-10-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-25T10:57:43+01:00">
+    <meta property="article:modified_time" content="2026-11-25T14:16:04+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.48b3068f59742386f0afdc8ef1998ba05fd2b63ca7e6ca760e5deb802cb6d6beeddc01a10045b72d3df186e50ba41f6f4aeadeff8a88a6d3d3c732659fd5bd62.css"
-    integrity="sha512-SLMGj1l0I4bwr9yO8ZmLoF/Stjyn5sp2Dl3rgCy21r7t3AGhAEW3LT3xhuULpB9vSure/4qIptPTxzJln9W9Yg==">
+    href="/css/main.bundle.min.9d8b3d3a769e1fcb34830c40c256c895e6300b002dc9a0f22e0e6156407d1943a14f3b950e766732d15a8eb9f685aa4da0454620800e37dd334055844be11ffc.css"
+    integrity="sha512-nYs9OnaeH8s0gwxAwlbIleYwCwAtyaDyLg5hVkB9GUOhTzuVDnZnMtFajrn2hapNoEVGIIAON90zQFWES&#43;Ef/A==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -239,12 +239,12 @@
     "dateCreated": "2026-10-21T00:00:00\u002b00:00",
     "datePublished": "2026-10-21T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-25T10:57:43\u002b01:00",
+    "dateModified": "2026-11-25T14:16:04\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/openstack/",
-    "wordCount":  1457 
+    "wordCount":  1464 
   }]
   </script>
 
@@ -4618,41 +4618,41 @@ overwriting it: disks come back as new Cinder volumes, and the original server
 or volume is never modified.</p>
 <p>The integration includes two connectors:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Connector type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Source connector</strong></td>
-          <td>Back up a server or a volume into a Kloset store.</td>
-      </tr>
-      <tr>
-          <td><strong>Destination connector</strong></td>
-          <td>Restore a server or a volume from a Kloset store to an OpenStack cloud.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Connector type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Source connector</strong></td>
+					<td>Back up a server or a volume into a Kloset store.</td>
+			</tr>
+			<tr>
+					<td><strong>Destination connector</strong></td>
+					<td>Restore a server or a volume from a Kloset store to an OpenStack cloud.</td>
+			</tr>
+	</tbody>
 </table>
 <p>Both connectors support two protocols:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Protocol</th>
-          <th>What it backs up</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>openstack-block</code></td>
-          <td>A single Cinder volume.</td>
-      </tr>
-      <tr>
-          <td><code>openstack-instance</code></td>
-          <td>A Nova server, its root disk and every Cinder volume attached to it.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Protocol</th>
+					<th>What it backs up</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>openstack-block</code></td>
+					<td>A single Cinder volume.</td>
+			</tr>
+			<tr>
+					<td><code>openstack-instance</code></td>
+					<td>A Nova server, its root disk and every Cinder volume attached to it.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Requirements</strong></p>
 <ul>
@@ -4943,60 +4943,60 @@ Store --> Plakar --> Transform --> Images
 <p>The following options apply to both source and destination connectors using the
 <code>openstack-instance</code> protocol.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>openstack_auth_url</code></td>
-          <td>Yes</td>
-          <td>Keystone v3 endpoint, for example <code>https://keystone.example.com:5000/v3</code>.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_region</code></td>
-          <td>Yes</td>
-          <td>A single region. For a source, the region the server runs in. For a destination, the region to restore into.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_application_credential_id</code></td>
-          <td>No</td>
-          <td>Application credential ID. Requires <code>openstack_application_credential_secret</code>.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_application_credential_secret</code></td>
-          <td>No</td>
-          <td>Application credential secret. Requires <code>openstack_application_credential_id</code>.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_username</code></td>
-          <td>No</td>
-          <td>Username, for password authentication.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_password</code></td>
-          <td>No</td>
-          <td>Password, for password authentication.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_project_id</code></td>
-          <td>No</td>
-          <td>Project ID, for password authentication. Takes precedence over <code>openstack_project_name</code>.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_project_name</code></td>
-          <td>No</td>
-          <td>Project name, for password authentication. Required when <code>openstack_project_id</code> is not set.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_domain_name</code></td>
-          <td>No</td>
-          <td>Domain of the user, and of the project when it is given by name. Defaults to <code>Default</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>openstack_auth_url</code></td>
+					<td>Yes</td>
+					<td>Keystone v3 endpoint, for example <code>https://keystone.example.com:5000/v3</code>.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_region</code></td>
+					<td>Yes</td>
+					<td>A single region. For a source, the region the server runs in. For a destination, the region to restore into.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_application_credential_id</code></td>
+					<td>No</td>
+					<td>Application credential ID. Requires <code>openstack_application_credential_secret</code>.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_application_credential_secret</code></td>
+					<td>No</td>
+					<td>Application credential secret. Requires <code>openstack_application_credential_id</code>.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_username</code></td>
+					<td>No</td>
+					<td>Username, for password authentication.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_password</code></td>
+					<td>No</td>
+					<td>Password, for password authentication.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_project_id</code></td>
+					<td>No</td>
+					<td>Project ID, for password authentication. Takes precedence over <code>openstack_project_name</code>.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_project_name</code></td>
+					<td>No</td>
+					<td>Project name, for password authentication. Required when <code>openstack_project_id</code> is not set.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_domain_name</code></td>
+					<td>No</td>
+					<td>Domain of the user, and of the project when it is given by name. Defaults to <code>Default</code>.</td>
+			</tr>
+	</tbody>
 </table>
 <p>Either the application credential or <code>openstack_username</code> and
 <code>openstack_password</code> must be set.</p>
@@ -5019,20 +5019,20 @@ Store --> Plakar --> Transform --> Images
 </h3>
 <p>The following extra options are available on the store connector.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td><code>openstack-instance://&lt;server-id&gt;</code>, the server to back up.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td><code>openstack-instance://&lt;server-id&gt;</code>, the server to back up.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5053,20 +5053,20 @@ Store --> Plakar --> Transform --> Images
 </h3>
 <p>The following extra options are available on the destination connector.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td><code>openstack-instance://</code> or <code>openstack-instance://spawn</code> to create a new server, or <code>openstack-instance://&lt;server-id&gt;</code> to attach the restored disks to an existing server.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td><code>openstack-instance://</code> or <code>openstack-instance://spawn</code> to create a new server, or <code>openstack-instance://&lt;server-id&gt;</code> to attach the restored disks to an existing server.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5270,60 +5270,60 @@ Store --> Plakar --> Transform --> Image
 <p>The following options apply to both source and destination connectors using the
 <code>openstack-block</code> protocol.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>openstack_auth_url</code></td>
-          <td>Yes</td>
-          <td>Keystone v3 endpoint, for example <code>https://keystone.example.com:5000/v3</code>.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_region</code></td>
-          <td>Yes</td>
-          <td>A single region. For a source, the region the volume lives in. For a destination, the region to restore into.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_application_credential_id</code></td>
-          <td>No</td>
-          <td>Application credential ID. Requires <code>openstack_application_credential_secret</code>.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_application_credential_secret</code></td>
-          <td>No</td>
-          <td>Application credential secret. Requires <code>openstack_application_credential_id</code>.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_username</code></td>
-          <td>No</td>
-          <td>Username, for password authentication.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_password</code></td>
-          <td>No</td>
-          <td>Password, for password authentication.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_project_id</code></td>
-          <td>No</td>
-          <td>Project ID, for password authentication. Takes precedence over <code>openstack_project_name</code>.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_project_name</code></td>
-          <td>No</td>
-          <td>Project name, for password authentication. Required when <code>openstack_project_id</code> is not set.</td>
-      </tr>
-      <tr>
-          <td><code>openstack_domain_name</code></td>
-          <td>No</td>
-          <td>Domain of the user, and of the project when it is given by name. Defaults to <code>Default</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>openstack_auth_url</code></td>
+					<td>Yes</td>
+					<td>Keystone v3 endpoint, for example <code>https://keystone.example.com:5000/v3</code>.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_region</code></td>
+					<td>Yes</td>
+					<td>A single region. For a source, the region the volume lives in. For a destination, the region to restore into.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_application_credential_id</code></td>
+					<td>No</td>
+					<td>Application credential ID. Requires <code>openstack_application_credential_secret</code>.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_application_credential_secret</code></td>
+					<td>No</td>
+					<td>Application credential secret. Requires <code>openstack_application_credential_id</code>.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_username</code></td>
+					<td>No</td>
+					<td>Username, for password authentication.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_password</code></td>
+					<td>No</td>
+					<td>Password, for password authentication.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_project_id</code></td>
+					<td>No</td>
+					<td>Project ID, for password authentication. Takes precedence over <code>openstack_project_name</code>.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_project_name</code></td>
+					<td>No</td>
+					<td>Project name, for password authentication. Required when <code>openstack_project_id</code> is not set.</td>
+			</tr>
+			<tr>
+					<td><code>openstack_domain_name</code></td>
+					<td>No</td>
+					<td>Domain of the user, and of the project when it is given by name. Defaults to <code>Default</code>.</td>
+			</tr>
+	</tbody>
 </table>
 <p>Either the application credential or <code>openstack_username</code> and
 <code>openstack_password</code> must be set.</p>
@@ -5346,20 +5346,20 @@ Store --> Plakar --> Transform --> Image
 </h3>
 <p>The following extra options are available on the source connector.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td><code>openstack-block://&lt;volume-id&gt;</code>, the volume to back up.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td><code>openstack-block://&lt;volume-id&gt;</code>, the volume to back up.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5380,20 +5380,20 @@ Store --> Plakar --> Transform --> Image
 </h3>
 <p>The following extra options are available on the destination connector.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td><code>openstack-block://</code> or <code>openstack-block://spawn</code>, both creating a new, detached volume.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td><code>openstack-block://</code> or <code>openstack-block://spawn</code>, both creating a new, detached volume.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5867,8 +5867,8 @@ Store --> Plakar --> Transform --> Image
 
     <div class="overflow-hidden md:px-8">
       <img
-      src="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp"
-      srcset="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp 400w, /img/general/plakar-footer-banner_hu_f6d93c3223e43dd4.webp 800w, /img/general/plakar-footer-banner_hu_874c0cb913e58b5b.webp 1200w" sizes="auto"
+      src="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp"
+      srcset="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp 400w, /img/general/plakar-footer-banner_hu_ae1daca09bcae57b.webp 800w, /img/general/plakar-footer-banner_hu_c962588300d46a9f.webp 1200w" sizes="auto"
       width="400"
       height="72"
       alt="Footer banner"

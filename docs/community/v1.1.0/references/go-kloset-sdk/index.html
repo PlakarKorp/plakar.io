@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-25T10:57:43+01:00">
+    <meta property="article:modified_time" content="2026-11-25T14:16:04+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.48b3068f59742386f0afdc8ef1998ba05fd2b63ca7e6ca760e5deb802cb6d6beeddc01a10045b72d3df186e50ba41f6f4aeadeff8a88a6d3d3c732659fd5bd62.css"
-    integrity="sha512-SLMGj1l0I4bwr9yO8ZmLoF/Stjyn5sp2Dl3rgCy21r7t3AGhAEW3LT3xhuULpB9vSure/4qIptPTxzJln9W9Yg==">
+    href="/css/main.bundle.min.9d8b3d3a769e1fcb34830c40c256c895e6300b002dc9a0f22e0e6156407d1943a14f3b950e766732d15a8eb9f685aa4da0454620800e37dd334055844be11ffc.css"
+    integrity="sha512-nYs9OnaeH8s0gwxAwlbIleYwCwAtyaDyLg5hVkB9GUOhTzuVDnZnMtFajrn2hapNoEVGIIAON90zQFWES&#43;Ef/A==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -229,7 +229,7 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-25T10:57:43\u002b01:00",
+    "dateModified": "2026-11-25T14:16:04\u002b01:00",
     
     
     
@@ -4901,38 +4901,38 @@ importers.</p>
 </h3>
 <p>Every connector implements these methods:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Method</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>Origin() string</code></td>
-          <td>Identifies the host and resource, using a path-like <code>host/resource</code> convention, for example <code>s3.example.com/mybucket</code></td>
-      </tr>
-      <tr>
-          <td><code>Type() string</code></td>
-          <td>Protocol name, for example <code>s3</code></td>
-      </tr>
-      <tr>
-          <td><code>Root() string</code></td>
-          <td>Root path within the location, for example <code>/</code></td>
-      </tr>
-      <tr>
-          <td><code>Flags() location.Flags</code></td>
-          <td>Location flags, see <a href="/docs/community/v1.1.0/references/go-kloset-sdk/#location-flags" >Location flags</a></td>
-      </tr>
-      <tr>
-          <td><code>Ping(ctx) error</code></td>
-          <td>Tests connectivity before the operation begins</td>
-      </tr>
-      <tr>
-          <td><code>Close(ctx) error</code></td>
-          <td>Releases resources after the operation completes</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Method</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>Origin() string</code></td>
+					<td>Identifies the host and resource, using a path-like <code>host/resource</code> convention, for example <code>s3.example.com/mybucket</code></td>
+			</tr>
+			<tr>
+					<td><code>Type() string</code></td>
+					<td>Protocol name, for example <code>s3</code></td>
+			</tr>
+			<tr>
+					<td><code>Root() string</code></td>
+					<td>Root path within the location, for example <code>/</code></td>
+			</tr>
+			<tr>
+					<td><code>Flags() location.Flags</code></td>
+					<td>Location flags, see <a href="/docs/community/v1.1.0/references/go-kloset-sdk/#location-flags" >Location flags</a></td>
+			</tr>
+			<tr>
+					<td><code>Ping(ctx) error</code></td>
+					<td>Tests connectivity before the operation begins</td>
+			</tr>
+			<tr>
+					<td><code>Close(ctx) error</code></td>
+					<td>Releases resources after the operation completes</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -4958,58 +4958,58 @@ network locations. Combine flags with bitwise OR, for example
 <code>location_flags</code> list of the connector in the
 <a href="../commands/plakar-pkg-manifest.yaml" >manifest</a>.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Flag</th>
-          <th>Manifest</th>
-          <th>Applies to</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location.FLAG_LOCALFS</code></td>
-          <td><code>localfs</code></td>
-          <td>all</td>
-          <td>Local filesystem paths</td>
-      </tr>
-      <tr>
-          <td><code>location.FLAG_FILE</code></td>
-          <td><code>file</code></td>
-          <td>storage</td>
-          <td>Repository stored in a single file</td>
-      </tr>
-      <tr>
-          <td><code>location.FLAG_STREAM</code></td>
-          <td><code>stream</code></td>
-          <td>importer</td>
-          <td><code>Import()</code> can only be called once</td>
-      </tr>
-      <tr>
-          <td><code>location.FLAG_NEEDACK</code></td>
-          <td><code>needack</code></td>
-          <td>importer</td>
-          <td>Importer reads the <code>results</code> channel</td>
-      </tr>
-      <tr>
-          <td><code>location.FLAG_NOMERGE</code></td>
-          <td><code>nomerge</code></td>
-          <td>importer</td>
-          <td>Multiple locations cannot be merged in one snapshot</td>
-      </tr>
-      <tr>
-          <td><code>location.FLAG_EXPORTXATTR</code></td>
-          <td><code>exportxattr</code></td>
-          <td>exporter</td>
-          <td>Exporter receives extended attribute records</td>
-      </tr>
-      <tr>
-          <td><code>location.FLAG_WALKDIRORDER</code></td>
-          <td><code>walkdirorder</code></td>
-          <td>importer / exporter</td>
-          <td>Records are sent or expected in <code>fs.WalkDir</code> order</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Flag</th>
+					<th>Manifest</th>
+					<th>Applies to</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location.FLAG_LOCALFS</code></td>
+					<td><code>localfs</code></td>
+					<td>all</td>
+					<td>Local filesystem paths</td>
+			</tr>
+			<tr>
+					<td><code>location.FLAG_FILE</code></td>
+					<td><code>file</code></td>
+					<td>storage</td>
+					<td>Repository stored in a single file</td>
+			</tr>
+			<tr>
+					<td><code>location.FLAG_STREAM</code></td>
+					<td><code>stream</code></td>
+					<td>importer</td>
+					<td><code>Import()</code> can only be called once</td>
+			</tr>
+			<tr>
+					<td><code>location.FLAG_NEEDACK</code></td>
+					<td><code>needack</code></td>
+					<td>importer</td>
+					<td>Importer reads the <code>results</code> channel</td>
+			</tr>
+			<tr>
+					<td><code>location.FLAG_NOMERGE</code></td>
+					<td><code>nomerge</code></td>
+					<td>importer</td>
+					<td>Multiple locations cannot be merged in one snapshot</td>
+			</tr>
+			<tr>
+					<td><code>location.FLAG_EXPORTXATTR</code></td>
+					<td><code>exportxattr</code></td>
+					<td>exporter</td>
+					<td>Exporter receives extended attribute records</td>
+			</tr>
+			<tr>
+					<td><code>location.FLAG_WALKDIRORDER</code></td>
+					<td><code>walkdirorder</code></td>
+					<td>importer / exporter</td>
+					<td>Records are sent or expected in <code>fs.WalkDir</code> order</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5370,46 +5370,46 @@ importers and exporters, the storage constructor does not receive
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Close</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <table>
-  <thead>
-      <tr>
-          <th>Method</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>Create</code></td>
-          <td>Initializes a new repository with its configuration. Fails if one exists.</td>
-      </tr>
-      <tr>
-          <td><code>Open</code></td>
-          <td>Opens an existing repository and returns its configuration</td>
-      </tr>
-      <tr>
-          <td><code>Mode</code></td>
-          <td>Returns capabilities, such as <code>storage.ModeRead | storage.ModeWrite</code></td>
-      </tr>
-      <tr>
-          <td><code>Size</code></td>
-          <td>Returns the total storage size in bytes. Can be costly on remote backends.</td>
-      </tr>
-      <tr>
-          <td><code>List</code></td>
-          <td>Lists the MACs of all objects of a resource type</td>
-      </tr>
-      <tr>
-          <td><code>Put</code></td>
-          <td>Stores an object and returns the number of bytes written</td>
-      </tr>
-      <tr>
-          <td><code>Get</code></td>
-          <td>Retrieves an object, or only a range of it when <code>rg</code> is not <code>nil</code></td>
-      </tr>
-      <tr>
-          <td><code>Delete</code></td>
-          <td>Removes an object</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Method</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>Create</code></td>
+					<td>Initializes a new repository with its configuration. Fails if one exists.</td>
+			</tr>
+			<tr>
+					<td><code>Open</code></td>
+					<td>Opens an existing repository and returns its configuration</td>
+			</tr>
+			<tr>
+					<td><code>Mode</code></td>
+					<td>Returns capabilities, such as <code>storage.ModeRead | storage.ModeWrite</code></td>
+			</tr>
+			<tr>
+					<td><code>Size</code></td>
+					<td>Returns the total storage size in bytes. Can be costly on remote backends.</td>
+			</tr>
+			<tr>
+					<td><code>List</code></td>
+					<td>Lists the MACs of all objects of a resource type</td>
+			</tr>
+			<tr>
+					<td><code>Put</code></td>
+					<td>Stores an object and returns the number of bytes written</td>
+			</tr>
+			<tr>
+					<td><code>Get</code></td>
+					<td>Retrieves an object, or only a range of it when <code>rg</code> is not <code>nil</code></td>
+			</tr>
+			<tr>
+					<td><code>Delete</code></td>
+					<td>Removes an object</td>
+			</tr>
+	</tbody>
 </table>
 <p>Objects are grouped by resource type:</p>
 <ul>
@@ -5866,8 +5866,8 @@ for a connector implementing an importer, an exporter, and a storage backend.</p
 
     <div class="overflow-hidden md:px-8">
       <img
-      src="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp"
-      srcset="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp 400w, /img/general/plakar-footer-banner_hu_f6d93c3223e43dd4.webp 800w, /img/general/plakar-footer-banner_hu_874c0cb913e58b5b.webp 1200w" sizes="auto"
+      src="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp"
+      srcset="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp 400w, /img/general/plakar-footer-banner_hu_ae1daca09bcae57b.webp 800w, /img/general/plakar-footer-banner_hu_c962588300d46a9f.webp 1200w" sizes="auto"
       width="400"
       height="72"
       alt="Footer banner"

@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-23T06:24:18+00:00">
-    <meta property="article:modified_time" content="2026-11-25T10:57:43+01:00">
+    <meta property="article:modified_time" content="2026-11-25T14:16:04+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.48b3068f59742386f0afdc8ef1998ba05fd2b63ca7e6ca760e5deb802cb6d6beeddc01a10045b72d3df186e50ba41f6f4aeadeff8a88a6d3d3c732659fd5bd62.css"
-    integrity="sha512-SLMGj1l0I4bwr9yO8ZmLoF/Stjyn5sp2Dl3rgCy21r7t3AGhAEW3LT3xhuULpB9vSure/4qIptPTxzJln9W9Yg==">
+    href="/css/main.bundle.min.9d8b3d3a769e1fcb34830c40c256c895e6300b002dc9a0f22e0e6156407d1943a14f3b950e766732d15a8eb9f685aa4da0454620800e37dd334055844be11ffc.css"
+    integrity="sha512-nYs9OnaeH8s0gwxAwlbIleYwCwAtyaDyLg5hVkB9GUOhTzuVDnZnMtFajrn2hapNoEVGIIAON90zQFWES&#43;Ef/A==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -229,7 +229,7 @@
     "dateCreated": "2026-09-23T06:24:18\u002b00:00",
     "datePublished": "2026-09-23T06:24:18\u002b00:00",
     
-    "dateModified": "2026-11-25T10:57:43\u002b01:00",
+    "dateModified": "2026-11-25T14:16:04\u002b01:00",
     
     
     
@@ -9463,169 +9463,169 @@ run time.</p>
 stops and fails unless it succeeded.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>edge_tags</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Select a remote edge by tags (all must match) to execute the job, falling back to local execution when no edge matches.</td>
-      </tr>
-      <tr>
-          <td><code>ignores</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Path patterns to exclude from the backup.</td>
-      </tr>
-      <tr>
-          <td><code>labels</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Labels to attach to the resulting snapshot.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>source</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the source connector to back up.</td>
-      </tr>
-      <tr>
-          <td><code>store</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the store connector to back up into.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-      <tr>
-          <td><code>wait</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to wait for the triggered job to finish. When false, the module returns as soon as the run is accepted; poll it later with <code>plakarkorp.plakar.job_info</code>.</td>
-      </tr>
-      <tr>
-          <td><code>wait_timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>600</code></td>
-          <td>Seconds to wait for the job to finish before failing.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>edge_tags</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Select a remote edge by tags (all must match) to execute the job, falling back to local execution when no edge matches.</td>
+			</tr>
+			<tr>
+					<td><code>ignores</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Path patterns to exclude from the backup.</td>
+			</tr>
+			<tr>
+					<td><code>labels</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Labels to attach to the resulting snapshot.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>source</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the source connector to back up.</td>
+			</tr>
+			<tr>
+					<td><code>store</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the store connector to back up into.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+			<tr>
+					<td><code>wait</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to wait for the triggered job to finish. When false, the module returns as soon as the run is accepted; poll it later with <code>plakarkorp.plakar.job_info</code>.</td>
+			</tr>
+			<tr>
+					<td><code>wait_timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>600</code></td>
+					<td>Seconds to wait for the job to finish before failing.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>at_id</code></td>
-          <td>str</td>
-          <td>always (except check mode)</td>
-          <td>Identifier of the one-shot run (the scheduler&rsquo;s <code>at</code> entry).</td>
-      </tr>
-      <tr>
-          <td><code>job</code></td>
-          <td>dict</td>
-          <td>when available</td>
-          <td>The job the run materialized into. Only present once the scheduler picked the run up — with <code>wait=false</code> it may be absent.</td>
-      </tr>
-      <tr>
-          <td><code>log</code></td>
-          <td>str</td>
-          <td>on job failure</td>
-          <td>Plain-text job log, fetched when the job did not succeed.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>at_id</code></td>
+					<td>str</td>
+					<td>always (except check mode)</td>
+					<td>Identifier of the one-shot run (the scheduler&rsquo;s <code>at</code> entry).</td>
+			</tr>
+			<tr>
+					<td><code>job</code></td>
+					<td>dict</td>
+					<td>when available</td>
+					<td>The job the run materialized into. Only present once the scheduler picked the run up — with <code>wait=false</code> it may be absent.</td>
+			</tr>
+			<tr>
+					<td><code>log</code></td>
+					<td>str</td>
+					<td>on job failure</td>
+					<td>Plain-text job log, fetched when the job did not succeed.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Keys of <code>job</code></strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>str</td>
-          <td></td>
-          <td>Job id, usable with <code>plakarkorp.plakar.job_info</code>.</td>
-      </tr>
-      <tr>
-          <td><code>started_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job started, if it did.</td>
-      </tr>
-      <tr>
-          <td><code>status</code></td>
-          <td>str</td>
-          <td></td>
-          <td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
-      </tr>
-      <tr>
-          <td><code>stopped_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job stopped, if it did.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>str</td>
+					<td></td>
+					<td>Job id, usable with <code>plakarkorp.plakar.job_info</code>.</td>
+			</tr>
+			<tr>
+					<td><code>started_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job started, if it did.</td>
+			</tr>
+			<tr>
+					<td><code>status</code></td>
+					<td>str</td>
+					<td></td>
+					<td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
+			</tr>
+			<tr>
+					<td><code>stopped_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job stopped, if it did.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -9654,162 +9654,162 @@ stops and fails unless it succeeded — a failed check means the data did not
 verify.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>edge_tags</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Select a remote edge by tags (all must match) to execute the job, falling back to local execution when no edge matches.</td>
-      </tr>
-      <tr>
-          <td><code>labels</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Only check snapshots carrying these labels.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>snapshot_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Check only this snapshot.</td>
-      </tr>
-      <tr>
-          <td><code>store</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the store whose snapshots to verify.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-      <tr>
-          <td><code>wait</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to wait for the triggered job to finish. When false, the module returns as soon as the run is accepted; poll it later with <code>plakarkorp.plakar.job_info</code>.</td>
-      </tr>
-      <tr>
-          <td><code>wait_timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>600</code></td>
-          <td>Seconds to wait for the job to finish before failing.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>edge_tags</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Select a remote edge by tags (all must match) to execute the job, falling back to local execution when no edge matches.</td>
+			</tr>
+			<tr>
+					<td><code>labels</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Only check snapshots carrying these labels.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>snapshot_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Check only this snapshot.</td>
+			</tr>
+			<tr>
+					<td><code>store</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the store whose snapshots to verify.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+			<tr>
+					<td><code>wait</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to wait for the triggered job to finish. When false, the module returns as soon as the run is accepted; poll it later with <code>plakarkorp.plakar.job_info</code>.</td>
+			</tr>
+			<tr>
+					<td><code>wait_timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>600</code></td>
+					<td>Seconds to wait for the job to finish before failing.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>at_id</code></td>
-          <td>str</td>
-          <td>always (except check mode)</td>
-          <td>Identifier of the one-shot run (the scheduler&rsquo;s <code>at</code> entry).</td>
-      </tr>
-      <tr>
-          <td><code>job</code></td>
-          <td>dict</td>
-          <td>when available</td>
-          <td>The job the run materialized into. Only present once the scheduler picked the run up — with <code>wait=false</code> it may be absent.</td>
-      </tr>
-      <tr>
-          <td><code>log</code></td>
-          <td>str</td>
-          <td>on job failure</td>
-          <td>Plain-text job log, fetched when the job did not succeed.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>at_id</code></td>
+					<td>str</td>
+					<td>always (except check mode)</td>
+					<td>Identifier of the one-shot run (the scheduler&rsquo;s <code>at</code> entry).</td>
+			</tr>
+			<tr>
+					<td><code>job</code></td>
+					<td>dict</td>
+					<td>when available</td>
+					<td>The job the run materialized into. Only present once the scheduler picked the run up — with <code>wait=false</code> it may be absent.</td>
+			</tr>
+			<tr>
+					<td><code>log</code></td>
+					<td>str</td>
+					<td>on job failure</td>
+					<td>Plain-text job log, fetched when the job did not succeed.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Keys of <code>job</code></strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>str</td>
-          <td></td>
-          <td>Job id, usable with <code>plakarkorp.plakar.job_info</code>.</td>
-      </tr>
-      <tr>
-          <td><code>started_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job started, if it did.</td>
-      </tr>
-      <tr>
-          <td><code>status</code></td>
-          <td>str</td>
-          <td></td>
-          <td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
-      </tr>
-      <tr>
-          <td><code>stopped_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job stopped, if it did.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>str</td>
+					<td></td>
+					<td>Job id, usable with <code>plakarkorp.plakar.job_info</code>.</td>
+			</tr>
+			<tr>
+					<td><code>started_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job started, if it did.</td>
+			</tr>
+			<tr>
+					<td><code>status</code></td>
+					<td>str</td>
+					<td></td>
+					<td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
+			</tr>
+			<tr>
+					<td><code>stopped_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job stopped, if it did.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -9837,154 +9837,154 @@ playbook&rsquo;s key, so it must be unique per connector type.</p>
 its current server-side value.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>data_classes</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Data classes the connector carries.</td>
-      </tr>
-      <tr>
-          <td><code>endpoints</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Endpoint names the connector reaches its resource through.</td>
-      </tr>
-      <tr>
-          <td><code>environment</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Environment label, for example <code>production</code>.</td>
-      </tr>
-      <tr>
-          <td><code>fields</code></td>
-          <td>dict</td>
-          <td>No</td>
-          <td></td>
-          <td>Integration-specific configuration, as a mapping of field name to value. A value may also be a mapping with <code>value</code> and an optional <code>provider_id</code> naming a secret provider. On update, only the fields named here are compared and replaced; other existing fields are preserved.</td>
-      </tr>
-      <tr>
-          <td><code>integration</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Name of the installed integration backing the connector, for example <code>s3</code> or <code>sftp</code>. Required when creating.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the connector.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>protocol</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Protocol spoken to the resource, for example <code>s3</code> or <code>sftp</code>. Defaults to the integration name, which matches for the standard integrations; set it only when they differ.</td>
-      </tr>
-      <tr>
-          <td><code>resource</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>URN or name of the inventory resource the connector attaches to. Required when creating.</td>
-      </tr>
-      <tr>
-          <td><code>state</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td><code>present</code></td>
-          <td>Whether the connector should exist. One of <code>present</code>, <code>absent</code>.</td>
-      </tr>
-      <tr>
-          <td><code>temperature</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Storage temperature.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>What the connector is used for. One of <code>source</code>, <code>destination</code>.</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>data_classes</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Data classes the connector carries.</td>
+			</tr>
+			<tr>
+					<td><code>endpoints</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Endpoint names the connector reaches its resource through.</td>
+			</tr>
+			<tr>
+					<td><code>environment</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Environment label, for example <code>production</code>.</td>
+			</tr>
+			<tr>
+					<td><code>fields</code></td>
+					<td>dict</td>
+					<td>No</td>
+					<td></td>
+					<td>Integration-specific configuration, as a mapping of field name to value. A value may also be a mapping with <code>value</code> and an optional <code>provider_id</code> naming a secret provider. On update, only the fields named here are compared and replaced; other existing fields are preserved.</td>
+			</tr>
+			<tr>
+					<td><code>integration</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Name of the installed integration backing the connector, for example <code>s3</code> or <code>sftp</code>. Required when creating.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the connector.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>protocol</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Protocol spoken to the resource, for example <code>s3</code> or <code>sftp</code>. Defaults to the integration name, which matches for the standard integrations; set it only when they differ.</td>
+			</tr>
+			<tr>
+					<td><code>resource</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>URN or name of the inventory resource the connector attaches to. Required when creating.</td>
+			</tr>
+			<tr>
+					<td><code>state</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td><code>present</code></td>
+					<td>Whether the connector should exist. One of <code>present</code>, <code>absent</code>.</td>
+			</tr>
+			<tr>
+					<td><code>temperature</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Storage temperature.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>What the connector is used for. One of <code>source</code>, <code>destination</code>.</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>connector</code></td>
-          <td>dict</td>
-          <td>when the connector exists or was created</td>
-          <td>The connector acted on (a summary; field values are not echoed).</td>
-      </tr>
-      <tr>
-          <td><code>diff_keys</code></td>
-          <td>list of str</td>
-          <td>on update</td>
-          <td>The option names whose values differed and drove the update.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>connector</code></td>
+					<td>dict</td>
+					<td>when the connector exists or was created</td>
+					<td>The connector acted on (a summary; field values are not echoed).</td>
+			</tr>
+			<tr>
+					<td><code>diff_keys</code></td>
+					<td>list of str</td>
+					<td>on update</td>
+					<td>The option names whose values differed and drove the update.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10014,99 +10014,99 @@ holds.</p>
 catalogue&rsquo;s list.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>organization</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Name of the organization the grant lives in. Defaults to the API key&rsquo;s own organization.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>role</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the role, as the catalogue spells it, for example <code>operator</code> or <code>backup-operator</code>.</td>
-      </tr>
-      <tr>
-          <td><code>state</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td><code>present</code></td>
-          <td>Whether the grant should exist. One of <code>present</code>, <code>absent</code>.</td>
-      </tr>
-      <tr>
-          <td><code>subject</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Who holds the grant — a member&rsquo;s email address, or the name of a service account (which has no address).</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>organization</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Name of the organization the grant lives in. Defaults to the API key&rsquo;s own organization.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>role</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the role, as the catalogue spells it, for example <code>operator</code> or <code>backup-operator</code>.</td>
+			</tr>
+			<tr>
+					<td><code>state</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td><code>present</code></td>
+					<td>Whether the grant should exist. One of <code>present</code>, <code>absent</code>.</td>
+			</tr>
+			<tr>
+					<td><code>subject</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Who holds the grant — a member&rsquo;s email address, or the name of a service account (which has no address).</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>grant</code></td>
-          <td>dict</td>
-          <td>when the grant exists or was created</td>
-          <td>The grant acted on (id, subject, role).</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>grant</code></td>
+					<td>dict</td>
+					<td>when the grant exists or was created</td>
+					<td>The grant acted on (id, subject, role).</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10136,105 +10136,105 @@ playbook&rsquo;s key, so it must be unique. The type is immutable once created.<
 else keeps its current server-side value.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>configuration</code></td>
-          <td>dict</td>
-          <td>No</td>
-          <td></td>
-          <td>Provider-specific configuration, as a flat mapping of field name to value. A value may also be a mapping with <code>value</code> and an optional <code>provider_id</code> naming a secret provider. Keys per type — <code>aws</code>: <code>credentials_type</code> (<code>iam</code> or <code>access_key</code>), <code>region</code>, <code>access_key</code>, <code>secret_access_key</code>; <code>scaleway</code>: <code>scw_project_id</code>, <code>scw_access_key</code>, <code>scw_secret_key</code>; <code>gcp</code>: <code>gcp_project_id</code>, <code>gcp_service_account_json</code>; <code>ovh</code>: <code>application_key</code>, <code>application_secret</code>, <code>consumer_key</code>, <code>endpoint</code>; <code>k8s</code>: <code>k8s_kubeconf</code>; <code>vmware</code>: <code>vsphere_server</code>, <code>vsphere_username</code>, <code>vsphere_password</code>, <code>vsphere_tls_skip_verify</code>, <code>vsphere_tls_ca_bundle</code>. The <code>self-managed</code> type takes no configuration.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the inventory.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>state</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td><code>present</code></td>
-          <td>Whether the inventory should exist. One of <code>present</code>, <code>absent</code>.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Provider backing the inventory. Required when creating; immutable afterwards. One of <code>aws</code>, <code>gcp</code>, <code>k8s</code>, <code>ovh</code>, <code>scaleway</code>, <code>self-managed</code>, <code>vmware</code>.</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>configuration</code></td>
+					<td>dict</td>
+					<td>No</td>
+					<td></td>
+					<td>Provider-specific configuration, as a flat mapping of field name to value. A value may also be a mapping with <code>value</code> and an optional <code>provider_id</code> naming a secret provider. Keys per type — <code>aws</code>: <code>credentials_type</code> (<code>iam</code> or <code>access_key</code>), <code>region</code>, <code>access_key</code>, <code>secret_access_key</code>; <code>scaleway</code>: <code>scw_project_id</code>, <code>scw_access_key</code>, <code>scw_secret_key</code>; <code>gcp</code>: <code>gcp_project_id</code>, <code>gcp_service_account_json</code>; <code>ovh</code>: <code>application_key</code>, <code>application_secret</code>, <code>consumer_key</code>, <code>endpoint</code>; <code>k8s</code>: <code>k8s_kubeconf</code>; <code>vmware</code>: <code>vsphere_server</code>, <code>vsphere_username</code>, <code>vsphere_password</code>, <code>vsphere_tls_skip_verify</code>, <code>vsphere_tls_ca_bundle</code>. The <code>self-managed</code> type takes no configuration.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the inventory.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>state</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td><code>present</code></td>
+					<td>Whether the inventory should exist. One of <code>present</code>, <code>absent</code>.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Provider backing the inventory. Required when creating; immutable afterwards. One of <code>aws</code>, <code>gcp</code>, <code>k8s</code>, <code>ovh</code>, <code>scaleway</code>, <code>self-managed</code>, <code>vmware</code>.</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>diff_keys</code></td>
-          <td>list of str</td>
-          <td>on update</td>
-          <td>The configuration keys whose values differed and drove the update.</td>
-      </tr>
-      <tr>
-          <td><code>inventory</code></td>
-          <td>dict</td>
-          <td>when the inventory exists or was created</td>
-          <td>The inventory acted on (a summary; configuration values are not echoed).</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>diff_keys</code></td>
+					<td>list of str</td>
+					<td>on update</td>
+					<td>The configuration keys whose values differed and drove the update.</td>
+			</tr>
+			<tr>
+					<td><code>inventory</code></td>
+					<td>dict</td>
+					<td>when the inventory exists or was created</td>
+					<td>The inventory acted on (a summary; configuration values are not echoed).</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10259,97 +10259,97 @@ coverage summary and, optionally, its resources.</p>
 <p>Configuration values (provider credentials) are never echoed.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>include_resources</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>false</code></td>
-          <td>Also return the resources of the inventory named by <code>name</code>.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Name of one inventory to read. Without it, all visible inventories are listed.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>include_resources</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>false</code></td>
+					<td>Also return the resources of the inventory named by <code>name</code>.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Name of one inventory to read. Without it, all visible inventories are listed.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>inventories</code></td>
-          <td>list of dict</td>
-          <td>when <code>name</code> is not set</td>
-          <td>The visible inventories, with resource counts and coverage.</td>
-      </tr>
-      <tr>
-          <td><code>inventory</code></td>
-          <td>dict</td>
-          <td>when <code>name</code> is set</td>
-          <td>The inventory named by <code>name</code>, with coverage and summaries.</td>
-      </tr>
-      <tr>
-          <td><code>resources</code></td>
-          <td>list of dict</td>
-          <td>when <code>include_resources</code> is true</td>
-          <td>The inventory&rsquo;s resources.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>inventories</code></td>
+					<td>list of dict</td>
+					<td>when <code>name</code> is not set</td>
+					<td>The visible inventories, with resource counts and coverage.</td>
+			</tr>
+			<tr>
+					<td><code>inventory</code></td>
+					<td>dict</td>
+					<td>when <code>name</code> is set</td>
+					<td>The inventory named by <code>name</code>, with coverage and summaries.</td>
+			</tr>
+			<tr>
+					<td><code>resources</code></td>
+					<td>list of dict</td>
+					<td>when <code>include_resources</code> is true</td>
+					<td>The inventory&rsquo;s resources.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10378,147 +10378,147 @@ and is immutable.</p>
 its current server-side value.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>class</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Resource class, for example <code>object-storage</code> or <code>virtual-machine</code>. Required when creating.</td>
-      </tr>
-      <tr>
-          <td><code>endpoints</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Endpoints the resource is reachable at, as hostnames or IP addresses.</td>
-      </tr>
-      <tr>
-          <td><code>excluded_from_coverage</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td></td>
-          <td>Whether the resource is left out of coverage accounting.</td>
-      </tr>
-      <tr>
-          <td><code>inventory</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the self-managed inventory holding the resource.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Display name of the resource. Required when creating.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>service</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Service the resource belongs to.</td>
-      </tr>
-      <tr>
-          <td><code>state</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td><code>present</code></td>
-          <td>Whether the resource should exist. One of <code>present</code>, <code>absent</code>.</td>
-      </tr>
-      <tr>
-          <td><code>subclass</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Resource subclass, for example <code>s3</code>.</td>
-      </tr>
-      <tr>
-          <td><code>tags</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Tags on the resource.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>urn</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>URN identifying the resource, for example <code>urn:res-web-tier</code>.</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>class</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Resource class, for example <code>object-storage</code> or <code>virtual-machine</code>. Required when creating.</td>
+			</tr>
+			<tr>
+					<td><code>endpoints</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Endpoints the resource is reachable at, as hostnames or IP addresses.</td>
+			</tr>
+			<tr>
+					<td><code>excluded_from_coverage</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td></td>
+					<td>Whether the resource is left out of coverage accounting.</td>
+			</tr>
+			<tr>
+					<td><code>inventory</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the self-managed inventory holding the resource.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Display name of the resource. Required when creating.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>service</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Service the resource belongs to.</td>
+			</tr>
+			<tr>
+					<td><code>state</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td><code>present</code></td>
+					<td>Whether the resource should exist. One of <code>present</code>, <code>absent</code>.</td>
+			</tr>
+			<tr>
+					<td><code>subclass</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Resource subclass, for example <code>s3</code>.</td>
+			</tr>
+			<tr>
+					<td><code>tags</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Tags on the resource.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>urn</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>URN identifying the resource, for example <code>urn:res-web-tier</code>.</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>diff_keys</code></td>
-          <td>list of str</td>
-          <td>on update</td>
-          <td>The option names whose values differed and drove the update.</td>
-      </tr>
-      <tr>
-          <td><code>resource</code></td>
-          <td>dict</td>
-          <td>when the resource exists or was created</td>
-          <td>The resource acted on (a summary).</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>diff_keys</code></td>
+					<td>list of str</td>
+					<td>on update</td>
+					<td>The option names whose values differed and drove the update.</td>
+			</tr>
+			<tr>
+					<td><code>resource</code></td>
+					<td>dict</td>
+					<td>when the resource exists or was created</td>
+					<td>The resource acted on (a summary).</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10546,78 +10546,78 @@ once the provider has been consulted.</p>
 (<code>plakarkorp.plakar.inventory_resource</code>); syncing one succeeds without effect.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the inventory to synchronize.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the inventory to synchronize.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>inventory</code></td>
-          <td>dict</td>
-          <td>always</td>
-          <td>The inventory that was synchronized.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>inventory</code></td>
+					<td>dict</td>
+					<td>always</td>
+					<td>The inventory that was synchronized.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10642,187 +10642,187 @@ filtered list.</p>
 <p>Never changes anything.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>at_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Return the job of this one-shot run, as returned in <code>at_id</code> by <code>plakarkorp.plakar.backup</code> and <code>plakarkorp.plakar.restore</code>. While the scheduler has not yet materialized the run into a job, the module returns an empty <code>jobs</code> list — poll with <code>until</code>.</td>
-      </tr>
-      <tr>
-          <td><code>include_log</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>false</code></td>
-          <td>Also fetch each returned job&rsquo;s plain-text log. Meant for a single job or a narrow filter; logs are fetched one request per job.</td>
-      </tr>
-      <tr>
-          <td><code>job_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Return exactly this job. Mutually exclusive with the list filters.</td>
-      </tr>
-      <tr>
-          <td><code>limit</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>50</code></td>
-          <td>Maximum number of jobs to return.</td>
-      </tr>
-      <tr>
-          <td><code>offset</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>0</code></td>
-          <td>Pagination offset.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>status</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Only jobs in this state. One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
-      </tr>
-      <tr>
-          <td><code>task_type</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Only jobs of this task type. One of <code>backup</code>, <code>restore</code>, <code>sync</code>, <code>check</code>, <code>prune</code>, <code>rm</code>, <code>maintenance</code>.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>at_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Return the job of this one-shot run, as returned in <code>at_id</code> by <code>plakarkorp.plakar.backup</code> and <code>plakarkorp.plakar.restore</code>. While the scheduler has not yet materialized the run into a job, the module returns an empty <code>jobs</code> list — poll with <code>until</code>.</td>
+			</tr>
+			<tr>
+					<td><code>include_log</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>false</code></td>
+					<td>Also fetch each returned job&rsquo;s plain-text log. Meant for a single job or a narrow filter; logs are fetched one request per job.</td>
+			</tr>
+			<tr>
+					<td><code>job_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Return exactly this job. Mutually exclusive with the list filters.</td>
+			</tr>
+			<tr>
+					<td><code>limit</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>50</code></td>
+					<td>Maximum number of jobs to return.</td>
+			</tr>
+			<tr>
+					<td><code>offset</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>0</code></td>
+					<td>Pagination offset.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>status</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Only jobs in this state. One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
+			</tr>
+			<tr>
+					<td><code>task_type</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Only jobs of this task type. One of <code>backup</code>, <code>restore</code>, <code>sync</code>, <code>check</code>, <code>prune</code>, <code>rm</code>, <code>maintenance</code>.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>jobs</code></td>
-          <td>list of dict</td>
-          <td>always</td>
-          <td>The matching jobs, newest first (server ordering).</td>
-      </tr>
-      <tr>
-          <td><code>total</code></td>
-          <td>int</td>
-          <td>when listing</td>
-          <td>Total number of jobs matching the filter, before pagination.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>jobs</code></td>
+					<td>list of dict</td>
+					<td>always</td>
+					<td>The matching jobs, newest first (server ordering).</td>
+			</tr>
+			<tr>
+					<td><code>total</code></td>
+					<td>int</td>
+					<td>when listing</td>
+					<td>Total number of jobs matching the filter, before pagination.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Keys of <code>jobs</code></strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>created_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job row was created.</td>
-      </tr>
-      <tr>
-          <td><code>id</code></td>
-          <td>str</td>
-          <td></td>
-          <td>Job id.</td>
-      </tr>
-      <tr>
-          <td><code>log</code></td>
-          <td>str</td>
-          <td>when <code>include_log=true</code></td>
-          <td>Plain-text job log.</td>
-      </tr>
-      <tr>
-          <td><code>schedule_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job was scheduled to run.</td>
-      </tr>
-      <tr>
-          <td><code>started_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job started, if it did.</td>
-      </tr>
-      <tr>
-          <td><code>status</code></td>
-          <td>str</td>
-          <td></td>
-          <td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
-      </tr>
-      <tr>
-          <td><code>stopped_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job stopped, if it did.</td>
-      </tr>
-      <tr>
-          <td><code>task_type</code></td>
-          <td>str</td>
-          <td></td>
-          <td>Type of the task that produced the job.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>created_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job row was created.</td>
+			</tr>
+			<tr>
+					<td><code>id</code></td>
+					<td>str</td>
+					<td></td>
+					<td>Job id.</td>
+			</tr>
+			<tr>
+					<td><code>log</code></td>
+					<td>str</td>
+					<td>when <code>include_log=true</code></td>
+					<td>Plain-text job log.</td>
+			</tr>
+			<tr>
+					<td><code>schedule_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job was scheduled to run.</td>
+			</tr>
+			<tr>
+					<td><code>started_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job started, if it did.</td>
+			</tr>
+			<tr>
+					<td><code>status</code></td>
+					<td>str</td>
+					<td></td>
+					<td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
+			</tr>
+			<tr>
+					<td><code>stopped_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job stopped, if it did.</td>
+			</tr>
+			<tr>
+					<td><code>task_type</code></td>
+					<td>str</td>
+					<td></td>
+					<td>Type of the task that produced the job.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10855,118 +10855,118 @@ Plakar UI (an application user cannot mint its own).</p>
 <p>Removing a member removes the membership, not the person&rsquo;s account.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>email</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Email address of the person. The playbook&rsquo;s key for people.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Display name. The playbook&rsquo;s key for service accounts, which have no address; optional decoration for people.</td>
-      </tr>
-      <tr>
-          <td><code>organization</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Name of the organization the membership belongs to. Defaults to the API key&rsquo;s own organization.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>service</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>false</code></td>
-          <td>Add an application user rather than a person.</td>
-      </tr>
-      <tr>
-          <td><code>state</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td><code>present</code></td>
-          <td>Whether the membership should exist. One of <code>present</code>, <code>absent</code>.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>email</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Email address of the person. The playbook&rsquo;s key for people.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Display name. The playbook&rsquo;s key for service accounts, which have no address; optional decoration for people.</td>
+			</tr>
+			<tr>
+					<td><code>organization</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Name of the organization the membership belongs to. Defaults to the API key&rsquo;s own organization.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>service</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>false</code></td>
+					<td>Add an application user rather than a person.</td>
+			</tr>
+			<tr>
+					<td><code>state</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td><code>present</code></td>
+					<td>Whether the membership should exist. One of <code>present</code>, <code>absent</code>.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>account_created</code></td>
-          <td>bool</td>
-          <td>on creation</td>
-          <td>Whether a brand-new account was registered for the address.</td>
-      </tr>
-      <tr>
-          <td><code>generated_password</code></td>
-          <td>str</td>
-          <td>on creation</td>
-          <td>The one-time must-change password the server minted for a brand-new account. Shown exactly once — relay it or lose it. <code>null</code> when the address already had an account. A service account gets one too, but it is inert — an application user has no interactive login, and mints its API key in the Plakar UI.</td>
-      </tr>
-      <tr>
-          <td><code>member</code></td>
-          <td>dict</td>
-          <td>when the membership exists or was created</td>
-          <td>The member acted on (user_id, email, account, name, is_service).</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>account_created</code></td>
+					<td>bool</td>
+					<td>on creation</td>
+					<td>Whether a brand-new account was registered for the address.</td>
+			</tr>
+			<tr>
+					<td><code>generated_password</code></td>
+					<td>str</td>
+					<td>on creation</td>
+					<td>The one-time must-change password the server minted for a brand-new account. Shown exactly once — relay it or lose it. <code>null</code> when the address already had an account. A service account gets one too, but it is inert — an application user has no interactive login, and mints its API key in the Plakar UI.</td>
+			</tr>
+			<tr>
+					<td><code>member</code></td>
+					<td>dict</td>
+					<td>when the membership exists or was created</td>
+					<td>The member acted on (user_id, email, account, name, is_service).</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -10995,106 +10995,106 @@ creation. An organization that already exists is left as it is.</p>
 <code>plakarkorp.plakar.grant</code>.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>info</code></td>
-          <td>dict</td>
-          <td>No</td>
-          <td></td>
-          <td>Free-form key/value information attached at creation.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the organization.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>parent</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Name of the parent organization. Defaults to the API key&rsquo;s own organization.</td>
-      </tr>
-      <tr>
-          <td><code>state</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td><code>present</code></td>
-          <td>Whether the organization should exist. One of <code>present</code>, <code>absent</code>.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>type</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td><code>enterprise</code></td>
-          <td>Organization type. Only <code>enterprise</code> organizations can be created as sub-organizations today.</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>info</code></td>
+					<td>dict</td>
+					<td>No</td>
+					<td></td>
+					<td>Free-form key/value information attached at creation.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the organization.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>parent</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Name of the parent organization. Defaults to the API key&rsquo;s own organization.</td>
+			</tr>
+			<tr>
+					<td><code>state</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td><code>present</code></td>
+					<td>Whether the organization should exist. One of <code>present</code>, <code>absent</code>.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>type</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td><code>enterprise</code></td>
+					<td>Organization type. Only <code>enterprise</code> organizations can be created as sub-organizations today.</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>organization</code></td>
-          <td>dict</td>
-          <td>when the organization exists or was created</td>
-          <td>The organization acted on (id, name, type, parent_id).</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>organization</code></td>
+					<td>dict</td>
+					<td>when the organization exists or was created</td>
+					<td>The organization acted on (id, name, type, parent_id).</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11118,110 +11118,110 @@ creation. An organization that already exists is left as it is.</p>
 and, on request, its members and grants.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>include_grants</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>false</code></td>
-          <td>Also return the grants.</td>
-      </tr>
-      <tr>
-          <td><code>include_members</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>false</code></td>
-          <td>Also return the members.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Name of the organization, anywhere in the badge organization&rsquo;s subtree. Defaults to the API key&rsquo;s own organization.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>include_grants</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>false</code></td>
+					<td>Also return the grants.</td>
+			</tr>
+			<tr>
+					<td><code>include_members</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>false</code></td>
+					<td>Also return the members.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Name of the organization, anywhere in the badge organization&rsquo;s subtree. Defaults to the API key&rsquo;s own organization.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>children</code></td>
-          <td>list of dict</td>
-          <td>always</td>
-          <td>The direct sub-organizations.</td>
-      </tr>
-      <tr>
-          <td><code>grants</code></td>
-          <td>list of dict</td>
-          <td>when <code>include_grants</code> is true</td>
-          <td>The grants (id, subject, role).</td>
-      </tr>
-      <tr>
-          <td><code>members</code></td>
-          <td>list of dict</td>
-          <td>when <code>include_members</code> is true</td>
-          <td>The members (user_id, email, account, name, is_service).</td>
-      </tr>
-      <tr>
-          <td><code>organization</code></td>
-          <td>dict</td>
-          <td>always</td>
-          <td>The organization (id, name, type, parent_id).</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>children</code></td>
+					<td>list of dict</td>
+					<td>always</td>
+					<td>The direct sub-organizations.</td>
+			</tr>
+			<tr>
+					<td><code>grants</code></td>
+					<td>list of dict</td>
+					<td>when <code>include_grants</code> is true</td>
+					<td>The grants (id, subject, role).</td>
+			</tr>
+			<tr>
+					<td><code>members</code></td>
+					<td>list of dict</td>
+					<td>when <code>include_members</code> is true</td>
+					<td>The members (user_id, email, account, name, is_service).</td>
+			</tr>
+			<tr>
+					<td><code>organization</code></td>
+					<td>dict</td>
+					<td>always</td>
+					<td>The organization (id, name, type, parent_id).</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11250,150 +11250,150 @@ deleted, kept and held.</p>
 mode, would be).</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>filters</code></td>
-          <td>dict</td>
-          <td>No</td>
-          <td></td>
-          <td>Further narrowing, passed to the API&rsquo;s locate filters — a mapping of <code>ignore_tags</code>, <code>before</code>, <code>since</code>, <code>name</code>, <code>category</code>, <code>environment</code>, <code>perimeter</code>, <code>job</code>, <code>dataset</code>, <code>latest</code>, <code>ids</code>, <code>types</code>, <code>origins</code>, <code>roots</code>, <code>data_classes</code>. <code>tags</code> is shorthand for <code>filters.tags</code>; both may be set and merge.</td>
-      </tr>
-      <tr>
-          <td><code>group_by</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Partition the matched snapshots before applying the rule, so retention is honored per group instead of across the whole store — for example <code>dataset</code> keeps the rule per source instead of globally. One of <code>name</code>, <code>category</code>, <code>environment</code>, <code>perimeter</code>, <code>job</code>, <code>dataset</code>, <code>data-class</code>, <code>tag</code>, <code>origin</code>, <code>type</code>, <code>root</code>.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>retention</code></td>
-          <td>dict</td>
-          <td>Yes</td>
-          <td></td>
-          <td>The retention rule, as a mapping of bucket options — <code>minute</code>, <code>hour</code>, <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code> say how many recent buckets of that unit to keep, and <code>per_minute</code>, <code>per_hour</code>, <code>per_day</code>, <code>per_week</code>, <code>per_month</code>, <code>per_year</code> how many snapshots to keep in each. For example <code>{day: 7, per_day: 1, month: 12, per_month: 1}</code> keeps one snapshot a day for a week and one a month for a year.</td>
-      </tr>
-      <tr>
-          <td><code>store</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the store to prune.</td>
-      </tr>
-      <tr>
-          <td><code>tags</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Only consider snapshots carrying these tags.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-      <tr>
-          <td><code>wait</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to wait for the deletion job to finish when there is something to delete.</td>
-      </tr>
-      <tr>
-          <td><code>wait_timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>600</code></td>
-          <td>Seconds to wait for the deletion job before failing.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>filters</code></td>
+					<td>dict</td>
+					<td>No</td>
+					<td></td>
+					<td>Further narrowing, passed to the API&rsquo;s locate filters — a mapping of <code>ignore_tags</code>, <code>before</code>, <code>since</code>, <code>name</code>, <code>category</code>, <code>environment</code>, <code>perimeter</code>, <code>job</code>, <code>dataset</code>, <code>latest</code>, <code>ids</code>, <code>types</code>, <code>origins</code>, <code>roots</code>, <code>data_classes</code>. <code>tags</code> is shorthand for <code>filters.tags</code>; both may be set and merge.</td>
+			</tr>
+			<tr>
+					<td><code>group_by</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Partition the matched snapshots before applying the rule, so retention is honored per group instead of across the whole store — for example <code>dataset</code> keeps the rule per source instead of globally. One of <code>name</code>, <code>category</code>, <code>environment</code>, <code>perimeter</code>, <code>job</code>, <code>dataset</code>, <code>data-class</code>, <code>tag</code>, <code>origin</code>, <code>type</code>, <code>root</code>.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>retention</code></td>
+					<td>dict</td>
+					<td>Yes</td>
+					<td></td>
+					<td>The retention rule, as a mapping of bucket options — <code>minute</code>, <code>hour</code>, <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code> say how many recent buckets of that unit to keep, and <code>per_minute</code>, <code>per_hour</code>, <code>per_day</code>, <code>per_week</code>, <code>per_month</code>, <code>per_year</code> how many snapshots to keep in each. For example <code>{day: 7, per_day: 1, month: 12, per_month: 1}</code> keeps one snapshot a day for a week and one a month for a year.</td>
+			</tr>
+			<tr>
+					<td><code>store</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the store to prune.</td>
+			</tr>
+			<tr>
+					<td><code>tags</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Only consider snapshots carrying these tags.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+			<tr>
+					<td><code>wait</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to wait for the deletion job to finish when there is something to delete.</td>
+			</tr>
+			<tr>
+					<td><code>wait_timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>600</code></td>
+					<td>Seconds to wait for the deletion job before failing.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>at_ids</code></td>
-          <td>list of str</td>
-          <td>when a deletion ran</td>
-          <td>Identifiers of the deletion runs, when something was deleted. A long delete list may be split over several runs.</td>
-      </tr>
-      <tr>
-          <td><code>deleted</code></td>
-          <td>list of str</td>
-          <td>always</td>
-          <td>Snapshot ids the run deleted (in check mode, would delete).</td>
-      </tr>
-      <tr>
-          <td><code>floored</code></td>
-          <td>list of str</td>
-          <td>always</td>
-          <td>Snapshot ids the rule would delete but the organization&rsquo;s retention floor keeps anyway.</td>
-      </tr>
-      <tr>
-          <td><code>held</code></td>
-          <td>list of str</td>
-          <td>always</td>
-          <td>Snapshot ids excluded because they are under legal hold.</td>
-      </tr>
-      <tr>
-          <td><code>jobs</code></td>
-          <td>list of dict</td>
-          <td>when a deletion ran and was waited on</td>
-          <td>The deletion jobs, when something was deleted and <code>wait=true</code>.</td>
-      </tr>
-      <tr>
-          <td><code>kept</code></td>
-          <td>list of str</td>
-          <td>in check mode</td>
-          <td>Snapshot ids the rule keeps. Only the preview reports this.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>at_ids</code></td>
+					<td>list of str</td>
+					<td>when a deletion ran</td>
+					<td>Identifiers of the deletion runs, when something was deleted. A long delete list may be split over several runs.</td>
+			</tr>
+			<tr>
+					<td><code>deleted</code></td>
+					<td>list of str</td>
+					<td>always</td>
+					<td>Snapshot ids the run deleted (in check mode, would delete).</td>
+			</tr>
+			<tr>
+					<td><code>floored</code></td>
+					<td>list of str</td>
+					<td>always</td>
+					<td>Snapshot ids the rule would delete but the organization&rsquo;s retention floor keeps anyway.</td>
+			</tr>
+			<tr>
+					<td><code>held</code></td>
+					<td>list of str</td>
+					<td>always</td>
+					<td>Snapshot ids excluded because they are under legal hold.</td>
+			</tr>
+			<tr>
+					<td><code>jobs</code></td>
+					<td>list of dict</td>
+					<td>when a deletion ran and was waited on</td>
+					<td>The deletion jobs, when something was deleted and <code>wait=true</code>.</td>
+			</tr>
+			<tr>
+					<td><code>kept</code></td>
+					<td>list of str</td>
+					<td>in check mode</td>
+					<td>Snapshot ids the rule keeps. Only the preview reports this.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11421,168 +11421,168 @@ snapshot in the store is restored.</p>
 stops and fails unless it succeeded.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>destination</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the destination connector to restore onto.</td>
-      </tr>
-      <tr>
-          <td><code>edge_tags</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Select a remote edge by tags (all must match) to execute the job, falling back to local execution when no edge matches.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>snapshot_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Identifier of the snapshot to restore. When omitted, the newest snapshot in the store (by creation time) is restored.</td>
-      </tr>
-      <tr>
-          <td><code>store</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the store connector holding the snapshot.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-      <tr>
-          <td><code>wait</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to wait for the triggered job to finish. When false, the module returns as soon as the run is accepted; poll it later with <code>plakarkorp.plakar.job_info</code>.</td>
-      </tr>
-      <tr>
-          <td><code>wait_timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>600</code></td>
-          <td>Seconds to wait for the job to finish before failing.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>destination</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the destination connector to restore onto.</td>
+			</tr>
+			<tr>
+					<td><code>edge_tags</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Select a remote edge by tags (all must match) to execute the job, falling back to local execution when no edge matches.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>snapshot_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Identifier of the snapshot to restore. When omitted, the newest snapshot in the store (by creation time) is restored.</td>
+			</tr>
+			<tr>
+					<td><code>store</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the store connector holding the snapshot.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+			<tr>
+					<td><code>wait</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to wait for the triggered job to finish. When false, the module returns as soon as the run is accepted; poll it later with <code>plakarkorp.plakar.job_info</code>.</td>
+			</tr>
+			<tr>
+					<td><code>wait_timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>600</code></td>
+					<td>Seconds to wait for the job to finish before failing.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>at_id</code></td>
-          <td>str</td>
-          <td>always (except check mode)</td>
-          <td>Identifier of the one-shot run (the scheduler&rsquo;s <code>at</code> entry).</td>
-      </tr>
-      <tr>
-          <td><code>job</code></td>
-          <td>dict</td>
-          <td>when available</td>
-          <td>The job the run materialized into. Only present once the scheduler picked the run up — with <code>wait=false</code> it may be absent.</td>
-      </tr>
-      <tr>
-          <td><code>log</code></td>
-          <td>str</td>
-          <td>on job failure</td>
-          <td>Plain-text job log, fetched when the job did not succeed.</td>
-      </tr>
-      <tr>
-          <td><code>snapshot_id</code></td>
-          <td>str</td>
-          <td>always</td>
-          <td>The snapshot that was restored.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>at_id</code></td>
+					<td>str</td>
+					<td>always (except check mode)</td>
+					<td>Identifier of the one-shot run (the scheduler&rsquo;s <code>at</code> entry).</td>
+			</tr>
+			<tr>
+					<td><code>job</code></td>
+					<td>dict</td>
+					<td>when available</td>
+					<td>The job the run materialized into. Only present once the scheduler picked the run up — with <code>wait=false</code> it may be absent.</td>
+			</tr>
+			<tr>
+					<td><code>log</code></td>
+					<td>str</td>
+					<td>on job failure</td>
+					<td>Plain-text job log, fetched when the job did not succeed.</td>
+			</tr>
+			<tr>
+					<td><code>snapshot_id</code></td>
+					<td>str</td>
+					<td>always</td>
+					<td>The snapshot that was restored.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Keys of <code>job</code></strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>str</td>
-          <td></td>
-          <td>Job id, usable with <code>plakarkorp.plakar.job_info</code>.</td>
-      </tr>
-      <tr>
-          <td><code>started_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job started, if it did.</td>
-      </tr>
-      <tr>
-          <td><code>status</code></td>
-          <td>str</td>
-          <td></td>
-          <td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
-      </tr>
-      <tr>
-          <td><code>stopped_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job stopped, if it did.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>str</td>
+					<td></td>
+					<td>Job id, usable with <code>plakarkorp.plakar.job_info</code>.</td>
+			</tr>
+			<tr>
+					<td><code>started_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job started, if it did.</td>
+			</tr>
+			<tr>
+					<td><code>status</code></td>
+					<td>str</td>
+					<td></td>
+					<td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
+			</tr>
+			<tr>
+					<td><code>stopped_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job stopped, if it did.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11610,161 +11610,161 @@ key, so it must be unique among stores.</p>
 its current server-side value.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>compression</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Compression for the store at initialization. Unset keeps the engine&rsquo;s own default. One of <code>GZIP</code>, <code>LZ4</code>, <code>ZSTD</code>.</td>
-      </tr>
-      <tr>
-          <td><code>data_classes</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Data classes the store accepts.</td>
-      </tr>
-      <tr>
-          <td><code>endpoints</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Endpoint names the store reaches its resource through.</td>
-      </tr>
-      <tr>
-          <td><code>environment</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Environment label, for example <code>production</code>.</td>
-      </tr>
-      <tr>
-          <td><code>fields</code></td>
-          <td>dict</td>
-          <td>No</td>
-          <td></td>
-          <td>Integration-specific configuration, as a mapping of field name to value. A value may also be a mapping with <code>value</code> and an optional <code>provider_id</code> naming a secret provider. On update, only the fields named here are compared and replaced; other existing fields are preserved. Must carry a non-empty <code>passphrase</code> when the store is initialized here, since it encrypts the store at rest. A field backed by a secret provider counts as set, because the provider supplies the value.</td>
-      </tr>
-      <tr>
-          <td><code>initialize</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to initialize the underlying storage right after creating the store. Initialization only happens on creation, never on update. Set it to false when the storage is already initialized elsewhere, which also lifts the passphrase requirement.</td>
-      </tr>
-      <tr>
-          <td><code>integration</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Name of the installed integration backing the store. Required when creating.</td>
-      </tr>
-      <tr>
-          <td><code>name</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the store.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>protocol</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Protocol spoken to the resource, for example <code>s3</code> or <code>sftp</code>. Defaults to the integration name, which matches for the standard integrations; set it only when they differ.</td>
-      </tr>
-      <tr>
-          <td><code>resource</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>URN or name of the inventory resource the store attaches to. Required when creating.</td>
-      </tr>
-      <tr>
-          <td><code>state</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td><code>present</code></td>
-          <td>Whether the store should exist. <code>absent</code> removes the store from Plakar; the data in the underlying storage is not touched. One of <code>present</code>, <code>absent</code>.</td>
-      </tr>
-      <tr>
-          <td><code>temperature</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Storage temperature.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>compression</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Compression for the store at initialization. Unset keeps the engine&rsquo;s own default. One of <code>GZIP</code>, <code>LZ4</code>, <code>ZSTD</code>.</td>
+			</tr>
+			<tr>
+					<td><code>data_classes</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Data classes the store accepts.</td>
+			</tr>
+			<tr>
+					<td><code>endpoints</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Endpoint names the store reaches its resource through.</td>
+			</tr>
+			<tr>
+					<td><code>environment</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Environment label, for example <code>production</code>.</td>
+			</tr>
+			<tr>
+					<td><code>fields</code></td>
+					<td>dict</td>
+					<td>No</td>
+					<td></td>
+					<td>Integration-specific configuration, as a mapping of field name to value. A value may also be a mapping with <code>value</code> and an optional <code>provider_id</code> naming a secret provider. On update, only the fields named here are compared and replaced; other existing fields are preserved. Must carry a non-empty <code>passphrase</code> when the store is initialized here, since it encrypts the store at rest. A field backed by a secret provider counts as set, because the provider supplies the value.</td>
+			</tr>
+			<tr>
+					<td><code>initialize</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to initialize the underlying storage right after creating the store. Initialization only happens on creation, never on update. Set it to false when the storage is already initialized elsewhere, which also lifts the passphrase requirement.</td>
+			</tr>
+			<tr>
+					<td><code>integration</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Name of the installed integration backing the store. Required when creating.</td>
+			</tr>
+			<tr>
+					<td><code>name</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the store.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>protocol</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Protocol spoken to the resource, for example <code>s3</code> or <code>sftp</code>. Defaults to the integration name, which matches for the standard integrations; set it only when they differ.</td>
+			</tr>
+			<tr>
+					<td><code>resource</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>URN or name of the inventory resource the store attaches to. Required when creating.</td>
+			</tr>
+			<tr>
+					<td><code>state</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td><code>present</code></td>
+					<td>Whether the store should exist. <code>absent</code> removes the store from Plakar; the data in the underlying storage is not touched. One of <code>present</code>, <code>absent</code>.</td>
+			</tr>
+			<tr>
+					<td><code>temperature</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Storage temperature.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>connector</code></td>
-          <td>dict</td>
-          <td>when the store exists or was created</td>
-          <td>The store acted on (a summary; field values are not echoed). Carries <code>initialized</code> when the module created it.</td>
-      </tr>
-      <tr>
-          <td><code>diff_keys</code></td>
-          <td>list of str</td>
-          <td>on update</td>
-          <td>The option names whose values differed and drove the update.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>connector</code></td>
+					<td>dict</td>
+					<td>when the store exists or was created</td>
+					<td>The store acted on (a summary; field values are not echoed). Carries <code>initialized</code> when the module created it.</td>
+			</tr>
+			<tr>
+					<td><code>diff_keys</code></td>
+					<td>list of str</td>
+					<td>on update</td>
+					<td>The option names whose values differed and drove the update.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -11792,162 +11792,162 @@ time.</p>
 stops and fails unless it succeeded.</p>
 <p><strong>Options</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Type</th>
-          <th>Required</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>api_key</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>api_url</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
-      </tr>
-      <tr>
-          <td><code>edge_tags</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Select a remote edge by tags (all must match) to execute the job, falling back to local execution when no edge matches.</td>
-      </tr>
-      <tr>
-          <td><code>labels</code></td>
-          <td>list of str</td>
-          <td>No</td>
-          <td></td>
-          <td>Only sync snapshots carrying these labels.</td>
-      </tr>
-      <tr>
-          <td><code>organization_id</code></td>
-          <td>str</td>
-          <td>No</td>
-          <td></td>
-          <td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
-      </tr>
-      <tr>
-          <td><code>store</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the store holding the snapshots to sync.</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>30</code></td>
-          <td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
-      </tr>
-      <tr>
-          <td><code>to_store</code></td>
-          <td>str</td>
-          <td>Yes</td>
-          <td></td>
-          <td>Name of the store to sync the snapshots into.</td>
-      </tr>
-      <tr>
-          <td><code>validate_certs</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to validate TLS certificates when talking to the API.</td>
-      </tr>
-      <tr>
-          <td><code>wait</code></td>
-          <td>bool</td>
-          <td>No</td>
-          <td><code>true</code></td>
-          <td>Whether to wait for the triggered job to finish. When false, the module returns as soon as the run is accepted; poll it later with <code>plakarkorp.plakar.job_info</code>.</td>
-      </tr>
-      <tr>
-          <td><code>wait_timeout</code></td>
-          <td>int</td>
-          <td>No</td>
-          <td><code>600</code></td>
-          <td>Seconds to wait for the job to finish before failing.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Type</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>api_key</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>API key of a service account, as minted by the Plakar API (<code>pcp_ak_...</code>). API keys authenticate without a second factor and are bound to one organization. The service account must hold a role in the organization (the <code>operator</code> role suffices for running backups and restores); without a grant the API answers with empty lists rather than errors. Falls back to the <code>PLAKAR_API_KEY</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>api_url</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>Base URL of the Plakar management API, for example <code>https://plakar.example.com</code>. Falls back to the <code>PLAKAR_API_URL</code> environment variable.</td>
+			</tr>
+			<tr>
+					<td><code>edge_tags</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Select a remote edge by tags (all must match) to execute the job, falling back to local execution when no edge matches.</td>
+			</tr>
+			<tr>
+					<td><code>labels</code></td>
+					<td>list of str</td>
+					<td>No</td>
+					<td></td>
+					<td>Only sync snapshots carrying these labels.</td>
+			</tr>
+			<tr>
+					<td><code>organization_id</code></td>
+					<td>str</td>
+					<td>No</td>
+					<td></td>
+					<td>UUID of the organization to operate in, when different from the one the API key is bound to. The badge is re-scoped once per organization and cached for the duration of the task.</td>
+			</tr>
+			<tr>
+					<td><code>store</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the store holding the snapshots to sync.</td>
+			</tr>
+			<tr>
+					<td><code>timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>30</code></td>
+					<td>Timeout in seconds for each individual API request (not for job completion; the action modules have <code>wait_timeout</code> for that).</td>
+			</tr>
+			<tr>
+					<td><code>to_store</code></td>
+					<td>str</td>
+					<td>Yes</td>
+					<td></td>
+					<td>Name of the store to sync the snapshots into.</td>
+			</tr>
+			<tr>
+					<td><code>validate_certs</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to validate TLS certificates when talking to the API.</td>
+			</tr>
+			<tr>
+					<td><code>wait</code></td>
+					<td>bool</td>
+					<td>No</td>
+					<td><code>true</code></td>
+					<td>Whether to wait for the triggered job to finish. When false, the module returns as soon as the run is accepted; poll it later with <code>plakarkorp.plakar.job_info</code>.</td>
+			</tr>
+			<tr>
+					<td><code>wait_timeout</code></td>
+					<td>int</td>
+					<td>No</td>
+					<td><code>600</code></td>
+					<td>Seconds to wait for the job to finish before failing.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Returns</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>at_id</code></td>
-          <td>str</td>
-          <td>always (except check mode)</td>
-          <td>Identifier of the one-shot run (the scheduler&rsquo;s <code>at</code> entry).</td>
-      </tr>
-      <tr>
-          <td><code>job</code></td>
-          <td>dict</td>
-          <td>when available</td>
-          <td>The job the run materialized into. Only present once the scheduler picked the run up — with <code>wait=false</code> it may be absent.</td>
-      </tr>
-      <tr>
-          <td><code>log</code></td>
-          <td>str</td>
-          <td>on job failure</td>
-          <td>Plain-text job log, fetched when the job did not succeed.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>at_id</code></td>
+					<td>str</td>
+					<td>always (except check mode)</td>
+					<td>Identifier of the one-shot run (the scheduler&rsquo;s <code>at</code> entry).</td>
+			</tr>
+			<tr>
+					<td><code>job</code></td>
+					<td>dict</td>
+					<td>when available</td>
+					<td>The job the run materialized into. Only present once the scheduler picked the run up — with <code>wait=false</code> it may be absent.</td>
+			</tr>
+			<tr>
+					<td><code>log</code></td>
+					<td>str</td>
+					<td>on job failure</td>
+					<td>Plain-text job log, fetched when the job did not succeed.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Keys of <code>job</code></strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>Key</th>
-          <th>Type</th>
-          <th>Returned</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>id</code></td>
-          <td>str</td>
-          <td></td>
-          <td>Job id, usable with <code>plakarkorp.plakar.job_info</code>.</td>
-      </tr>
-      <tr>
-          <td><code>started_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job started, if it did.</td>
-      </tr>
-      <tr>
-          <td><code>status</code></td>
-          <td>str</td>
-          <td></td>
-          <td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
-      </tr>
-      <tr>
-          <td><code>stopped_at</code></td>
-          <td>str</td>
-          <td></td>
-          <td>When the job stopped, if it did.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Key</th>
+					<th>Type</th>
+					<th>Returned</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>id</code></td>
+					<td>str</td>
+					<td></td>
+					<td>Job id, usable with <code>plakarkorp.plakar.job_info</code>.</td>
+			</tr>
+			<tr>
+					<td><code>started_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job started, if it did.</td>
+			</tr>
+			<tr>
+					<td><code>status</code></td>
+					<td>str</td>
+					<td></td>
+					<td>One of <code>queued</code>, <code>running</code>, <code>canceled</code>, <code>succeeded</code>, <code>failed</code>.</td>
+			</tr>
+			<tr>
+					<td><code>stopped_at</code></td>
+					<td>str</td>
+					<td></td>
+					<td>When the job stopped, if it did.</td>
+			</tr>
+	</tbody>
 </table>
 
       </article>
@@ -12274,8 +12274,8 @@ stops and fails unless it succeeded.</p>
 
     <div class="overflow-hidden md:px-8">
       <img
-      src="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp"
-      srcset="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp 400w, /img/general/plakar-footer-banner_hu_f6d93c3223e43dd4.webp 800w, /img/general/plakar-footer-banner_hu_874c0cb913e58b5b.webp 1200w" sizes="auto"
+      src="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp"
+      srcset="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp 400w, /img/general/plakar-footer-banner_hu_ae1daca09bcae57b.webp 800w, /img/general/plakar-footer-banner_hu_c962588300d46a9f.webp 1200w" sizes="auto"
       width="400"
       height="72"
       alt="Footer banner"

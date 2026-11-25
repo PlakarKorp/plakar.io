@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-29T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-25T10:57:43+01:00">
+    <meta property="article:modified_time" content="2026-11-25T14:16:04+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.48b3068f59742386f0afdc8ef1998ba05fd2b63ca7e6ca760e5deb802cb6d6beeddc01a10045b72d3df186e50ba41f6f4aeadeff8a88a6d3d3c732659fd5bd62.css"
-    integrity="sha512-SLMGj1l0I4bwr9yO8ZmLoF/Stjyn5sp2Dl3rgCy21r7t3AGhAEW3LT3xhuULpB9vSure/4qIptPTxzJln9W9Yg==">
+    href="/css/main.bundle.min.9d8b3d3a769e1fcb34830c40c256c895e6300b002dc9a0f22e0e6156407d1943a14f3b950e766732d15a8eb9f685aa4da0454620800e37dd334055844be11ffc.css"
+    integrity="sha512-nYs9OnaeH8s0gwxAwlbIleYwCwAtyaDyLg5hVkB9GUOhTzuVDnZnMtFajrn2hapNoEVGIIAON90zQFWES&#43;Ef/A==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -239,12 +239,12 @@
     "dateCreated": "2026-09-29T00:00:00\u002b00:00",
     "datePublished": "2026-09-29T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-25T10:57:43\u002b01:00",
+    "dateModified": "2026-11-25T14:16:04\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/scaleway/",
-    "wordCount":  1525 
+    "wordCount":  1534 
   }]
   </script>
 
@@ -4618,45 +4618,45 @@ exists in Scaleway rather than overwriting it: disks come back as new volumes,
 and secret versions come back as new revisions.</p>
 <p>The integration includes two connectors:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Connector type</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Source connector</strong></td>
-          <td>Back up an instance, a block volume or secrets into a Kloset store.</td>
-      </tr>
-      <tr>
-          <td><strong>Destination connector</strong></td>
-          <td>Restore an instance, a block volume or secrets from a Kloset store to Scaleway.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Connector type</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Source connector</strong></td>
+					<td>Back up an instance, a block volume or secrets into a Kloset store.</td>
+			</tr>
+			<tr>
+					<td><strong>Destination connector</strong></td>
+					<td>Restore an instance, a block volume or secrets from a Kloset store to Scaleway.</td>
+			</tr>
+	</tbody>
 </table>
 <p>Both connectors support three protocols:</p>
 <table>
-  <thead>
-      <tr>
-          <th>Protocol</th>
-          <th>What it backs up</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>scaleway-instance</code></td>
-          <td>An instance and all the block volumes it uses.</td>
-      </tr>
-      <tr>
-          <td><code>scaleway-block</code></td>
-          <td>A single Block Storage volume.</td>
-      </tr>
-      <tr>
-          <td><code>scaleway-secret</code></td>
-          <td>Every Secret Manager secret in a project and region.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Protocol</th>
+					<th>What it backs up</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>scaleway-instance</code></td>
+					<td>An instance and all the block volumes it uses.</td>
+			</tr>
+			<tr>
+					<td><code>scaleway-block</code></td>
+					<td>A single Block Storage volume.</td>
+			</tr>
+			<tr>
+					<td><code>scaleway-secret</code></td>
+					<td>Every Secret Manager secret in a project and region.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Requirements</strong></p>
 <ul>
@@ -4786,70 +4786,70 @@ listed for it. See
 <a href="/docs/control-plane/guides/scaleway/iam-and-api-keys/" >Managing IAM Policies and API Keys on Scaleway</a>
 for how to create the application, its policy and its keys.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Permission</th>
-          <th>Protocols</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>InstancesFullAccess</code></td>
-          <td><code>scaleway-instance</code></td>
-          <td>Full access to Instances.</td>
-      </tr>
-      <tr>
-          <td><code>BlockStorageFullAccess</code></td>
-          <td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
-          <td>Full access to Block Storage.</td>
-      </tr>
-      <tr>
-          <td><code>ObjectStorageBucketsRead</code></td>
-          <td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
-          <td>Read access to buckets and bucket configuration including lifecycle rules.</td>
-      </tr>
-      <tr>
-          <td><code>ObjectStorageBucketsWrite</code></td>
-          <td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
-          <td>Access to create and edit buckets, bucket configuration including lifecycle rules.</td>
-      </tr>
-      <tr>
-          <td><code>ObjectStorageObjectsRead</code></td>
-          <td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
-          <td>Read access to objects, tags, metadata and storage class.</td>
-      </tr>
-      <tr>
-          <td><code>ObjectStorageObjectsWrite</code></td>
-          <td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
-          <td>Access to create and edit objects, tags, metadata and storage class.</td>
-      </tr>
-      <tr>
-          <td><code>SecretManagerReadOnly</code></td>
-          <td><code>scaleway-secret</code></td>
-          <td>Read access to secret metadata.</td>
-      </tr>
-      <tr>
-          <td><code>SecretManagerSecretAccess</code></td>
-          <td><code>scaleway-secret</code></td>
-          <td>Read access to secret values.</td>
-      </tr>
-      <tr>
-          <td><code>SecretManagerSecretCreate</code></td>
-          <td><code>scaleway-secret</code></td>
-          <td>Create new secrets.</td>
-      </tr>
-      <tr>
-          <td><code>SecretManagerSecretWrite</code></td>
-          <td><code>scaleway-secret</code></td>
-          <td>Write new secret versions.</td>
-      </tr>
-      <tr>
-          <td><code>SecretManagerSecretRestore</code></td>
-          <td><code>scaleway-secret</code></td>
-          <td>Recover secrets or versions on restore.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Permission</th>
+					<th>Protocols</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>InstancesFullAccess</code></td>
+					<td><code>scaleway-instance</code></td>
+					<td>Full access to Instances.</td>
+			</tr>
+			<tr>
+					<td><code>BlockStorageFullAccess</code></td>
+					<td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
+					<td>Full access to Block Storage.</td>
+			</tr>
+			<tr>
+					<td><code>ObjectStorageBucketsRead</code></td>
+					<td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
+					<td>Read access to buckets and bucket configuration including lifecycle rules.</td>
+			</tr>
+			<tr>
+					<td><code>ObjectStorageBucketsWrite</code></td>
+					<td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
+					<td>Access to create and edit buckets, bucket configuration including lifecycle rules.</td>
+			</tr>
+			<tr>
+					<td><code>ObjectStorageObjectsRead</code></td>
+					<td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
+					<td>Read access to objects, tags, metadata and storage class.</td>
+			</tr>
+			<tr>
+					<td><code>ObjectStorageObjectsWrite</code></td>
+					<td><code>scaleway-instance</code>, <code>scaleway-block</code></td>
+					<td>Access to create and edit objects, tags, metadata and storage class.</td>
+			</tr>
+			<tr>
+					<td><code>SecretManagerReadOnly</code></td>
+					<td><code>scaleway-secret</code></td>
+					<td>Read access to secret metadata.</td>
+			</tr>
+			<tr>
+					<td><code>SecretManagerSecretAccess</code></td>
+					<td><code>scaleway-secret</code></td>
+					<td>Read access to secret values.</td>
+			</tr>
+			<tr>
+					<td><code>SecretManagerSecretCreate</code></td>
+					<td><code>scaleway-secret</code></td>
+					<td>Create new secrets.</td>
+			</tr>
+			<tr>
+					<td><code>SecretManagerSecretWrite</code></td>
+					<td><code>scaleway-secret</code></td>
+					<td>Write new secret versions.</td>
+			</tr>
+			<tr>
+					<td><code>SecretManagerSecretRestore</code></td>
+					<td><code>scaleway-secret</code></td>
+					<td>Recover secrets or versions on restore.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -4980,40 +4980,40 @@ Store --> Plakar --> Transform --> Bucket
 <p>The following options apply to both source and destination connectors using the
 <code>scaleway-instance</code> protocol.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>access_key</code></td>
-          <td>Yes</td>
-          <td>Scaleway API access key.</td>
-      </tr>
-      <tr>
-          <td><code>secret_key</code></td>
-          <td>Yes</td>
-          <td>Scaleway API secret key.</td>
-      </tr>
-      <tr>
-          <td><code>project_id</code></td>
-          <td>Yes</td>
-          <td>ID of the Scaleway project, as a UUID.</td>
-      </tr>
-      <tr>
-          <td><code>bucket</code></td>
-          <td>Yes</td>
-          <td>Name of the Object Storage bucket used as a staging area.</td>
-      </tr>
-      <tr>
-          <td><code>zone</code></td>
-          <td>No</td>
-          <td>Scaleway zone of the instance, for example <code>fr-par-1</code>. Defaults to <code>fr-par-1</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>access_key</code></td>
+					<td>Yes</td>
+					<td>Scaleway API access key.</td>
+			</tr>
+			<tr>
+					<td><code>secret_key</code></td>
+					<td>Yes</td>
+					<td>Scaleway API secret key.</td>
+			</tr>
+			<tr>
+					<td><code>project_id</code></td>
+					<td>Yes</td>
+					<td>ID of the Scaleway project, as a UUID.</td>
+			</tr>
+			<tr>
+					<td><code>bucket</code></td>
+					<td>Yes</td>
+					<td>Name of the Object Storage bucket used as a staging area.</td>
+			</tr>
+			<tr>
+					<td><code>zone</code></td>
+					<td>No</td>
+					<td>Scaleway zone of the instance, for example <code>fr-par-1</code>. Defaults to <code>fr-par-1</code>.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5034,20 +5034,20 @@ Store --> Plakar --> Transform --> Bucket
 </h3>
 <p>The following extra options are available on the source connector.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td><code>scaleway-instance://&lt;server-id&gt;</code>, the instance to back up.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td><code>scaleway-instance://&lt;server-id&gt;</code>, the instance to back up.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5068,25 +5068,25 @@ Store --> Plakar --> Transform --> Bucket
 </h3>
 <p>The following extra options are available on the destination connector.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td><code>scaleway-instance://&lt;server-id&gt;</code> to attach the restored disks to an existing instance, or <code>scaleway-instance://spawn</code> to create a new instance.</td>
-      </tr>
-      <tr>
-          <td><code>ssh_key_id</code></td>
-          <td>No</td>
-          <td>ID of a Scaleway SSH key, as a UUID. Used only when <code>spawn</code> creates a Windows instance. Scaleway encrypts the generated Administrator password with this key. Only the matching private key can decrypt it.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td><code>scaleway-instance://&lt;server-id&gt;</code> to attach the restored disks to an existing instance, or <code>scaleway-instance://spawn</code> to create a new instance.</td>
+			</tr>
+			<tr>
+					<td><code>ssh_key_id</code></td>
+					<td>No</td>
+					<td>ID of a Scaleway SSH key, as a UUID. Used only when <code>spawn</code> creates a Windows instance. Scaleway encrypts the generated Administrator password with this key. Only the matching private key can decrypt it.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5264,35 +5264,35 @@ Store --> Plakar --> Transform --> Bucket
 <p>The following options apply to both source and destination connectors using the
 <code>scaleway-block</code> protocol.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>access_key</code></td>
-          <td>Yes</td>
-          <td>Scaleway API access key.</td>
-      </tr>
-      <tr>
-          <td><code>secret_key</code></td>
-          <td>Yes</td>
-          <td>Scaleway API secret key.</td>
-      </tr>
-      <tr>
-          <td><code>project_id</code></td>
-          <td>Yes</td>
-          <td>ID of the Scaleway project.</td>
-      </tr>
-      <tr>
-          <td><code>bucket</code></td>
-          <td>Yes</td>
-          <td>Name of the Object Storage bucket used as a staging area.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>access_key</code></td>
+					<td>Yes</td>
+					<td>Scaleway API access key.</td>
+			</tr>
+			<tr>
+					<td><code>secret_key</code></td>
+					<td>Yes</td>
+					<td>Scaleway API secret key.</td>
+			</tr>
+			<tr>
+					<td><code>project_id</code></td>
+					<td>Yes</td>
+					<td>ID of the Scaleway project.</td>
+			</tr>
+			<tr>
+					<td><code>bucket</code></td>
+					<td>Yes</td>
+					<td>Name of the Object Storage bucket used as a staging area.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5313,25 +5313,25 @@ Store --> Plakar --> Transform --> Bucket
 </h3>
 <p>The following extra options are available on the source connector.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td><code>scaleway-block://&lt;volume-id&gt;</code>, the volume to back up.</td>
-      </tr>
-      <tr>
-          <td><code>zone</code></td>
-          <td>No</td>
-          <td>Zone of the volume. Defaults to <code>fr-par-1</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td><code>scaleway-block://&lt;volume-id&gt;</code>, the volume to back up.</td>
+			</tr>
+			<tr>
+					<td><code>zone</code></td>
+					<td>No</td>
+					<td>Zone of the volume. Defaults to <code>fr-par-1</code>.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5352,25 +5352,25 @@ Store --> Plakar --> Transform --> Bucket
 </h3>
 <p>The following extra options are available on the destination connector.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td><code>scaleway-block://</code> to create a detached volume, or <code>scaleway-block://&lt;instance-id&gt;</code> to create a volume attached to that instance.</td>
-      </tr>
-      <tr>
-          <td><code>zone</code></td>
-          <td>No</td>
-          <td>Zone where the volume is created. Defaults to <code>fr-par-1</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td><code>scaleway-block://</code> to create a detached volume, or <code>scaleway-block://&lt;instance-id&gt;</code> to create a volume attached to that instance.</td>
+			</tr>
+			<tr>
+					<td><code>zone</code></td>
+					<td>No</td>
+					<td>Zone where the volume is created. Defaults to <code>fr-par-1</code>.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -5545,40 +5545,40 @@ Store --> Plakar --> Transform -->|"Secret Manager API"| Secrets
 <p>The following options apply to both source and destination connectors using the
 <code>scaleway-secret</code> protocol.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td>Always <code>scaleway-secret://</code>.</td>
-      </tr>
-      <tr>
-          <td><code>access_key</code></td>
-          <td>Yes</td>
-          <td>Scaleway API access key.</td>
-      </tr>
-      <tr>
-          <td><code>secret_key</code></td>
-          <td>Yes</td>
-          <td>Scaleway API secret key.</td>
-      </tr>
-      <tr>
-          <td><code>project_id</code></td>
-          <td>Yes</td>
-          <td>ID of the Scaleway project, as a UUID. For a source, the project to back up. For a destination, the project to restore the secrets into.</td>
-      </tr>
-      <tr>
-          <td><code>region</code></td>
-          <td>No</td>
-          <td>Region of the secrets. Defaults to <code>fr-par</code>.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Option</th>
+					<th>Required</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>location</code></td>
+					<td>Yes</td>
+					<td>Always <code>scaleway-secret://</code>.</td>
+			</tr>
+			<tr>
+					<td><code>access_key</code></td>
+					<td>Yes</td>
+					<td>Scaleway API access key.</td>
+			</tr>
+			<tr>
+					<td><code>secret_key</code></td>
+					<td>Yes</td>
+					<td>Scaleway API secret key.</td>
+			</tr>
+			<tr>
+					<td><code>project_id</code></td>
+					<td>Yes</td>
+					<td>ID of the Scaleway project, as a UUID. For a source, the project to back up. For a destination, the project to restore the secrets into.</td>
+			</tr>
+			<tr>
+					<td><code>region</code></td>
+					<td>No</td>
+					<td>Region of the secrets. Defaults to <code>fr-par</code>.</td>
+			</tr>
+	</tbody>
 </table>
 
 
@@ -6052,8 +6052,8 @@ Store --> Plakar --> Transform -->|"Secret Manager API"| Secrets
 
     <div class="overflow-hidden md:px-8">
       <img
-      src="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp"
-      srcset="/img/general/plakar-footer-banner_hu_aa36714051f4ab53.webp 400w, /img/general/plakar-footer-banner_hu_f6d93c3223e43dd4.webp 800w, /img/general/plakar-footer-banner_hu_874c0cb913e58b5b.webp 1200w" sizes="auto"
+      src="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp"
+      srcset="/img/general/plakar-footer-banner_hu_5b9b1b446ff9bfc4.webp 400w, /img/general/plakar-footer-banner_hu_ae1daca09bcae57b.webp 800w, /img/general/plakar-footer-banner_hu_c962588300d46a9f.webp 1200w" sizes="auto"
       width="400"
       height="72"
       alt="Footer banner"
