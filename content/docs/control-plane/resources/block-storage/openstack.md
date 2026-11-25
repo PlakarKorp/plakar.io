@@ -128,7 +128,10 @@ Backing up and restoring volumes creates and deletes snapshots, images and
 volumes in the project, so the credentials need the `reader` and `member` roles
 on it. See
 [Managing Users and Application Credentials](../../../guides/openstack/users-and-application-credentials)
-for how to create a user and an application credential with those roles.
+for how to create a user and an application credential with those roles. On
+OVHcloud Public Cloud, you assign OVHcloud roles to the user instead, and they
+grant it the OpenStack roles it needs. See
+[Managing OpenStack Application Credentials](../../../guides/ovhcloud/openstack-application-credentials).
 
 Role names depend on how the OpenStack cloud is configured. The `reader` and
 `member` roles are default Keystone roles, but some providers define their own.

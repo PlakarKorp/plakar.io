@@ -268,7 +268,9 @@ inventory as destination.
 {{< step >}}
 
 **Set the credentials.** Give the destination an OpenStack application
-credential ID and secret for the project, and `SBG5` as OpenStack Region.
+credential ID and secret for the project, and `SBG5` as OpenStack Region. See
+[Managing OpenStack Application Credentials](/docs/control-plane/guides/ovhcloud/openstack-application-credentials/)
+for how to create one.
 
 {{< /step >}}
 
