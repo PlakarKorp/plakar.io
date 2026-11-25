@@ -111,8 +111,9 @@ switch of that organization. See
 ## System
 
 The system settings connect the organization to the infrastructure around Plakar
-Control Plane. They define the mail server used for its email, and an external
-Vector instance that receives a copy of the logs of Plakar Control Plane.
+Control Plane. They define the mail server used for its email, an external
+Vector instance that receives a copy of the logs of Plakar Control Plane, and
+the key edges enroll with.
 
 ### SMTP
 
@@ -135,6 +136,19 @@ use `http://host:port` for a Vector instance that listens over plain HTTP.
 PCP reads the level of each log line before forwarding it, so your Vector
 instance receives `level`, `msg` and `attrs` fields alongside the original
 `message`.
+
+### Edge enrollment
+
+> [!WARNING]+ Deprecated
+>
+> The organization enrollment key is deprecated. Create an
+> [edge pool](../../edges/enrollment#creating-and-managing-pools) for your edges
+> and enroll them with the key of that pool instead.
+
+An enrollment key for the organization itself, separate from the keys of its
+pools. Edges that enroll with it join the default pool. Closing or regenerating
+it does not affect pool keys. See
+[organization enrollment key](../../edges/enrollment#organization-enrollment-key).
 
 ## Notifications
 

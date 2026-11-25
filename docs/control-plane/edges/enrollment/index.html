@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-25T14:16:04+01:00">
+    <meta property="article:modified_time" content="2026-11-25T20:07:11+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-07-13T00:00:00\u002b00:00",
     "datePublished": "2026-07-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-25T14:16:04\u002b01:00",
+    "dateModified": "2026-11-25T20:07:11\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/edges/enrollment/",
-    "wordCount":  616 
+    "wordCount":  762 
   }]
   </script>
 
@@ -9476,10 +9476,10 @@ picks an edge, and what happens when none is available, is described in
     </button>
   
 </h2>
-<p>Pools are created on the <strong>Pools</strong> tab of <strong>Infrastructure &gt; Edges</strong>. Each pool
-has its own enrollment key. An edge that presents this key on its first
-connection is enrolled into the organization and placed in the pool in the same
-step.</p>
+<p>You create pools on the <strong>Pools</strong> tab of <strong>Infrastructure &gt; Edges</strong>, the tab the
+page opens on. Each pool has its own enrollment key. An edge that presents this
+key on its first connection is enrolled into the organization and placed in the
+pool in the same step.</p>
 <p>The key is shown only once, when it is generated. A pool has one key at a time,
 so generating a new one invalidates the previous one. Closing enrollment removes
 the key, and no new edge can join the pool until a key is generated again.
@@ -9502,6 +9502,62 @@ a pool named <code>default</code>, which is the organization&rsquo;s default poo
 that pool. It cannot be taken out of its pool, since every edge belongs to one.
 A child organization can only move or add its own edges. The edges of a pool
 shared by an organization above it cannot be moved or added to its pools.</p>
+
+
+<h2 id="organization-enrollment-key" class="group pr-8">Organization enrollment key
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="organization-enrollment-key"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="warning"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          Deprecated
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The organization enrollment key is deprecated. Create an
+<a href="/docs/control-plane/edges/enrollment/#creating-and-managing-pools" >edge pool</a> for your edges and enroll them with
+the key of that pool instead.</p></div></details><p>Besides the keys of its pools, an organization has its own enrollment key, under
+<strong>Edge enrollment</strong> in the
+<a href="../../access-control/organization-settings#edge-enrollment" >organization settings</a>.
+An edge that enrolls with it joins the organization&rsquo;s default pool. Unlike a
+pool key, you can show this key again after it is generated.</p>
+<p>Regenerating the key or closing enrollment stops new edges from enrolling with
+the old key. It does not affect pool keys or the edges that already enrolled.</p>
+<p>The key is
+<a href="../../access-control/organization-settings#handing-settings-down" >handed down</a>
+like other settings. An edge that enrolls with a key inherited from an
+organization above joins the default pool of that organization. Organizations
+below can only use its edges if that pool is
+<a href="/docs/control-plane/edges/enrollment/#sharing-pools-with-child-organizations" >shared with them</a>.</p>
 
 
 <h2 id="sharing-pools-with-child-organizations" class="group pr-8">Sharing pools with child organizations
@@ -9610,7 +9666,7 @@ the pool. Assign them to another pool first.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#edge-pools">Edge pools</a></li><li><a href="#creating-and-managing-pools">Creating and managing pools</a></li><li><a href="#sharing-pools-with-child-organizations">Sharing pools with child organizations</a></li></ul>
+      <ul><li><a href="#edge-pools">Edge pools</a></li><li><a href="#creating-and-managing-pools">Creating and managing pools</a></li><li><a href="#organization-enrollment-key">Organization enrollment key</a></li><li><a href="#sharing-pools-with-child-organizations">Sharing pools with child organizations</a></li></ul>
     </div>
 
     
