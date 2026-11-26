@@ -1,6 +1,6 @@
 ---
 title: "Two-factor authentication"
-date: "2026-08-06T00:00:00Z"
+date: "2026-11-26T00:00:00Z"
 weight: 4
 summary:
   "Secure your Plakar Control Plane account with two-factor authentication."
@@ -47,6 +47,11 @@ Members who already have a second factor enrolled are not affected and can
 continue signing in as usual. Access to Plakar Control Plane is granted only
 after a required second factor has been enrolled.
 
+The requirement follows the organization your account belongs to, including what
+it inherits from the organizations above it. While it applies, two-factor
+authentication cannot be disabled from the **Account** page, even after
+[replacing your authenticator app](#replacing-your-authenticator-app).
+
 ## Signing in
 
 After entering your [account and password](../../intro/signing-in), Plakar
@@ -74,3 +79,19 @@ and confirm the action with a valid verification code from your authenticator
 application or one of your unused recovery codes.
 
 ![Disabling two-factor authentication](../images/disable-2fa.png)
+
+## Failed attempts
+
+Repeated wrong verification codes lock the account for a while. The lock expires
+on its own, and an administrator can clear it sooner by
+[resetting the second factor](#resetting-a-members-second-factor).
+
+## Resetting a member's second factor
+
+A member who has lost both their authenticator app and their recovery codes can
+have their second factor reset by an **Owner**, an **Organization Admin** or the
+**Superuser**, through
+[`DELETE /api/v1/account/organizations/{id}/members/{user_id}/2fa`](../../references/openapi/v1/organizations#organizationMemberReset2FA).
+Nobody can reset their own. The reset is recorded in the
+[audit log](../../compliance/audit-log). The member then signs in with their
+password and sets up a new authenticator app.
