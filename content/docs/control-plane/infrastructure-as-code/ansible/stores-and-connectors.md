@@ -19,7 +19,9 @@ Both need the same three things: the installed
 [integration](../../../integrations) that speaks to the resource, the resource
 itself, and the `fields` that integration needs in order to reach it. The
 resource is named by its URN or by its name, and a name only resolves when it is
-unique within the inventory.
+unique within the inventory. Both are fixed once the app exists, and switching
+between the URN and the name of the same resource keeps the app in place. An app
+whose resource was deleted takes a new one in place.
 
 ## Stores
 
@@ -41,7 +43,8 @@ The [Kloset store](../../../apps/stores#testing-and-initializing) is a structure
 that has to exist at the location before anything can be written to it.
 `initialize` defaults to `true`, so the module creates that structure along with
 the store, and only ever at creation. `compression` selects the algorithm used
-while doing so.
+while doing so. When initialization fails, the task fails with the reason and
+removes the store, so the next run starts over.
 
 A store initialized this way is encrypted at rest with the `passphrase` in
 `fields`, which is why that key belongs in Ansible Vault rather than in the
@@ -81,4 +84,5 @@ it has. Removing a key from the map stops managing that key rather than clearing
 it in PCP.
 
 Field values are credentials for the systems being backed up. Supply them from
-Ansible Vault or from whatever secret store the rest of your playbooks use.
+Ansible Vault, or take them from a
+[secret provider](./secrets#referencing-a-secret).

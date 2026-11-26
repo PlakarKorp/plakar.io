@@ -29,9 +29,9 @@ version is provided.
 
 > [!WARNING]+ Destroying an integration
 >
-> Destroying the resource uninstalls the integration for every organization,
-> even when connectors still use it. Import the integrations already installed
-> before the first apply, by the id of the installed version:
+> Destroying the resource uninstalls the integration from the deployment, even
+> when connectors still use it. Import the integrations already installed before
+> the first apply, by the id of the installed version:
 >
 > ```shell
 > terraform import plakar_integration.s3 5d2e8f1a-3c4b-4a7d-9e6f-1b2c3d4e5f60

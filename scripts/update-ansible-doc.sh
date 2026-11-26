@@ -1,7 +1,8 @@
 #!/bin/sh
 #
-# Regenerates content/docs/control-plane/references/ansible-collection.md from
+# Regenerates content/docs/control-plane/references/ansible-collection/ from
 # the plakarkorp.plakar Ansible collection, as reported by `ansible-doc --json`.
+# The index holds what every module shares, and each module gets a page.
 #
 # Usage: scripts/update-ansible-doc.sh [ref]
 #        PLAKAR_ANSIBLE_DIR=<path> scripts/update-ansible-doc.sh
@@ -68,7 +69,7 @@ fi
 ANSIBLE_COLLECTIONS_PATH="$SRCROOT"
 export ANSIBLE_COLLECTIONS_PATH
 
-# Naming the modules in the dump below keeps the page's contents decided here
+# Naming the modules in the dump below keeps the pages' contents decided here
 # rather than by whatever else is installed alongside the collection.
 MODULES=$("$ANSIBLE_DOC" -l "$COLLECTION" --json 2>"${TMPDIR}/list.err" |
   "$PYTHON" -c 'import json, sys; print("\n".join(sorted(json.load(sys.stdin))))') ||
@@ -80,8 +81,9 @@ MODULES=$("$ANSIBLE_DOC" -l "$COLLECTION" --json 2>"${TMPDIR}/list.err" |
 N_MODULES=$(printf '%s\n' "$MODULES" | grep -c .)
 
 OUTDIR="${SCRIPT_DIR}/../content/docs/control-plane/references"
-mkdir -p "$OUTDIR" || die "could not create ${OUTDIR}"
-DEST="${OUTDIR}/ansible-collection.md"
+DEST="${OUTDIR}/ansible-collection"
+STAGE="${TMPDIR}/ansible-collection"
+mkdir -p "$STAGE" || die "could not create ${STAGE}"
 
 echo "${PROG}: generating from ${ORIGIN}: ${N_MODULES} modules"
 
@@ -89,7 +91,8 @@ echo "${PROG}: generating from ${ORIGIN}: ${N_MODULES} modules"
 "$ANSIBLE_DOC" --json $MODULES > "${TMPDIR}/doc.json" 2>"${TMPDIR}/doc.err" ||
   die "ansible-doc failed: $(cat "${TMPDIR}/doc.err")"
 
-"$PYTHON" - "${TMPDIR}/doc.json" > "$DEST" 2> "${TMPDIR}/warnings" <<'PY'
+"$PYTHON" - "${TMPDIR}/doc.json" "$STAGE" "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+  2> "${TMPDIR}/warnings" <<'PY'
 import json
 import pathlib
 import re
@@ -192,7 +195,7 @@ def option_rows(options, out, prefix=""):
 
   for name, suboptions in nested:
     out.append("")
-    out.append("**Suboptions of `%s%s`**" % (prefix, name))
+    out.append("### Suboptions of `%s%s`" % (prefix, name))
     out.append("")
     option_rows(suboptions, out, prefix="%s%s." % (prefix, name))
 
@@ -220,7 +223,7 @@ def return_rows(values, out, prefix=""):
 
   for name, contains in nested:
     out.append("")
-    out.append("**Keys of `%s%s`**" % (prefix, name))
+    out.append("### Keys of `%s%s`" % (prefix, name))
     out.append("")
     return_rows(contains, out, prefix="%s%s." % (prefix, name))
 
@@ -238,7 +241,10 @@ def render(fqcn, entry, shared_notes, out):
     warn("%s: ansible-doc returned no doc section, module skipped" % fqcn)
     return False
 
-  out.append("### %s" % (doc.get("module") or fqcn.rsplit(".", 1)[-1]))
+  name = doc.get("module") or fqcn.rsplit(".", 1)[-1]
+  out.append("# %s" % name)
+  out.append("")
+  out.append("Written `%s` in a task." % fqcn)
   out.append("")
 
   short = doc.get("short_description")
@@ -253,9 +259,18 @@ def render(fqcn, entry, shared_notes, out):
     out.append(paragraph)
     out.append("")
 
+  examples = (entry.get("examples") or "").strip()
+  if examples:
+    out.append("## Examples")
+    out.append("")
+    out.append("```yaml")
+    out.append(examples)
+    out.append("```")
+    out.append("")
+
   options = doc.get("options")
   if isinstance(options, dict) and options:
-    out.append("**Options**")
+    out.append("## Options")
     out.append("")
     option_rows(options, out)
     out.append("")
@@ -267,7 +282,7 @@ def render(fqcn, entry, shared_notes, out):
 
   returns = entry.get("return")
   if isinstance(returns, dict) and returns:
-    out.append("**Returns**")
+    out.append("## Returns")
     out.append("")
     return_rows(returns, out)
     out.append("")
@@ -280,32 +295,71 @@ def render(fqcn, entry, shared_notes, out):
 
 
 entries = json.loads(pathlib.Path(sys.argv[1]).read_text())
-out = []
+stage = pathlib.Path(sys.argv[2])
+date = sys.argv[3]
 rendered = 0
 
+
+def front_matter(title, weight, summary):
+  return [
+    "---",
+    'title: "%s"' % title,
+    'date: "%s"' % date,
+    "weight: %d" % weight,
+    'summary: "%s"' % summary.replace('"', '\\"'),
+    "---",
+    "",
+  ]
+
+
+def write(name, lines):
+  (stage / name).write_text("\n".join(lines).rstrip() + "\n")
+
+
 # A note every module carries comes from the collection's doc fragment and
-# describes the collection, so it is written once instead of sixteen times.
+# describes the collection, which the guide already covers, so it is left out.
 per_module = [
   set(paragraphs(((entries[fqcn] or {}).get("doc") or {}).get("notes")))
   for fqcn in entries
 ]
 shared_notes = set.intersection(*per_module) if per_module else set()
 
-for text in sorted(shared_notes):
-  note(text, out)
+out = front_matter(
+  "Ansible Collection",
+  3,
+  "Option-by-option reference for every module in the plakarkorp.plakar "
+  "Ansible collection.",
+)
+out += [
+  "# Ansible collection reference",
+  "",
+  "This section lists every option of every module in the `plakarkorp.plakar`",
+  "Ansible collection. For an introduction to what these modules do and how a",
+  "playbook uses them, see",
+  "[Ansible Collection](../../infrastructure-as-code/ansible).",
+  "",
+]
+out += ["## Modules", "", '{{< children description="true" >}}']
+write("_index.md", out)
 
-for fqcn in sorted(entries):
-  if render(fqcn, entries[fqcn] or {}, shared_notes, out):
+for weight, fqcn in enumerate(sorted(entries), 1):
+  entry = entries[fqcn] or {}
+  short = (((entry.get("doc") or {}).get("short_description")) or "").strip()
+  out = front_matter(
+    fqcn.rsplit(".", 1)[-1],
+    weight,
+    markup(short).rstrip(".") + "." if short else "",
+  )
+  if render(fqcn, entry, shared_notes, out):
     rendered += 1
+    write(fqcn.rsplit(".", 1)[-1].replace("_", "-") + ".md", out)
 
 if rendered == 0:
   warn("no module produced any documentation")
-
-print("\n".join(out).rstrip())
 PY
 
 status=$?
-[ "$status" -eq 0 ] || die "generation failed, ${DEST} may be incomplete"
+[ "$status" -eq 0 ] || die "generation failed, ${DEST} was left unchanged"
 
 # The renderer runs in a subshell, so its warnings are counted here.
 while IFS= read -r line; do
@@ -314,51 +368,24 @@ while IFS= read -r line; do
   echo "${PROG}: ${line}" >&2
 done < "${TMPDIR}/warnings"
 
-[ -s "$DEST" ] || die "generated ${DEST} is empty"
-
-BODY="${TMPDIR}/body.md"
-mv "$DEST" "$BODY"
-
-{
-  cat <<EOF
----
-title: "Ansible Collection"
-date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-weight: 3
-summary: "Option-by-option reference for every module in the plakarkorp.plakar Ansible collection."
----
-
-# Ansible collection reference
-
-This page lists every option of every module in the \`plakarkorp.plakar\`
-Ansible collection. For an introduction to what these modules do and how a
-playbook uses them, see
-[Ansible Collection](../../infrastructure-as-code/ansible).
-
-Module names are written in full in a playbook. The \`backup\` module below is
-\`plakarkorp.plakar.backup\` in a task.
-
-## Modules
-
-EOF
-  cat "$BODY"
-} > "$DEST" || die "could not write ${DEST}"
-
-found=$(grep -c '^### ' "$DEST")
+found=$(ls "$STAGE"/*.md | grep -vc '/_index.md$')
 [ "$found" -eq "$N_MODULES" ] ||
-  warn "ansible-doc listed ${N_MODULES} modules but ${found} sections were written, some produced nothing"
-[ "$found" -gt 0 ] || die "generated page documents no module"
+  warn "ansible-doc listed ${N_MODULES} modules but ${found} pages were written, some produced nothing"
+[ "$found" -gt 0 ] || die "no module page was generated"
 
-grep -q '^## Modules$' "$DEST" || die "generated page has no Modules section"
+# The directory is generated whole, so pages for removed modules go with it.
+rm -rf "$DEST" "${OUTDIR}/ansible-collection.md" || die "could not remove the previous pages"
+mv "$STAGE" "$DEST" || die "could not write ${DEST}"
 
-if npx --no-install prettier --write "$DEST"; then
+# Formatted in place: outside the repository prettier misses its configuration.
+if npx --no-install prettier --write "$DEST" >/dev/null; then
   :
 else
-  warn "prettier is not installed here, ${DEST} is unformatted and will fail the repository format check, run 'npm install' and retry"
+  warn "prettier is not installed here, the pages are unformatted and will fail the repository format check, run 'npm install' and retry"
 fi
 
 # prettier pads the cells, so the header is matched loosely.
-tables=$(grep -cE '^\| *Option *\| *Type *\| *Required *\|' "$DEST")
+tables=$(cat "$DEST"/*.md | grep -cE '^\| *Option *\| *Type *\| *Required *\|')
 echo "${PROG}: wrote ${DEST} (${found} modules, ${tables} option tables, ${WARNINGS} warnings)"
 
 [ "$WARNINGS" -eq 0 ] || echo "${PROG}: review the warnings above before committing" >&2

@@ -43,8 +43,10 @@ can also be installed from the **Add inventory** dialog, which lists providers
 that are not installed alongside those that are, so an inventory can be created
 without visiting the **Integrations** page first.
 
-To install integrations with Terraform, see
-[Integrations in Terraform](../infrastructure-as-code/terraform/integrations-and-classification).
+To install integrations as code, see
+[Integrations in Terraform](../infrastructure-as-code/terraform/integrations-and-classification)
+or
+[Integrations in Ansible](../infrastructure-as-code/ansible/integrations-and-classification).
 
 ## Updating an integration
 

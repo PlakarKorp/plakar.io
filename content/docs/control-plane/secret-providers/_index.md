@@ -58,5 +58,6 @@ provider-specific instructions for your secret manager:
 
 {{< children description="true" >}}
 
-To declare secret providers and the secrets of apps with Terraform, see
-[Secrets in Terraform](../infrastructure-as-code/terraform/secrets).
+To declare secret providers and the secrets of apps as code, see
+[Secrets in Terraform](../infrastructure-as-code/terraform/secrets) or
+[Secrets in Ansible](../infrastructure-as-code/ansible/secrets).
