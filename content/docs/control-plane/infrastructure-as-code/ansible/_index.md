@@ -92,7 +92,7 @@ tenant beneath the key's own organization without re-scoping.
 | `job_info`           | Read job state, one job or a filtered list.           |
 | `store`              | Declare stores, initialized on creation.              |
 | `connector`          | Declare source and destination connectors.            |
-| `inventory`          | Declare inventories, provider-backed or self-managed. |
+| `inventory`          | Declare inventories, managed or self-managed.         |
 | `inventory_resource` | Declare resources in a self-managed inventory.        |
 | `inventory_sync`     | Re-read what an inventory's provider holds.           |
 | `inventory_info`     | Read inventories, their coverage and their resources. |

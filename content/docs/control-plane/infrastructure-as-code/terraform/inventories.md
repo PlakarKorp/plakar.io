@@ -16,7 +16,7 @@ determines where the resources come from: an inventory of type `aws`, `ovh`,
 configured against, while a `self-managed` inventory holds only what is declared
 in it by hand.
 
-## Provider-backed inventories
+## Managed inventories
 
 Every type except `self-managed` requires a configuration block of the same
 name, which supplies the credentials discovery runs with.
@@ -40,6 +40,77 @@ which keeps long-lived secrets out of Terraform state. An `aws` inventory with
 `credentials_type = "iam"` uses the IAM role PCP runs under, a `gcp` inventory
 without `service_account_json` falls back to the ambient service account, and a
 `k8s` inventory without `kubeconfig` uses in-cluster credentials.
+
+### Scaleway keys
+
+The `scaleway` inventory can keep its keys out of Terraform state. Its
+`access_key` and `secret_key` take the same three forms as the fields of a
+store, described in [Managing Secrets](./secrets). Instead of separate maps,
+each form is its own argument, named after the key:
+
+- `secret_key` holds a plain value.
+- `secret_key_secret` holds a reference to a secret provider.
+- `secret_key_wo` holds a write-only value, sent again when
+  `secret_key_wo_version` changes.
+
+Set each key in one form only.
+
+```terraform
+resource "plakar_inventory" "scaleway" {
+  name = "Scaleway production"
+  type = "scaleway"
+
+  scaleway {
+    project_id            = "11111111-2222-3333-4444-555555555555"
+    access_key_secret     = { provider = plakar_secret_provider.vault.id, path = "secret/inventories/scaleway#access_key" }
+    secret_key_wo         = var.scw_secret_key
+    secret_key_wo_version = 1
+  }
+}
+```
+
+## Synchronizing an inventory
+
+With `sync = true`, a managed inventory synchronizes each time it is created or
+its configuration changes. A failed sync, such as one with a revoked key, fails
+the apply.
+
+```terraform
+resource "plakar_inventory" "aws" {
+  name = "AWS production"
+  type = "aws"
+  sync = true
+
+  sync_triggers = {
+    access_key = var.aws_access_key
+  }
+
+  aws {
+    # ...
+  }
+}
+```
+
+A change to `sync_triggers` synchronizes the inventory again without changing
+its configuration. Use it after a change Terraform cannot see, such as a key
+rotated in the secret manager. Its values are stored in state, so use
+identifiers like the access key id, never secrets. On a connector for a
+discovered resource, add `depends_on` so that it is created after the sync:
+
+```terraform
+resource "plakar_connector" "archive" {
+  name        = "Archive bucket"
+  type        = "source"
+  integration = "s3"
+  resource    = "archive-bucket"
+
+  fields = {
+    root = "/"
+  }
+
+  depends_on = [plakar_inventory.aws]
+}
+```
 
 ## Self-managed inventories
 
@@ -99,8 +170,8 @@ value that an operator's decision could contradict.
 
 ## Referring to discovered resources
 
-Resources found by a provider-backed inventory exist without Terraform creating
-them. A data source resolves one so that an app can attach to it:
+Resources found by a managed inventory exist without Terraform creating them. A
+data source resolves one so that an app can attach to it:
 
 ```terraform
 data "plakar_resource" "db_host" {

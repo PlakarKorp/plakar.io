@@ -3,8 +3,8 @@ title: "Inventories"
 date: "2026-09-23T00:00:00Z"
 weight: 3
 summary:
-  "Declaring provider-backed and self-managed inventories, and mirroring an
-  Ansible fleet into one."
+  "Declaring managed and self-managed inventories, and mirroring an Ansible
+  fleet into one."
 ---
 
 # Inventories
@@ -15,10 +15,10 @@ Four modules cover them. `inventory` declares one, `inventory_resource` declares
 what a self-managed one holds, `inventory_sync` re-reads a provider, and
 `inventory_info` reads any of it back.
 
-## Provider-backed inventories
+## Managed inventories
 
-A provider-backed inventory watches a cloud account and fills itself from what
-it finds there. Its `configuration` carries the credentials for that account:
+A managed inventory watches a cloud account and fills itself from what it finds
+there. Its `configuration` carries the credentials for that account:
 
 ```yaml
 - name: Declare the Scaleway inventory
