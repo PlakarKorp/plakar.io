@@ -243,11 +243,13 @@ restore. It can also be downloaded whole,
 ## Pruning restore points
 
 Pruning deletes restore points from a store. To prune, select the restore points
-to delete from the **Browse** tab of a store, or from the
+to delete from the **Browse** tab of a store, from the
 [**Restore points**](../sources#restore-points) tab of the source they were
-backed up from, then click **Delete**. A restore point can be held by several
-stores, for example after a sync, and you choose which of them to prune it from.
-PCP keeps any copy under a [legal hold](../compliance/legal-hold).
+backed up from, or from the
+[**Restore points**](../../backup-and-restore/restore-points) page, then click
+**Remove**. A restore point can be held by several stores, for example after a
+sync, and you choose which of them to prune it from. PCP keeps any copy under a
+[legal hold](../compliance/legal-hold).
 
 Pruning requires at least **Configure** access to
 [restore point data](../../access-control/permissions), as held by the
