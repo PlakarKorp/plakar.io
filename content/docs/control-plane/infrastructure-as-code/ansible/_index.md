@@ -100,6 +100,10 @@ tenant beneath the key's own organization without re-scoping.
 | `member`             | Manage an organization's people and service accounts. |
 | `grant`              | Grant and revoke roles held by members.               |
 | `organization_info`  | Read an organization, its members and its grants.     |
+| `secret_provider`    | Declare secret providers.                             |
+| `integration`        | Install integrations from the catalog.                |
+| `environment`        | Manage an organization's environments.                |
+| `data_class`         | Manage an organization's data classes.                |
 
 Module names are written in full in a playbook, as `plakarkorp.plakar.backup`.
 Every option of every module is listed in the
