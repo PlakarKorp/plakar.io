@@ -28,12 +28,14 @@ cannot be set up by a self-managed inventory.
 
 ## Backup and restore
 
-A backup snapshots the root disk and each attached volume, and copies them
-through Glance without stopping the server. The disks are captured one after
-another rather than at the same instant, so they can reflect slightly different
-points in time. Every disk must fit within the Glance image size limit of the
-cloud. The limit is 1 TiB by default but it can be raised by the operator of the
-cloud.
+A backup snapshots the root disk and each attached volume without stopping the
+server. The disks are captured one after another rather than at the same
+instant, so they can reflect slightly different points in time. The root disk is
+copied through Glance. Each attached volume is read through an attachment or
+through Glance, as set by **Openstack Transfer** and described in
+[transfer modes](../../block-storage/openstack#transfer-modes). Every disk that
+goes through Glance must fit within the Glance image size limit of the cloud.
+The limit is 1 TiB by default but it can be raised by the operator of the cloud.
 
 Servers that boot from a volume are not supported. Their root disk is a Cinder
 volume rather than a Nova disk, and the backup refuses them.
@@ -62,6 +64,7 @@ flowchart TD
   subgraph OpenStack["OpenStack Project"]
     Server["Nova server"]
     Volumes["Attached Cinder volumes"]
+    Temp["Temporary volumes"]
     Images["Glance images"]
   end
 
@@ -75,7 +78,9 @@ flowchart TD
   Source -->|"uses OpenStack APIs"| Server
   Server --> Volumes
   Server -->|"root disk snapshot"| Images
-  Volumes -->|"volume snapshots"| Images
+  Volumes -->|"volume snapshots"| Temp
+  Temp -->|"attach"| Backup
+  Temp -->|"glance"| Images
   Images -->|"read disks"| Backup
   Backup --> Store
 {{< /mermaid >}}
@@ -129,6 +134,15 @@ destination apps.
   is set.
 - **Openstack Domain Name**: The domain of the user, and of the project when it
   is given by name. Defaults to `Default`.
+
+## Source configuration
+
+The following setting is available on source apps only.
+
+- **Openstack Transfer**: How attached volumes are read, one of `auto`, `attach`
+  or `glance`. Defaults to `auto`. See
+  [transfer modes](../../block-storage/openstack#transfer-modes) and
+  [running OpenStack tasks on an edge](../../block-storage/openstack#running-openstack-tasks-on-an-edge).
 
 ## Permissions
 

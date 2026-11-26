@@ -27,11 +27,10 @@ cannot be set up by a self-managed inventory.
 
 ## Backup and restore
 
-A backup snapshots the volume and copies its disk through Glance, without
-detaching the volume. A volume in use is backed up crash-consistent. Because the
-disk passes through Glance, the volume must fit within the Glance image size
-limit of the cloud. The limit is 1 TiB by default but it can be raised by the
-operator of the cloud.
+A backup snapshots the volume and reads its disk from a temporary volume created
+from the snapshot, without detaching the original. A volume in use is backed up
+crash-consistent. The disk is read through an attachment or through Glance, as
+described in [transfer modes](#transfer-modes).
 
 A restore creates a new, detached volume with the size, volume type,
 availability zone and metadata of the original. Existing volumes are never
@@ -57,6 +56,7 @@ flowchart TD
   subgraph OpenStack["OpenStack Project"]
     Volume["Cinder volume"]
     Snapshot["Cinder snapshot"]
+    Temp["Temporary volume"]
     Image["Glance image"]
   end
 
@@ -69,7 +69,9 @@ flowchart TD
 
   Source -->|"uses OpenStack APIs"| Volume
   Volume --> Snapshot
-  Snapshot --> Image
+  Snapshot --> Temp
+  Temp -->|"attach"| Backup
+  Temp -->|"glance"| Image
   Image -->|"read disk"| Backup
   Backup --> Store
 {{< /mermaid >}}
@@ -94,10 +96,41 @@ flowchart TD
 
   Store --> Restore
   Destination --> Restore
-  Restore -->|"upload disk"| Image
+  Restore -->|"attach"| Volume
+  Restore -->|"glance: upload disk"| Image
   Image --> Volume
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
+
+## Transfer modes
+
+A disk moves between Cinder and Plakar Control Plane in one of two ways:
+
+- **Attachment**: the volume is attached to the machine running the job, which
+  must be a Nova server in the same cloud, project and region, and read or
+  written there as a block device. Nothing goes through Glance.
+- **Glance**: the disk is copied through a temporary Glance image. The volume
+  must fit within the Glance image size limit of the cloud. The limit is 1 TiB
+  by default but it can be raised by the operator of the cloud.
+
+The **Openstack Transfer** option sets which one is used. `auto`, the default,
+uses attachment when the job can, and Glance otherwise or when the attachment
+fails. `attach` uses attachment only, and the job fails when it is not possible.
+`glance` always uses Glance.
+
+A backup taken through an attachment stores the disk raw, and a backup taken
+through Glance stores it as qcow2. Only a raw disk can be restored through an
+attachment. A qcow2 disk is restored through Glance, and a destination app set
+to `attach` fails on it.
+
+## Running OpenStack tasks on an edge
+
+To use attachment, tasks must run on an [edge](../../../edges) whose hosts are
+Nova servers in the same cloud, project and region as the volumes. The user
+running the edge must be root or in the `disk` group, so it can read and write
+block devices. Then assign the OpenStack resources to that pool, so their tasks
+run on those edges. See
+[selecting an edge](../../../edges/running-tasks#selecting-an-edge).
 
 ## Shared configuration
 
@@ -121,6 +154,9 @@ destination apps.
   is set.
 - **Openstack Domain Name**: The domain of the user, and of the project when it
   is given by name. Defaults to `Default`.
+- **Openstack Transfer**: How the disk moves between Cinder and Plakar Control
+  Plane, one of `auto`, `attach` or `glance`. Defaults to `auto`. See
+  [transfer modes](#transfer-modes).
 
 ## Permissions
 
