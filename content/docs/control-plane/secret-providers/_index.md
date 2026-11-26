@@ -57,3 +57,6 @@ Before you can use a secret provider, you need to configure one. See the
 provider-specific instructions for your secret manager:
 
 {{< children description="true" >}}
+
+To declare secret providers and the secrets of apps with Terraform, see
+[Secrets in Terraform](../infrastructure-as-code/terraform/secrets).

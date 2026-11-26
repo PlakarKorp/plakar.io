@@ -47,6 +47,11 @@ to `false`, and `compression` selects the algorithm used while doing so.
 Initialization runs at creation only, so a location that already holds a store
 is never touched by a later apply.
 
+When initialization fails, for example because the credentials cannot open the
+bucket, the apply fails with the reason PCP reports. The store app stays in
+state. You can fix the configuration and apply again, or remove the store with
+`terraform destroy`.
+
 A store is encrypted at rest with the `passphrase` in `fields`, so the provider
 refuses to initialize one without it. A missing key, an empty string, and a
 whitespace-only string are all rejected. A passphrase written in the
@@ -96,7 +101,9 @@ whatever it has. Removing a key from the map therefore stops managing that key
 rather than clearing it in PCP.
 
 Field values are credentials. They are sensitive, and Terraform records them in
-state, as described [here](.#secrets-in-terraform-state).
+state, as described in
+[Secrets in Terraform state](.#secrets-in-terraform-state). To keep them out of
+state, use a [secret provider or write-only fields](./secrets).
 
 ## Referring to apps managed elsewhere
 
