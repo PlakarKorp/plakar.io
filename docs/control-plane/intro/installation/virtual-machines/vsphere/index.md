@@ -235,22 +235,31 @@ Each parameter matches a key of the user data document. For a static IP, set
 together. All three are required for the static IP to take effect. The other
 parameters are independent of each other, so add only the ones you need.
 
-| Parameter                              | Description                                               |
-| -------------------------------------- | --------------------------------------------------------- |
-| `guestinfo.plakar.ssh_authorized_keys` | Contents of your SSH public key                           |
-| `guestinfo.plakar.http_proxy`          | HTTP proxy URL                                            |
-| `guestinfo.plakar.https_proxy`         | HTTPS proxy URL (defaults to the HTTP proxy if omitted)   |
-| `guestinfo.plakar.no_proxy`            | Comma-separated bypass list                               |
-| `guestinfo.plakar.registry_mirrors`    | Comma-separated `upstream=prefix` pairs                   |
-| `guestinfo.plakar.registry_insecure`   | `true` to skip TLS verification for the mirror hosts      |
-| `guestinfo.plakar.ntp_servers`         | Comma-separated NTP servers, as hostnames or IP addresses |
-| `guestinfo.plakar.ip`                  | Appliance IP address with CIDR mask                       |
-| `guestinfo.plakar.gateway`             | Network gateway for the selected segment                  |
-| `guestinfo.plakar.dns`                 | DNS resolver used by the appliance, e.g. `1.1.1.1`        |
+| Parameter                            | Description                                               |
+| ------------------------------------ | --------------------------------------------------------- |
+| `guestinfo.plakar.http_proxy`        | HTTP proxy URL                                            |
+| `guestinfo.plakar.https_proxy`       | HTTPS proxy URL (defaults to the HTTP proxy if omitted)   |
+| `guestinfo.plakar.no_proxy`          | Comma-separated bypass list                               |
+| `guestinfo.plakar.registry_mirrors`  | Comma-separated `upstream=prefix` pairs                   |
+| `guestinfo.plakar.registry_insecure` | `true` to skip TLS verification for the mirror hosts      |
+| `guestinfo.plakar.ntp_servers`       | Comma-separated NTP servers, as hostnames or IP addresses |
+| `guestinfo.plakar.ip`                | Appliance IP address with CIDR mask                       |
+| `guestinfo.plakar.gateway`           | Network gateway for the selected segment                  |
+| `guestinfo.plakar.dns`               | DNS resolver used by the appliance, e.g. `1.1.1.1`        |
 
 The gateway can usually be found from the NSX network segment configuration.
 When a setting is given both as a parameter and in `guestinfo.userdata`, the
 value from the user data is used.
+
+To allow SSH access, list your keys under `ssh_authorized_keys` in a
+`guestinfo.userdata` document, alongside your other
+[advanced settings](#cloud-init-via-guestinfouserdata) if you have some:
+
+```yaml
+#cloud-config
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
+```
 
 ![](../images/ovhcloud-iso-7.png)
 

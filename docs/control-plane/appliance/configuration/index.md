@@ -17,8 +17,8 @@ How the user data reaches the appliance depends on the platform, such as the
 that platform. This page describes what the document contains. Every key works
 on every platform unless its section says otherwise.
 
-On vSphere, the same settings can also be given as individual
-`guestinfo.plakar.*` parameters instead of a document. See the
+On vSphere, most settings can also be given as individual `guestinfo.plakar.*`
+parameters instead of a document. See the
 [vSphere installation](../../intro/installation/virtual-machines/vsphere#configuring-the-appliance)
 guide.
 
