@@ -14,6 +14,11 @@ each with its own resource. `plakar_organization` is the organization.
 that member a role. A membership on its own carries no permission, so a member
 without a grant can sign in to the organization and do nothing in it.
 
+Managing members and grants requires the application user of the provider's API
+key to hold the
+[Administrator](../../../access-control/permissions/administrator) or
+[Owner](../../../access-control/permissions/owner) role on the organization.
+
 ## Organizations
 
 An [organization](../../../access-control/organizations) is created under

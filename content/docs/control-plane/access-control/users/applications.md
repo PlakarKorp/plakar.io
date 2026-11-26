@@ -27,7 +27,10 @@ authenticate API requests.
 
 An application user with no role assigned can authenticate with its API key but
 cannot do anything with it. See [permissions](../../permissions) for the roles
-that can be assigned.
+that can be assigned. An application user that manages members and grants with
+the
+[Terraform provider](../../../infrastructure-as-code/terraform/organizations)
+needs the Administrator or Owner role.
 
 ## API keys
 

@@ -73,9 +73,12 @@ and reaching them at the configure level or above requires at least the
 The `fields` of a store or a connector hold the credentials Plakar Control Plane
 uses to reach a resource, and Terraform records them in state. The same applies
 to `generated_password`, the one-time password returned when a member resource
-registers a new account. State therefore contains secrets that grant access to
-the systems being backed up, and needs a backend that encrypts at rest and
-restricts who can read it.
+registers a new account. State that holds them grants access to the systems
+being backed up, and needs a backend that encrypts at rest and restricts who can
+read it.
+
+To keep a credential out of state, store it in a
+[secret provider or send it as a write-only field](./secrets).
 
 ## A worked example
 

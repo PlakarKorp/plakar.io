@@ -103,9 +103,8 @@ A prune skips restore points under a
 [legal hold](../../../compliance/legal-hold), whether the prune was declared
 here or scheduled from the web interface.
 
-## Drift on name and description
+## Name and description
 
-Plakar Control Plane stores `name` and `description` but does not return them
-from the API, so the provider cannot detect a change made to either outside
-Terraform. Every other argument is refreshed on each plan and drifts back on the
-next apply.
+A schedule's `name` and `description` live in Terraform state only. An import
+does not recover them, so set them again in the configuration after one. Every
+other argument is refreshed on each plan and drifts back on the next apply.

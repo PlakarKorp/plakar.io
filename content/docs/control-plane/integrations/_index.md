@@ -43,6 +43,9 @@ can also be installed from the **Add inventory** dialog, which lists providers
 that are not installed alongside those that are, so an inventory can be created
 without visiting the **Integrations** page first.
 
+To install integrations with Terraform, see
+[Integrations in Terraform](../infrastructure-as-code/terraform/integrations-and-classification).
+
 ## Updating an integration
 
 When a newer version of an installed integration is available, its card on the
