@@ -2,14 +2,18 @@
 title: "plakar_inventory"
 date: "2026-11-26T11:35:02Z"
 weight: 6
-summary: "Arguments and attributes of the plakar_inventory resource and data source."
+summary:
+  "Arguments and attributes of the plakar_inventory resource and data source."
 ---
 
 # plakar_inventory
 
 ## Resource
 
-An inventory — the census of resources Plakar watches over. Provider-backed inventories (aws, ovh, scaleway, gcp, vmware, k8s) discover their resources from the account they are configured against; a self-managed inventory holds resources declared by hand, e.g. with plakar_inventory_resource.
+An inventory — the census of resources Plakar watches over. Provider-backed
+inventories (aws, ovh, scaleway, gcp, vmware, k8s) discover their resources from
+the account they are configured against; a self-managed inventory holds
+resources declared by hand, e.g. with plakar_inventory_resource.
 
 ### Example Usage
 

@@ -2,14 +2,16 @@
 title: "plakar_store"
 date: "2026-11-26T11:35:02Z"
 weight: 13
-summary: "Arguments and attributes of the plakar_store resource and data source."
+summary:
+  "Arguments and attributes of the plakar_store resource and data source."
 ---
 
 # plakar_store
 
 ## Resource
 
-A Plakar store — where backup data lands. Destroying the resource removes the store from Plakar; data in the underlying storage is not touched.
+A Plakar store — where backup data lands. Destroying the resource removes the
+store from Plakar; data in the underlying storage is not touched.
 
 ### Example Usage
 

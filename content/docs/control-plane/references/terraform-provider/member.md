@@ -2,14 +2,23 @@
 title: "plakar_member"
 date: "2026-11-26T11:35:02Z"
 weight: 8
-summary: "Arguments and attributes of the plakar_member resource and data source."
+summary:
+  "Arguments and attributes of the plakar_member resource and data source."
 ---
 
 # plakar_member
 
 ## Resource
 
-A membership — a person or a service account belonging to an organization. Adding a person goes through the admin invitation path: a brand-new address gets an account with a one-time generated password (in generated_password, shown once and kept in state — treat state accordingly); an address that already has an account simply gains the membership. A membership carries no permission; what a member may do is a plakar_grant. Destroying the resource removes the membership, not the person's account. The provider's API key needs the administrator or owner role on the organization: with a lesser one, e.g. operator, the Control Plane answers 403 to the member and grant listings, so plan and import fail.
+A membership — a person or a service account belonging to an organization.
+Adding a person goes through the admin invitation path: a brand-new address gets
+an account with a one-time generated password (in generated_password, shown once
+and kept in state — treat state accordingly); an address that already has an
+account simply gains the membership. A membership carries no permission; what a
+member may do is a plakar_grant. Destroying the resource removes the membership,
+not the person's account. The provider's API key needs the administrator or
+owner role on the organization: with a lesser one, e.g. operator, the Control
+Plane answers 403 to the member and grant listings, so plan and import fail.
 
 ### Example Usage
 
@@ -64,7 +73,10 @@ terraform import plakar_member.alice 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90/7b2c1d
 
 ## Data Source
 
-A member of an organization, looked up by email (a person) or name (a service account, which has no address). The provider's API key needs the administrator or owner role on the organization: with a lesser one, e.g. operator, the Control Plane answers 403 to the member and grant listings, so plan and import fail.
+A member of an organization, looked up by email (a person) or name (a service
+account, which has no address). The provider's API key needs the administrator
+or owner role on the organization: with a lesser one, e.g. operator, the Control
+Plane answers 403 to the member and grant listings, so plan and import fail.
 
 ### Example Usage
 

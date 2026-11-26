@@ -2,14 +2,18 @@
 title: "plakar_organization"
 date: "2026-11-26T11:35:02Z"
 weight: 9
-summary: "Arguments and attributes of the plakar_organization resource and data source."
+summary:
+  "Arguments and attributes of the plakar_organization resource and data source."
 ---
 
 # plakar_organization
 
 ## Resource
 
-An organization — a tenant, or a perimeter nested under one. Membership is managed with plakar_member, permissions with plakar_grant. v1 has no organization update, so every change replaces — and destroying the resource deletes the tenant and everything scoped to it.
+An organization — a tenant, or a perimeter nested under one. Membership is
+managed with plakar_member, permissions with plakar_grant. v1 has no
+organization update, so every change replaces — and destroying the resource
+deletes the tenant and everything scoped to it.
 
 ### Example Usage
 

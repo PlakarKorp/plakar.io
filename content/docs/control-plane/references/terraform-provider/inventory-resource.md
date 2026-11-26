@@ -9,7 +9,9 @@ summary: "Arguments and attributes of the plakar_inventory_resource resource."
 
 ## Resource
 
-A resource declared in a self-managed inventory — a machine, database or share Plakar should know about. Connectors attach to it by URN, e.g. through the plakar_resource data source.
+A resource declared in a self-managed inventory — a machine, database or share
+Plakar should know about. Connectors attach to it by URN, e.g. through the
+plakar_resource data source.
 
 ### Example Usage
 

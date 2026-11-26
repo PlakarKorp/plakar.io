@@ -9,7 +9,8 @@ summary: "Arguments and attributes of the plakar_schedule resource."
 
 ## Resource
 
-A scheduled task — a backup, prune, sync or check with its recurrence rules. A scheduled prune carries the retention rule.
+A scheduled task — a backup, prune, sync or check with its recurrence rules. A
+scheduled prune carries the retention rule.
 
 ### Example Usage
 

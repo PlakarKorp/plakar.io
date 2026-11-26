@@ -330,15 +330,16 @@ found=$(cat "$STAGE"/*.md | grep -cE '^## (Resource|Data Source)$')
 [ "$found" -eq "$expected" ] ||
   die "the schema holds ${expected} resources and data sources, ${found} sections were written"
 
-if npx --no-install prettier --write "$STAGE" >/dev/null; then
+# The directory is generated whole, so pages for removed resources go with it.
+rm -rf "$DEST" "${OUTDIR}/terraform-provider.md" || die "could not remove the previous pages"
+mv "$STAGE" "$DEST" || die "could not write ${DEST}"
+
+# Formatted in place: outside the repository prettier misses its configuration.
+if npx --no-install prettier --write "$DEST" >/dev/null; then
   :
 else
   warn "prettier is not installed here, the pages are unformatted and will fail the repository format check, run 'npm install' and retry"
 fi
-
-# The directory is generated whole, so pages for removed resources go with it.
-rm -rf "$DEST" "${OUTDIR}/terraform-provider.md" || die "could not remove the previous pages"
-mv "$STAGE" "$DEST" || die "could not write ${DEST}"
 
 pages=$(ls "$DEST"/*.md | wc -l | tr -d ' ')
 # prettier pads the cells, so the header is matched loosely.

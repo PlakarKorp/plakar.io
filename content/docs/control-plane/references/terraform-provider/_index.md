@@ -2,7 +2,9 @@
 title: "Terraform Provider"
 date: "2026-11-26T11:35:02Z"
 weight: 2
-summary: "Argument-by-argument reference for every resource and data source in the plakar Terraform provider."
+summary:
+  "Argument-by-argument reference for every resource and data source in the
+  plakar Terraform provider."
 ---
 
 # Terraform provider reference
@@ -14,7 +16,8 @@ introduction to what these resources are and how to use them, see
 
 ## Provider
 
-Manage Plakar backup configuration — stores, connectors and schedules — through the Plakar management API.
+Manage Plakar backup configuration — stores, connectors and schedules — through
+the Plakar management API.
 
 ### Example Usage
 

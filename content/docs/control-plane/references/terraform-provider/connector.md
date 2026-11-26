@@ -2,7 +2,8 @@
 title: "plakar_connector"
 date: "2026-11-26T11:35:02Z"
 weight: 1
-summary: "Arguments and attributes of the plakar_connector resource and data source."
+summary:
+  "Arguments and attributes of the plakar_connector resource and data source."
 ---
 
 # plakar_connector

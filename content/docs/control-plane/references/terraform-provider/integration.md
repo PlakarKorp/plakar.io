@@ -2,14 +2,26 @@
 title: "plakar_integration"
 date: "2026-11-26T11:35:02Z"
 weight: 5
-summary: "Arguments and attributes of the plakar_integration resource and data source."
+summary:
+  "Arguments and attributes of the plakar_integration resource and data source."
 ---
 
 # plakar_integration
 
 ## Resource
 
-An integration installed from the catalog, made the current version of its name. Integrations belong to the whole deployment, not to an organization: managing them needs an API key whose service account holds the platform-admin role, and destroying the resource uninstalls the version in state for every organization, including one imported rather than installed by Terraform; other installed versions of the same integration, such as the one a version change left behind, stay installed. The server uninstalls an integration a connector still uses without complaint, and leaves the connector in place; within one configuration, Terraform destroys those first. Changing version installs that version and makes it current; the previous one stays installed, no longer current. With version set, a version made current by hand is put back on the next apply; without, it is adopted.
+An integration installed from the catalog, made the current version of its name.
+Integrations belong to the whole deployment, not to an organization: managing
+them needs an API key whose service account holds the platform-admin role, and
+destroying the resource uninstalls the version in state for every organization,
+including one imported rather than installed by Terraform; other installed
+versions of the same integration, such as the one a version change left behind,
+stay installed. The server uninstalls an integration a connector still uses
+without complaint, and leaves the connector in place; within one configuration,
+Terraform destroys those first. Changing version installs that version and makes
+it current; the previous one stays installed, no longer current. With version
+set, a version made current by hand is put back on the next apply; without, it
+is adopted.
 
 ### Example Usage
 

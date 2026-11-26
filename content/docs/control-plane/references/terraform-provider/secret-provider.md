@@ -2,14 +2,25 @@
 title: "plakar_secret_provider"
 date: "2026-11-26T11:35:02Z"
 weight: 12
-summary: "Arguments and attributes of the plakar_secret_provider resource and data source."
+summary:
+  "Arguments and attributes of the plakar_secret_provider resource and data
+  source."
 ---
 
 # plakar_secret_provider
 
 ## Resource
 
-A Plakar secret provider: an external secret manager that store, connector and inventory credentials can be resolved from at run time, so their values never reach Plakar's database or Terraform state. Pass the secret provider's own credential in fields_wo, which Terraform 1.11 and later never write to state. Scaleway Secret Manager (integration scaleway) takes scw_region in fields and scw_secret_key in fields_wo: the secret key of an API key whose IAM policy grants SecretManagerReadOnly and SecretManagerSecretAccess on the projects holding the secrets, nothing more. Its test call is not implemented by the integration; a reference resolves when the store, connector or inventory using it runs or synchronizes.
+A Plakar secret provider: an external secret manager that store, connector and
+inventory credentials can be resolved from at run time, so their values never
+reach Plakar's database or Terraform state. Pass the secret provider's own
+credential in fields_wo, which Terraform 1.11 and later never write to state.
+Scaleway Secret Manager (integration scaleway) takes scw_region in fields and
+scw_secret_key in fields_wo: the secret key of an API key whose IAM policy
+grants SecretManagerReadOnly and SecretManagerSecretAccess on the projects
+holding the secrets, nothing more. Its test call is not implemented by the
+integration; a reference resolves when the store, connector or inventory using
+it runs or synchronizes.
 
 ### Example Usage
 
