@@ -58,15 +58,32 @@ To list, upgrade, or remove the package, see
 
 ## How backups work
 
-OpenStack exposes the content of a disk through Glance, so every disk a backup
-reads is first snapshotted and copied to a temporary Glance image. The temporary
-snapshots, volumes and images are deleted once the disk has been read. Disks are
-read while they are in use, so a backup is crash-consistent.
+A backup snapshots each Cinder volume it reads and creates a temporary volume
+from the snapshot. Plakar then reads the temporary volume in one of two ways:
 
-Because every disk passes through Glance, it must fit within the Glance image
-size limit of the cloud. The limit is 1 TiB by default and can be raised by the
-operator of the cloud. Every backup copies the whole disk, so its duration grows
-with the size of the disk.
+- **Attachment**: when Plakar runs on a Nova server in the same cloud, project
+  and region, the volume is attached to that server and read as a block device.
+  Nothing goes through Glance. Reading a block device requires running Plakar as
+  root or as a user in the `disk` group.
+- **Glance**: the volume is copied to a temporary Glance image, which Plakar
+  reads. The disk must fit within the Glance image size limit of the cloud. The
+  limit is 1 TiB by default and can be raised by the operator of the cloud.
+
+The `openstack_transfer` option sets which one is used. `auto`, the default,
+uses attachment when Plakar runs on a suitable server, and Glance otherwise or
+when the attachment fails. `attach` uses attachment only, and the backup fails
+when it is not possible. `glance` always uses Glance. The root disk of a Nova
+server always goes through Glance.
+
+The temporary snapshots, volumes and images are deleted once the disk has been
+read. Disks are read while they are in use, so a backup is crash-consistent.
+Every backup copies the whole disk, so its duration grows with the size of the
+disk.
+
+A volume restored with the `openstack-block` protocol is written to a new volume
+attached to the server Plakar runs on when the backup was taken by attachment
+and `openstack_transfer` allows it. Other disks, including every disk restored
+with the `openstack-instance` protocol, go through a temporary Glance image.
 
 ## Authentication
 
@@ -129,8 +146,11 @@ flowchart LR
 
 subgraph OpenStack["OpenStack Project"]
   Server["Server and<br/>attached volumes"]
+  Volumes["Temporary<br/>volumes"]
   Images["Temporary<br/>Glance images"]
-  Server -->|"snapshot"| Images
+  Server -->|"snapshot"| Volumes
+  Server -->|"root disk<br/>snapshot"| Images
+  Volumes -->|"glance"| Images
 end
 
 Plakar["Plakar"]
@@ -139,6 +159,7 @@ Transform["Encrypt & deduplicate"]
 
 Store["Kloset Store"]
 
+Volumes -->|"attach"| Plakar
 Images --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
@@ -190,9 +211,10 @@ Either the application credential or `openstack_username` and
 
 The following extra options are available on the store connector.
 
-| Option     | Required | Description                                                |
-| ---------- | -------- | ---------------------------------------------------------- |
-| `location` | Yes      | `openstack-instance://<server-id>`, the server to back up. |
+| Option               | Required | Description                                                                                                          |
+| -------------------- | -------- | -------------------------------------------------------------------------------------------------------------------- |
+| `location`           | Yes      | `openstack-instance://<server-id>`, the server to back up.                                                           |
+| `openstack_transfer` | No       | How the disks are read: `auto`, `attach` or `glance`. Defaults to `auto`. See [how backups work](#how-backups-work). |
 
 ### Destination configuration
 
@@ -257,8 +279,10 @@ flowchart LR
 
 subgraph OpenStack["OpenStack Project"]
   Volume["Cinder volume"]
+  Temp["Temporary<br/>volume"]
   Image["Temporary<br/>Glance image"]
-  Volume -->|"snapshot"| Image
+  Volume -->|"snapshot"| Temp
+  Temp -->|"glance"| Image
 end
 
 Plakar["Plakar"]
@@ -267,6 +291,7 @@ Transform["Encrypt & deduplicate"]
 
 Store["Kloset Store"]
 
+Temp -->|"attach"| Plakar
 Image --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
@@ -289,7 +314,9 @@ subgraph OpenStack["OpenStack Project"]
   Image --> Volume
 end
 
-Store --> Plakar --> Transform --> Image
+Store --> Plakar --> Transform
+Transform -->|"glance"| Image
+Transform -->|"attach"| Volume
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
@@ -317,17 +344,19 @@ Either the application credential or `openstack_username` and
 
 The following extra options are available on the source connector.
 
-| Option     | Required | Description                                             |
-| ---------- | -------- | ------------------------------------------------------- |
-| `location` | Yes      | `openstack-block://<volume-id>`, the volume to back up. |
+| Option               | Required | Description                                                                                                          |
+| -------------------- | -------- | -------------------------------------------------------------------------------------------------------------------- |
+| `location`           | Yes      | `openstack-block://<volume-id>`, the volume to back up.                                                              |
+| `openstack_transfer` | No       | How the volume is read: `auto`, `attach` or `glance`. Defaults to `auto`. See [how backups work](#how-backups-work). |
 
 ### Destination configuration
 
 The following extra options are available on the destination connector.
 
-| Option     | Required | Description                                                                              |
-| ---------- | -------- | ---------------------------------------------------------------------------------------- |
-| `location` | Yes      | `openstack-block://` or `openstack-block://spawn`, both creating a new, detached volume. |
+| Option               | Required | Description                                                                                                             |
+| -------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `location`           | Yes      | `openstack-block://` or `openstack-block://spawn`, both creating a new, detached volume.                                |
+| `openstack_transfer` | No       | How the volume is written: `auto`, `attach` or `glance`. Defaults to `auto`. See [how backups work](#how-backups-work). |
 
 ### Example
 
