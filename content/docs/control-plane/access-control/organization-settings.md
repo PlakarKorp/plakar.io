@@ -82,6 +82,10 @@ Plane until a factor is enrolled. See
 [two-factor authentication](../two-factor-authentication) for what a member sets
 up and how it is used at sign-in.
 
+Only an [Owner](../permissions/owner), an
+[Organization Admin](../permissions/organization-admin) or the
+[Superuser](../permissions/superuser) can change this setting.
+
 ### Single sign-on
 
 Tie email domains to a single sign-on provider. A person whose email address is
