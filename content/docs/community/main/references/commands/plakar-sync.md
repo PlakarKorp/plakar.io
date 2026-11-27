@@ -1,5 +1,5 @@
 ---
-date: "2026-10-09T12:35:28Z"
+date: "2026-11-27T11:15:01Z"
 title: sync
 summary: "Synchronize snapshots between Plakar repositories"
 aliases:
@@ -73,7 +73,12 @@ aliases:
     </dl>
   </dd>
   <dt><var class="Ar">repository</var></dt>
-  <dd>Path to the peer repository to synchronize with.</dd>
+  <dd>Path to the peer repository to synchronize with. The passphrase of the
+      repository <code class="Nm">plakar</code> operates on does not unlock the
+      peer: an encrypted peer is unlocked from its own store configuration, see
+      <a class="Xr" href="https://man.openbsd.org/plakar-store.%s" aria-label="plakar-store,
+      section 1">plakar-store(1)</a>, and is prompted for separately when that
+      configuration carries no passphrase.</dd>
 </dl>
 </section>
 <section class="Sh">

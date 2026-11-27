@@ -1,5 +1,5 @@
 ---
-date: "2026-10-09T12:35:28Z"
+date: "2026-11-27T11:15:01Z"
 title: store
 summary: "Manage Plakar store configurations"
 aliases:
@@ -98,12 +98,35 @@ aliases:
       <var class="Ar">name</var>.</dd>
 </dl>
 <section class="Ss">
+<h3 class="Ss" id="ENCRYPTION_OPTIONS"><a class="permalink" href="#ENCRYPTION_OPTIONS">ENCRYPTION
+  OPTIONS</a></h3>
+<p class="Pp">A store holding an encrypted repository needs a passphrase to be
+    unlocked, and one of the following options provides it without a
+  terminal:</p>
+<dl class="Bl-tag">
+  <dt id="passphrase"><a class="permalink" href="#passphrase"><code class="Cm">passphrase</code></a></dt>
+  <dd>The passphrase itself. It is kept in the configuration file, and
+      <code class="Cm">show</code> hides it unless
+      <code class="Fl">-secrets</code> is given.</dd>
+  <dt id="passphrase_cmd"><a class="permalink" href="#passphrase_cmd"><code class="Cm">passphrase_cmd</code></a></dt>
+  <dd>A command whose single line of standard output is the passphrase, for when
+      the secret should stay out of the configuration file.</dd>
+</dl>
+<p class="Pp">A store carrying neither option is prompted for on the terminal,
+    which is why an unattended backup or synchronization needs one of them.</p>
+</section>
+<section class="Ss">
 <h3 class="Ss" id="HTTP_AND_HTTPS_STORE_OPTIONS"><a class="permalink" href="#HTTP_AND_HTTPS_STORE_OPTIONS">HTTP
   AND HTTPS STORE OPTIONS</a></h3>
 <p class="Pp">When using an <code class="Cm">http://</code> or
     <code class="Cm">https://</code> location, the following additional options
     are available:</p>
 <dl class="Bl-tag">
+  <dt id="allow_cross_host_redirects"><a class="permalink" href="#allow_cross_host_redirects"><code class="Cm">allow_cross_host_redirects</code></a></dt>
+  <dd>Optional, set to <code class="Cm">true</code> to follow a redirect to a
+      different host. By default only redirects to the same host are followed. A
+      redirect that changes the scheme, such as from HTTPS to HTTP, is always
+      refused.</dd>
   <dt id="auth_token"><a class="permalink" href="#auth_token"><code class="Cm">auth_token</code></a></dt>
   <dd>Bearer token sent in the &#x201C;Authorization&#x201D; header for every
       request.</dd>

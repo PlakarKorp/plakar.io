@@ -1,5 +1,5 @@
 ---
-date: "2026-10-09T12:35:28Z"
+date: "2026-11-27T11:15:01Z"
 title: restore
 summary: "Restore files from a Plakar snapshot"
 aliases:
@@ -88,7 +88,19 @@ aliases:
     <var class="Ar">option</var><span class="No">=</span><var class="Ar">value</var></dt>
   <dd>Can be used to pass extra arguments to the destination connector. The
       given <var class="Ar">option</var> takes precedence over the configuration
-      file.</dd>
+      file.
+    <p class="Pp">When restoring to the local file system, the following options
+        are recognized:</p>
+    <dl class="Bl-tag">
+      <dt id="skip_permissions"><a class="permalink" href="#skip_permissions"><code class="Cm">skip_permissions</code></a>=<code class="Cm">true</code></dt>
+      <dd>Do not restore file modes. By default the mode recorded in the
+          snapshot is restored, including the setuid, setgid and sticky
+        bits.</dd>
+      <dt id="skip_ownership"><a class="permalink" href="#skip_ownership"><code class="Cm">skip_ownership</code></a>=<code class="Cm">true</code></dt>
+      <dd>Do not restore file ownership. By default, when running as root, files
+          are given the user and group recorded in the snapshot.</dd>
+    </dl>
+  </dd>
 </dl>
 </section>
 <section class="Sh">
@@ -120,6 +132,11 @@ aliases:
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar restore -to  @s3target abc123:/etc/apache2</pre>
 </div>
+<p class="Pp">Restore without reproducing the modes and ownership recorded in
+    the snapshot:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>$ plakar restore -o skip_permissions=true -o skip_ownership=true abc123</pre>
+</div>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
@@ -131,5 +148,5 @@ aliases:
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
-  2026</span> <span class="foot-right">PLAKAR-RESTORE(1)</span></div>
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">October
+  30, 2026</span> <span class="foot-right">PLAKAR-RESTORE(1)</span></div>

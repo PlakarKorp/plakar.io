@@ -1,5 +1,5 @@
 ---
-date: "2026-10-09T12:35:28Z"
+date: "2026-11-27T11:15:00Z"
 title: logout
 summary: "Log out from Plakar services"
 aliases:
@@ -29,7 +29,10 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar logout</code> command logs out an
-    authenticated session with the Plakar platform.</p>
+    authenticated session with the Plakar platform: the session's token is
+    revoked on the platform, so a copy of it kept anywhere is refused from then
+    on, and the local copy is deleted. The local copy is deleted even when the
+    platform cannot be reached, with a warning.</p>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
