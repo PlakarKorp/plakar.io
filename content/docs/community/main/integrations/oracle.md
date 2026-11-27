@@ -25,8 +25,8 @@ The integration includes two connectors:
 - A single-instance Oracle database. RAC is not supported.
 - `plakar` running on the database server, as an OS user in the OSDBA (`dba`)
   and Oracle inventory (`oinstall`) groups.
-- A staging directory shared with the OS user of the database, with free space
-  for a full backup of the CDB.
+- A staging directory, local or on an NFS share, shared with the OS user of the
+  database, with free space for a full backup of the CDB.
 
 ## Installation
 
@@ -84,6 +84,34 @@ $ install -d -o plakar -g oinstall -m 2770 /var/lib/plakar/rman
 
 The setgid bit makes each staging directory inherit the `oinstall` group. A
 default ACL that grants the database user `rwx` on `backup_dir` works too.
+
+## Staging on an NFS share
+
+On Linux, `nfs_mount` stages the backup pieces on an NFS share mounted on the
+database server, instead of `backup_dir`. The share needs room for a full backup
+of the CDB and holds the pieces unencrypted, so export it to the database server
+only.
+
+Mount the share over NFSv3 with the `hard` option, since a `soft` mount can lose
+writes. For example, in `/etc/fstab`:
+
+```txt
+nas:/export/rman  /mnt/plakar-rman  nfs  vers=3,proto=tcp,hard,rsize=1048576,wsize=1048576,timeo=600,_netdev,nofail  0 0
+```
+
+Create `plakar/` on the share with the same group setup as `backup_dir`:
+
+```sh
+$ install -d -o plakar -g oinstall -m 2770 /mnt/plakar-rman/plakar
+```
+
+The `plakar` user, the database user and the `oinstall` group need the same
+numeric IDs on the NAS as on the database server. Each server writes under its
+own `plakar/<hostname>/` directory, so several servers can share one export.
+
+Oracle's Direct NFS client (dNFS) and direct I/O work on the share. dNFS is off
+until the Oracle binary is relinked with `make -f ins_rdbms.mk dnfs_on`, in
+`$ORACLE_HOME/rdbms/lib`. With dNFS, the export needs the `insecure` option.
 
 ## How a backup works
 
@@ -159,13 +187,14 @@ Store --> Plakar --> Staging -->|"RMAN restore & recover"| CDB
 
 The same options apply to the source and destination connectors.
 
-| Option        | Required | Description                                                                                                          |
-| ------------- | -------- | -------------------------------------------------------------------------------------------------------------------- |
-| `location`    | Yes      | `oracle://` followed by the host. RMAN ignores the host and connects to the local instance.                          |
-| `sid`         | Yes      | The `ORACLE_SID` of the container database.                                                                          |
-| `oracle_home` | No       | The `ORACLE_HOME` RMAN runs with. Defaults to the one in the environment.                                            |
-| `rman_path`   | No       | The path to the `rman` command. Defaults to `bin/rman` in `oracle_home` when it is set, `rman` in `$PATH` otherwise. |
-| `backup_dir`  | No       | The directory backups and restores stage the RMAN backup pieces in. Defaults to the system temporary directory.      |
+| Option        | Required | Description                                                                                                                                     |
+| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `location`    | Yes      | `oracle://` followed by the host. RMAN ignores the host and connects to the local instance.                                                     |
+| `sid`         | Yes      | The `ORACLE_SID` of the container database.                                                                                                     |
+| `oracle_home` | No       | The `ORACLE_HOME` RMAN runs with. Defaults to the one in the environment.                                                                       |
+| `rman_path`   | No       | The path to the `rman` command. Defaults to `bin/rman` in `oracle_home` when it is set, `rman` in `$PATH` otherwise.                            |
+| `backup_dir`  | No       | The directory backups and restores stage the RMAN backup pieces in. Defaults to the system temporary directory.                                 |
+| `nfs_mount`   | No       | Linux only. An NFS share mounted on the database server, used instead of `backup_dir`. See [Staging on an NFS share](#staging-on-an-nfs-share). |
 
 ### Example
 
