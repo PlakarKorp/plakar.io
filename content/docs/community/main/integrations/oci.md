@@ -133,13 +133,34 @@ Connector --> Store
 | Option                     | Required | Description                                                                                                             |
 | -------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `location`                 | Yes      | OCI registry reference where the store lives, for example `oci://registry.example.com/my-org/plakar-store`.             |
+| `username`                 | No       | Registry user. Also used to obtain tokens from the token service of the registry.                                       |
+| `password`                 | No       | Password or personal access token of the user. Requires `username`.                                                     |
+| `token`                    | No       | Bearer token sent as is to the registry. Cannot be combined with `username`.                                            |
+| `token_realm`              | No       | Host of the token service of the registry, when it is not the registry itself. See [Authentication](#authentication).   |
 | `insecure`                 | No       | Set to `true` to connect to the registry over plaintext HTTP instead of TLS. Defaults to `false`.                       |
 | `tls_insecure_no_verify`   | No       | Skip TLS certificate verification. Defaults to `false`. Cannot be combined with `insecure=true`. See the warning below. |
 | `allow_cross_host_uploads` | No       | Set to `true` to allow uploads to a host other than the registry. Defaults to `false`. See [Uploads](#uploads).         |
 
-> [!NOTE]+ Authentication
->
-> Authentication is not yet supported and will be added in an upcoming release.
+#### Authentication
+
+The connector authenticates in one of three ways:
+
+- **Username and password**: set `username` and `password`. The password is
+  often a personal access token. The password is only sent once the registry
+  asks for basic authentication.
+- **Token service**: registries such as Docker Hub, GitHub Container Registry,
+  Amazon ECR and Harbor ask for a token instead. With `username` and `password`
+  set, the connector obtains a token scoped to the repository from the token
+  service of the registry, and reuses it until it expires.
+- **Static token**: set `token` to send a bearer token as is, instead of a
+  username and password.
+
+Most registries run their token service on the registry host, and Docker Hub's
+is known, so nothing else is needed. For a registry whose token service is on
+another host, set `token_realm` to that host.
+
+Credentials are only sent to the registry host and its token service, over TLS
+unless `insecure=true`. Credentials never go in `location`.
 
 #### TLS
 
@@ -153,6 +174,12 @@ container, needs `insecure=true`.
 > `tls_insecure_no_verify=true`, the connection is open to man-in-the-middle
 > attacks. Only use either option for testing or on trusted networks.
 
+#### Downloads
+
+Registries often redirect downloads to a CDN or an object store. Plakar follows
+these redirects, but never from TLS to plaintext HTTP, and does not send
+credentials to the other host.
+
 #### Uploads
 
 When Plakar uploads data, the registry tells it where to send the data. By
@@ -163,13 +190,22 @@ Some registries hand uploads off to a separate storage host. For those, set
 `allow_cross_host_uploads=true`. Plakar never sends an upload over plaintext
 HTTP when the store is configured for TLS, even with this option set.
 
+#### Deleting data
+
+Plakar deletes its locks, and maintenance deletes packfiles, so the registry
+must allow deletes. Deleting an object removes only its own tag. On registries
+that cannot remove a tag, Plakar deletes the manifest of the object instead,
+which no other object shares. The registry keeps the underlying data until its
+garbage collection runs, so run it regularly to reclaim space.
+
 ### Example
 
-Start a local test registry:
+Start a local test registry with deletes enabled:
 
 ```bash
 $ docker run -d --name oci-registry \
   -p 5000:5000 \
+  -e REGISTRY_STORAGE_DELETE_ENABLED=true \
   -v $(pwd)/registry-data:/var/lib/registry \
   registry:2
 ```
@@ -192,6 +228,14 @@ List snapshots and restore:
 ```bash
 $ plakar at "@my-oci" ls
 $ plakar at "@my-oci" restore <snapshot_id>
+```
+
+On a hosted registry, such as GitHub Container Registry, authenticate with a
+personal access token:
+
+```bash
+$ plakar store add ghcr oci://ghcr.io/my-org/plakar-store username=my-user password=<token>
+$ plakar at "@ghcr" create
 ```
 
 ## Limitations and scope
