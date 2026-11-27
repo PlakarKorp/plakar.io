@@ -1,5 +1,5 @@
 ---
-date: "2026-10-09T12:35:27Z"
+date: "2026-11-27T11:15:00Z"
 title: backup
 summary: "Create a new snapshot in a Kloset store"
 aliases:
@@ -47,7 +47,11 @@ aliases:
 <p class="Pp">The <code class="Nm">plakar backup</code> command creates a new
     snapshot of <var class="Ar">place</var>, or the current directory. Snapshots
     can be filtered to ignore specific files or directories based on patterns
-    provided through options.</p>
+    provided through options. Patterns follow the gitignore syntax but are
+    matched against the absolute pathname, not against a path relative to
+    <var class="Ar">place</var>: a pattern that contains a slash is anchored at
+    <span class="Pa">/</span>. To ignore a single directory, give its absolute
+    path.</p>
 <p class="Pp"><var class="Ar">place</var> can be either a path, an URI, or a
     label with the form &#x201C;@<var class="Ar">name</var>&#x201D; to reference
     a source connector configured with
@@ -160,6 +164,12 @@ $ plakar backup @bucket:/assets @bucket:/uploads @bucket:/logs</pre>
     command line:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar backup -ignore-file ~/.plkignore -ignore &quot;*.tmp&quot; /var/www</pre>
+</div>
+<p class="Pp">Ignore every <span class="Pa">node_modules</span> directory, and
+    only the <span class="Pa">cache</span> directory at the top of
+    <span class="Pa">/var/www</span>:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>$ plakar backup -ignore node_modules -ignore /var/www/cache /var/www</pre>
 </div>
 <p class="Pp">Pass an option to the importer, in this case to don't traverse
     mount points:</p>

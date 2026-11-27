@@ -1,5 +1,5 @@
 ---
-date: "2026-10-09T12:35:28Z"
+date: "2026-11-27T11:15:01Z"
 title: plakar
 summary: "effortless backups"
 aliases:
@@ -274,6 +274,9 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="ENVIRONMENT"><a class="permalink" href="#ENVIRONMENT">ENVIRONMENT</a></h2>
 <dl class="Bl-tag">
+  <dt id="DISABLE_SECURITY_CHECK"><a class="permalink" href="#DISABLE_SECURITY_CHECK"><code class="Ev">DISABLE_SECURITY_CHECK</code></a></dt>
+  <dd>If set, <code class="Nm">plakar</code> does not check the releases feed
+      for security and reliability updates.</dd>
   <dt id="PLAKAR_INSECURE_PLAINTEXT"><a class="permalink" href="#PLAKAR_INSECURE_PLAINTEXT"><code class="Ev">PLAKAR_INSECURE_PLAINTEXT</code></a></dt>
   <dd>Must be set to work with a Kloset store that is not encrypted. Without it,
       every command that would read from or write to an unencrypted store

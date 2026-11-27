@@ -1,5 +1,5 @@
 ---
-date: "2026-10-09T12:35:28Z"
+date: "2026-11-27T11:15:01Z"
 title: ui
 summary: "Serve the Plakar web user interface"
 aliases:
@@ -44,7 +44,8 @@ aliases:
       listens on localhost on a random port.</dd>
   <dt id="cors"><a class="permalink" href="#cors"><code class="Fl">-cors</code></a></dt>
   <dd>Set the &#x2018;Access-Control-Allow-Origin&#x2019; HTTP headers to allow
-      the UI to be accessed from any origin.</dd>
+      the UI to be accessed from any origin. It cannot be combined with
+      <code class="Fl">-no-auth</code>.</dd>
   <dt id="no-auth"><a class="permalink" href="#no-auth"><code class="Fl">-no-auth</code></a></dt>
   <dd>Disable the authentication token that otherwise is needed to consume the
       exposed HTTP APIs.</dd>
@@ -62,6 +63,14 @@ aliases:
   <dt id="key"><a class="permalink" href="#key"><code class="Fl">-key</code></a>
     <var class="Ar">path</var></dt>
   <dd>Path to a certificate private key file in PEM format.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h2 class="Sh" id="ENVIRONMENT"><a class="permalink" href="#ENVIRONMENT">ENVIRONMENT</a></h2>
+<dl class="Bl-tag">
+  <dt id="PLAKAR_UI_TOKEN"><a class="permalink" href="#PLAKAR_UI_TOKEN"><code class="Ev">PLAKAR_UI_TOKEN</code></a></dt>
+  <dd>Authentication token to use instead of generating a random one at each
+      start. Ignored when <code class="Fl">-no-auth</code> is given.</dd>
 </dl>
 </section>
 <section class="Sh">
