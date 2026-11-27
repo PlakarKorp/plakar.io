@@ -24,6 +24,10 @@ image includes the OpenSSH client. When the task runs on a binary edge or on a
 client on it, for example with the `openssh-client` package on Debian and
 Ubuntu. See [SSH client](../../edges/requirements#ssh-client).
 
+Without **Host Key**, `ssh` checks the remote machine against the `known_hosts`
+file of the user running the edge, and refuses a machine it does not list. Set
+**Host Key**, or add the remote machine to that file on the edge.
+
 ## Inventory Management
 
 Currently no [managed inventory](../../inventories#managed-inventories) has the
