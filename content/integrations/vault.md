@@ -44,6 +44,8 @@ edition:
 
 stage: stable
 
+binary: true
+
 author:
   - type: official
     name: Plakar
