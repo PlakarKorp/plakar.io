@@ -22,8 +22,20 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 git clone --depth 1 https://github.com/PlakarKorp/plakar.git -b "${TAG}" "${TMPDIR}" || { echo "Clone failed for tag '${TAG}'"; exit 1; }
 
 OUTDIR="${SCRIPT_DIR}/../content/docs/community/${VERSION}/references/commands"
-rm -rf "${OUTDIR}"
+OLDDIR="${TMPDIR}/previous"
+if [ -d "${OUTDIR}" ]; then
+  mv "${OUTDIR}" "${OLDDIR}" || exit 1
+fi
 mkdir -p "${OUTDIR}"
+
+NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+# Hugo takes the last modification time from git, so a page keeps the date it
+# was first generated with.
+pagedate() {
+  d=$(sed -n 's/^date: "\(.*\)"$/\1/p' "${OLDDIR}/$1" 2>/dev/null | head -n 1)
+  echo "${d:-$NOW}"
+}
 
 echo "generating documentation for ${VERSION} (tag: ${TAG})"
 
@@ -35,7 +47,7 @@ fi
 cat <<EOF > "${OUTDIR}/_index.md"
 ---
 title: "Commands"
-date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+date: "$(pagedate _index.md)"
 weight: 5
 summary: "Reference for all Plakar commands. Browse detailed documentation for each command, including usage, options, and examples. Access help online or directly from your terminal."
 aliases:
@@ -78,7 +90,7 @@ for man in "$TMPDIR/manpages/"*; do
 
   cat <<EOF > "$dest"
 ---
-date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+date: "$(pagedate "${name}.md")"
 title: ${name##plakar-}
 summary: "${summary}"
 aliases:
