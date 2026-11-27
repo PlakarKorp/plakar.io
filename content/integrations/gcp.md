@@ -28,7 +28,13 @@ seo_tags:
   - CloudSQL inventory
   - cloud inventory management
 
-links: []
+links:
+  - type: control-plane
+    url: /docs/control-plane/inventories/managed/google-cloud/
+  - type: custom
+    label: GCP Secret Manager
+    url: /docs/control-plane/secret-providers/gcp/
+    icon: ri/book-open-line
 
 edition:
   - control-plane

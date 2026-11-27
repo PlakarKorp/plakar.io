@@ -35,7 +35,7 @@ seo_tags:
 
 links:
   - type: community
-    url: /docs/community/main/integrations/etcd
+    url: /docs/community/main/integrations/etcd/
   - type: control-plane
     url: /docs/control-plane/resources/database/etcd/
 

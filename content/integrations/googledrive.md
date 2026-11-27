@@ -43,7 +43,7 @@ seo_tags:
 
 links:
   - type: community
-    url: /docs/community/main/integrations/googledrive
+    url: /docs/community/main/integrations/googledrive/
 
 related:
   - onedrive
