@@ -92,7 +92,7 @@ Each Plakar integration has a landing page that explains what it backs up and th
 - [etcd](https://www.plakar.io/integrations/etcd/index.md): Protect your etcd cluster against data loss and node failures. Plakar takes encrypted, deduplicated snapshots of etcd cluster state, giving you a reliable recovery point when it matters most.
 - [Filesystem](https://www.plakar.io/integrations/fs/index.md): Back up local directories and mounted filesystems to protect against accidental deletion, corruption, and ransomware. Versioned, encrypted, and fully restorable across systems.
 - [FTP](https://www.plakar.io/integrations/ftp/index.md): Back up and restore directories to and from remote FTP servers. Plakar provides encrypted, deduplicated, and verifiable snapshots for FTP-accessible environments.
-- [Google Cloud (GCP)](https://www.plakar.io/integrations/gcp/index.md): Connect a Google Cloud project to Plakar Control Plane and automatically discover the resources running in it, keeping an up-to-date inventory as Cloud Storage buckets and CloudSQL instances are created or removed.
+- [Google Cloud (GCP)](https://www.plakar.io/integrations/gcp/index.md): Plakar Control Plane lists the Cloud SQL instances and buckets of a GCP project, backs them up to a store outside it and reads credentials from Secret Manager.
 - [Google Cloud Storage](https://www.plakar.io/integrations/gcs/index.md)
 - [Google Drive](https://www.plakar.io/integrations/googledrive/index.md)
 - [iCloud Drive](https://www.plakar.io/integrations/iclouddrive/index.md)
