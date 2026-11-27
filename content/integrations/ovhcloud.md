@@ -45,6 +45,8 @@ seo_tags:
   - OVHcloud Backup Center
 
 links:
+  - type: community
+    url: /docs/community/main/integrations/ovhcloud/
   - type: control-plane
     url: /docs/control-plane/resources/compute/openstack/
   - type: custom
@@ -65,9 +67,12 @@ related:
   - mysql
 
 edition:
+  - community
   - control-plane
 
 stage: stable
+
+binary: true
 
 author:
   - type: official
@@ -268,7 +273,9 @@ inventory as destination.
 {{< step >}}
 
 **Set the credentials.** Give the destination an OpenStack application
-credential ID and secret for the project, and `SBG5` as OpenStack Region.
+credential ID and secret for the project, and `SBG5` as OpenStack Region. See
+[Managing OpenStack Application Credentials](/docs/control-plane/guides/ovhcloud/openstack-application-credentials/)
+for how to create one.
 
 {{< /step >}}
 
