@@ -83,8 +83,6 @@ app.
   precedence over the export named in the location.
 - **Gid**: Numeric group ID presented to the server as the AUTH_UNIX credential.
   Defaults to `0`.
-- **Port**: The NFS and MOUNT service port. By default the service is resolved
-  through the server's portmapper.
 - **Root**: Path relative to the mounted export. For a source app it is the path
   to walk, and for a destination app it is the path files are restored to.
   Defaults to `/`, the whole export.
