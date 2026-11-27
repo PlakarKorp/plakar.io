@@ -93,9 +93,9 @@ A new `major.minor` (`v1.2.0`, `v2.0.0`) gets a new directory. A patch release
 
 1. For a new `major.minor`, copy the previous version directory and review every
    page. Copied content is not assumed correct.
-2. Regenerate the command reference with
-   `scripts/update-cli-doc.sh <version> <git-tag>`. Never edit
-   `references/commands/` by hand.
+2. Regenerate the command reference by running the **Update CLI Docs** workflow
+   with the version and the git tag. It renders the man pages with OpenBSD's
+   mandoc and opens a pull request. Never edit `references/commands/` by hand.
 3. Set the new version's `weight` and shift the older ones.
 4. Point `redirectTo` in `content/docs/community/_index.md` to the new version.
 5. Search the repository for links to the previous version and update the ones

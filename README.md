@@ -114,6 +114,13 @@ the scripts in `scripts/` rather than editing them by hand:
 | `update-ansible-doc.sh`   | Ansible collection reference                      |
 | `update-operator-doc.sh`  | Kubernetes operator reference                     |
 
+Regenerate the CLI command reference with the **Update CLI Docs** workflow. It
+renders the man pages on OpenBSD and opens a pull request. To run it locally
+instead, run `scripts/update-cli-doc.sh <version> <git-tag>`.
+
+The HTML depends on the local `mandoc`, which differs between OpenBSD, macOS and
+Linux, so prefer the workflow for pages you commit.
+
 ## Contributing
 
 Open a pull request against `main`. Before you push, run:

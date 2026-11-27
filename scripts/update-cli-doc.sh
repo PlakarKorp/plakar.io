@@ -1,4 +1,4 @@
-# !/bin/sh
+#!/bin/sh
 
 VERSION=main
 if [ "$1" != "" ]; then
@@ -11,8 +11,9 @@ tempfoo=$(basename "$0")
 TMPDIR=$(mktemp -d /tmp/${tempfoo}.XXXXXX) || exit 1
 
 onexit() {
+  status=$?
   rm -rf "$TMPDIR"
-  exit 0
+  exit $status
 }
 trap 'onexit' EXIT INT TERM
 

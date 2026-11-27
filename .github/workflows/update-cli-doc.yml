@@ -1,0 +1,103 @@
+name: Update CLI Docs
+
+# Regenerates the Plakar CLI command reference from the man pages of a plakar
+# ref, and opens a pull request with the result. The pages are rendered with the
+# mandoc of OpenBSD, which is up to date, unlike the mandoc of Linux and macOS.
+# GitHub has no OpenBSD runners, so OpenBSD runs in QEMU on a Linux runner.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Docs version directory, such as main or v1.1.0"
+        required: true
+        default: "main"
+      tag:
+        description: "plakar git ref to read the man pages from (default: the version)"
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-cli-doc-${{ inputs.version }}
+  cancel-in-progress: true
+
+env:
+  DOC_VERSION: ${{ inputs.version }}
+  DOC_TAG: ${{ inputs.tag || inputs.version }}
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check the version
+        run: |
+          case "$DOC_VERSION" in
+          main | v[0-9]*.[0-9]*.[0-9]*) ;;
+          *) echo "::error::version must be main or vX.Y.Z" && exit 1 ;;
+          esac
+
+      - name: Checkout script
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          sparse-checkout: scripts
+          persist-credentials: false
+
+      - name: Start OpenBSD
+        uses: cross-platform-actions/action@30cde56b87a128507bebea9531205087890ee360 # v1.8.0
+        with:
+          operating_system: openbsd
+          architecture: x86-64
+          version: "8.0"
+          environment_variables: DOC_VERSION DOC_TAG
+
+      - name: Render man pages on OpenBSD
+        shell: cpa.sh {0}
+        run: |
+          sudo pkg_add -I git node
+          npm ci --ignore-scripts
+          ./scripts/update-cli-doc.sh "$DOC_VERSION" "$DOC_TAG"
+
+      - name: Upload pages
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: commands
+          path: content/docs/community/${{ env.DOC_VERSION }}/references/commands/
+          if-no-files-found: error
+
+  pull-request:
+    needs: render
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Replace the command reference
+        run: |
+          dir="content/docs/community/$DOC_VERSION/references/commands"
+          rm -rf "$dir"
+          mkdir -p "$dir"
+          echo "DOC_DIR=$dir" >> "$GITHUB_ENV"
+
+      - name: Download pages
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: commands
+          path: ${{ env.DOC_DIR }}
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
+        with:
+          add-paths: ${{ env.DOC_DIR }}
+          branch: update-cli-doc/${{ env.DOC_VERSION }}
+          delete-branch: true
+          commit-message: "regenerate the ${{ env.DOC_VERSION }} command reference from plakar ${{ env.DOC_TAG }}"
+          title: "Regenerate the ${{ env.DOC_VERSION }} command reference from plakar ${{ env.DOC_TAG }}"
+          body: |
+            Regenerated from the man pages of plakar `${{ env.DOC_TAG }}`, rendered with OpenBSD 8.0 mandoc by the Update CLI Docs workflow.
