@@ -203,6 +203,13 @@ Restored files are written only inside the destination directory. A snapshot
 entry whose path would resolve outside it, for example through `..` components,
 is reported as failed and skipped.
 
+The FTP server follows symbolic links in every path it receives, so Plakar
+writes an entry only when its parent is the destination directory or a directory
+created by the same restore. Entries below any other existing directory are
+reported as failed. For example, if `/srv/restore/logs` already exists, every
+entry below `logs` fails. Restore into an empty directory, or remove the
+existing entries first.
+
 ### Example
 
 Back up a remote directory:
