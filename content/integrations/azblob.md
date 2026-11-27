@@ -42,7 +42,7 @@ seo_tags:
 
 links:
   - type: community
-    url: /docs/main/integrations/azblob
+    url: /docs/community/main/integrations/azblob/
   - type: control-plane
     url: /docs/control-plane/resources/object-storage/azblob/
 

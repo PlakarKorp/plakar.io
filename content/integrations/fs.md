@@ -52,6 +52,7 @@ related:
 
 edition:
   - community
+  - control-plane
 
 stage: stable
 

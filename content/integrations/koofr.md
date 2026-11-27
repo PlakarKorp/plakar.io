@@ -44,7 +44,7 @@ seo_tags:
 
 links:
   - type: community
-    url: /docs/main/integrations/koofr/
+    url: /docs/community/main/integrations/koofr/
 
 related:
   - protondrive
