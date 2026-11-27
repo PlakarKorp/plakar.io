@@ -33,10 +33,13 @@ seo_tags:
   - Vault snapshot
 
 links:
+  - type: community
+    url: /docs/community/main/integrations/vault/
   - type: control-plane
     url: /docs/control-plane/resources/security/vault/
 
 edition:
+  - community
   - control-plane
 
 stage: stable
