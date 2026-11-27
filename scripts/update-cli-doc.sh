@@ -94,15 +94,14 @@ EOF
 ---
 
 EOF
-  mandoc -I os=Plakar -Thtml -Ofragment,man='../%N/;https://man.openbsd.org/%N.%s' "$man" > "$TMPDIR/page.html" || exit 1
-  sed "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/community/${VERSION}/guides/importing-configurations/|g" "$TMPDIR/page.html" >> "$dest" || exit 1
-done
+  mandoc -I os=Plakar -Thtml -Ofragment,man='../%N/;https://man.openbsd.org/%N.%s' "$man" >> "$dest"
 
-# The workflow formats the pages after rendering them on OpenBSD, which has no
-# node.
-if [ -n "${NO_FORMAT}" ]; then
-  exit 0
-fi
+  case $(uname) in
+  Darwin|FreeBSD) i='-i ""' ;;
+  *)              i='-i'    ;;
+  esac
+  sed $i "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/community/${VERSION}/guides/importing-configurations/|g" "$dest"
+done
 
 echo "formatting generated documentation for ${VERSION}"
 (cd "${SCRIPT_DIR}/.." && npx --no-install prettier --write "${OUTDIR}")

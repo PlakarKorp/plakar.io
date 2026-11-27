@@ -56,8 +56,9 @@ jobs:
       - name: Render man pages on OpenBSD
         shell: cpa.sh {0}
         run: |
-          sudo pkg_add -I git
-          NO_FORMAT=1 ./scripts/update-cli-doc.sh "$DOC_VERSION" "$DOC_TAG"
+          sudo pkg_add -I git node
+          npm ci --ignore-scripts
+          ./scripts/update-cli-doc.sh "$DOC_VERSION" "$DOC_TAG"
 
       - name: Upload pages
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -89,18 +90,6 @@ jobs:
         with:
           name: commands
           path: ${{ env.DOC_DIR }}
-
-      - name: Set up Node
-        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
-        with:
-          node-version-file: ".node-version"
-          cache: "npm"
-
-      - name: Install root dependencies
-        run: npm ci
-
-      - name: Format pages
-        run: npx --no-install prettier --write "$DOC_DIR"
 
       - name: Open pull request
         uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
