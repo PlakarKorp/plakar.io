@@ -105,11 +105,16 @@ permit the presented credentials, for example through an
 An NFS location identifies the server and the export to mount:
 
 ```bash
-nfs://<host>[:<port>]/<export>[/<subpath>]
+nfs://<host>/<export>[/<subpath>]
 ```
 
 The path is the server-side export to mount. A deeper subpath narrows the walk
 to a subtree of that export, which the `root` option also does.
+
+With the `export` option set, the location can be `nfs://<host>` alone.
+
+Plakar always reaches the server through its portmapper on port `111`, which
+provides the NFS and MOUNT service ports. A port in the location is rejected.
 
 ## Configuration
 
@@ -118,7 +123,9 @@ and directories it finds in a Kloset store with encryption and deduplication.
 Each entry is captured with its size, mode, ownership and modification time.
 
 The destination connector restores a snapshot back to an NFS export, recreating
-the directory hierarchy and file contents.
+the directory hierarchy and file contents. A restore replaces any existing file
+at the same path. Directories that the restore creates to reach an entry, rather
+than from the snapshot, get mode `0700`.
 
 #### Backup flow
 
@@ -171,13 +178,13 @@ Connector --> Destination
 
 The following options apply to both source and destination connectors.
 
-| Option     | Required | Description                                                                                                   |
-| ---------- | -------- | ------------------------------------------------------------------------------------------------------------- |
-| `location` | Yes      | NFS target. See [Addressing an export](#addressing-an-export).                                                |
-| `root`     | No       | Path to walk or restore to, relative to the mounted export. Defaults to the whole export.                     |
-| `port`     | No       | NFS and MOUNT service port. By default the service is resolved through the server's portmapper on port `111`. |
-| `uid`      | No       | Numeric user ID presented to the server as the AUTH_UNIX identity. Defaults to `0`.                           |
-| `gid`      | No       | Numeric group ID presented to the server as the AUTH_UNIX identity. Defaults to `0`.                          |
+| Option     | Required | Description                                                                                      |
+| ---------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `location` | Yes      | NFS target. See [Addressing an export](#addressing-an-export).                                   |
+| `export`   | No       | Server export to mount, such as `/exports/data`. Takes precedence over the export in `location`. |
+| `root`     | No       | Path to walk or restore to, relative to the mounted export. Defaults to the whole export.        |
+| `uid`      | No       | Numeric user ID presented to the server as the AUTH_UNIX identity. Defaults to `0`.              |
+| `gid`      | No       | Numeric group ID presented to the server as the AUTH_UNIX identity. Defaults to `0`.             |
 
 ### Example
 
