@@ -1,5 +1,5 @@
 ---
-date: "2026-10-09T12:34:20Z"
+date: "2026-11-27T11:22:17Z"
 title: diff
 summary: "Show differences between files in a Plakar snapshots"
 aliases:

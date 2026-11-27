@@ -1,5 +1,5 @@
 ---
-date: "2026-10-09T12:34:20Z"
+date: "2026-11-27T11:22:17Z"
 title: login
 summary: "Authenticate to Plakar services"
 aliases:
