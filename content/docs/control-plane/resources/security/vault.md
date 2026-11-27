@@ -7,10 +7,9 @@ summary: "How to configure a HashiCorp Vault resource in Plakar Control Plane."
 
 # HashiCorp Vault
 
-HashiCorp Vault resources back up the unseal keys of a Vault server. Plakar
-Control Plane connects to the Vault server, reads the unseal keys from its
-snapshot backup, and stores them in the Kloset store. During restore, Plakar
-Control Plane writes the unseal keys back to a Vault server.
+HashiCorp Vault resources back up a Vault cluster. Plakar Control Plane takes a
+Raft snapshot of the cluster, which holds all of its data, and stores it in the
+Kloset store. A restore loads the snapshot back into a Vault cluster.
 
 This is the same Vault integration used to
 [reference Vault as a secret provider](../../../secret-providers/vault), used
@@ -35,13 +34,17 @@ more information on how to set up resources on a self-managed inventory.
 A resource represents a single Vault cluster. Backing up multiple Vault clusters
 requires registering a separate resource for each cluster.
 
+The cluster must use integrated storage (Raft). The token needs access to
+`sys/storage/raft/snapshot`, and to `sys/storage/raft/snapshot-force` when
+**Force** is enabled.
+
 #### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart TD
   subgraph Vault["HashiCorp Vault Server (source)"]
-    Keys["Unseal Keys"]
+    Data["Integrated storage"]
   end
 
   subgraph Plakar["Plakar Control Plane"]
@@ -51,8 +54,8 @@ flowchart TD
 
   Store["Kloset Store"]
 
-  Source -->|"read unseal keys"| Keys
-  Keys --> Backup
+  Source -->|"take Raft snapshot"| Data
+  Data --> Backup
   Backup --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
@@ -70,12 +73,12 @@ flowchart TD
   end
 
   subgraph Vault["HashiCorp Vault Server (destination)"]
-    Keys["Unseal Keys"]
+    Data["Integrated storage"]
   end
 
   Store --> Restore
   Destination --> Restore
-  Restore -->|"write unseal keys"| Keys
+  Restore -->|"restore Raft snapshot"| Data
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
@@ -94,8 +97,8 @@ apps.
 
 The following extra settings are available when configuring a destination app.
 
-- **Force**: Overwrite existing unseal keys with those stored in the Vault
-  snapshot backup.
+- **Force**: Restore a snapshot whose unseal keys differ from those of the
+  destination cluster.
 
 Restoring a snapshot resets the destination Vault cluster to the state it was in
 when the snapshot was taken, including its auto-unseal or Shamir unseal keys. By
@@ -108,5 +111,5 @@ keys differ from those in the snapshot, requires enabling **Force**.
 
 > [!WARNING]
 >
-> Enabling **Force** overwrites the destination cluster's unseal keys with those
-> from the snapshot.
+> A forced restore replaces the data and the unseal keys of the destination
+> cluster with those from the snapshot.
